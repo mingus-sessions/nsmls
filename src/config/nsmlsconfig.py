@@ -7,7 +7,7 @@ class Client:
     exec_name: str = ""
     url: str = "no_url_provided"
     info: str = ""      
-    comment: str = ""  # desktopEntry.getComment()
+    #comment: str = ""  # desktopEntry.getComment()
     path: str = ""
     installed: bool = False
     desktop_entry: bool = False
@@ -27,7 +27,7 @@ class Client:
 custom_clients = [
 
         #Client("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
-        # ("exec_name", "url", "info"),
+        # ("application", "", ""),
         Client("mamba", "https://github.com/brummer10/Mamba", "virtual midi keyboard"),
 
 
@@ -124,7 +124,7 @@ blocked_clients = (
         )
 
 
-
+# Normally you wouldn't edit this list, unless you know what you're doing.
 xdg_paths = (
 
         Path("/usr/share/applications"),
