@@ -1,11 +1,17 @@
+#!/usr/bin/env python
+
 from dataclasses import dataclass
+import shutil
+
+# NOTE: the default file MUST not have a entry commented out, other then in custom_clients.
 
 
+# FIXME: should probably be a dictionary
 @dataclass(slots=True)
 class Client:
     exec_name: str = ""
     url: str = ""
-    info: str = ""
+    info: str = ""  # desktopEntry.getComment()
 
 
 '''
@@ -21,9 +27,12 @@ class Client:
 
 # priority 1
 # Custom entries for custom or unknown clients. Please report if you think they should be known.
+# If on custom clients, just check if it's installed.
 custom_clients = [
 
+        # ("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
         # ("exec_name", "url", "info"),
+
 
         ]
 
@@ -41,18 +50,62 @@ green_clients = [
         ("non-timeline", "http://non.tuxfamily.org", "non-daw audio recorder"),
         ("nsm-proxy", "http://non.tuxfamily.org", "launch tools with no nsm or gui"),
         ("jackpatch", "https://non.tuxfamily.org", "save jack connections"),
-        #("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
-        #("samplv1_jack", "https://github.com/rncbc/samplv1", "sampler synthesizer"),
-        #("padthv1_jack", "https://github.com/rncbc/padthv1", "additive synthesizer"),
-        #("synthv1_jack", "https://github.com/rncbc/synthv1", "substractive synthesizer"),
-        #("ardour", "https://ardour.org", "digital audio workstation"),
-        #("zynaddsubfx", "https://github.com/zynaddsubfx", "synthesizer"),
-        #("synthpod_jack", "https://open-music-kontrollers.ch/lv2", "lv2 plugin container"), # FIXME
-
-
-
+        ("zynaddsubfx", "https://github.com/zynaddsubfx", "synthesizer"),  # NOTE dificult one
 
         ]
+
+if custom_clients:
+    convert to Dataclass
+
+for __, name in enumerate(custom_client_dataclass):
+    path =  which(name)  # NOTE should we do something with path.
+    if path:
+        yield name (add dataclass entry to a list_)
+
+if custom_clients or green_clients:
+    if green_clients:
+
+
+        else:
+           " we've only custom_clients."
+# Merge custom_clients and green_clients, they get the same threatment. 
+# [x + y[1:] for x, y in zip(a, b) if x[0] == y[0]]
+# [x + y[1:] for x, y in zip(, b) if x[0] == y[0]]
+# [x + (z,) for x, (y, z) in zip(a, b)]
+# Merge lists of  tuples
+new_list = [x + (z,) for x, (y, z) in zip(custom_clients, green_clients)]
+
+# Convert to dataclass.
+for __, entry_tuple in enumerate(new_list):
+    yield Client(*entry_tuple)
+
+# If it's installed, we take it
+for __, list_ in enumerate(dataclassses):
+    if which(list_.name):
+        yield list_
+
+
+# nsm_clients
+# convert to dataclass, now we can compare to the name? to set the url.
+for __, entry_tuple in enumerate(new_list):
+    yield Client(*entry_tuple)
+
+
+get desktopentries:
+    get X-NSM-Exec
+        yield that thing
+
+
+# compare with our list of dataclasses.name
+if they match and not on blocking list_:
+    add a url (and change description)
+
+
+# sort and set
+        
+
+
+# print
 
 
 #Client(*tuple)
@@ -64,7 +117,7 @@ green_clients = [
 # There is also X-NSM-Exec=carla-rack
 
 # check for X-NSM-Exec and check if it's on the blocking list.
-# Add url when it's on the known list.
+# Add url when it's on the known list (and description?).
 
 # set to prevent duplicates
 
@@ -76,11 +129,12 @@ nsm_clients = [
     ("ams", "http://alsamodular.sourceforge.net", "modular synthesizer"),
     ("amsynth", "http://amsynth.github.io", "analog modelling synthesizer"),
     ("ardour", "https://ardour.org", "digital audio workstation"),
-    # ("ardour5", "https://ardour.org", "digital audio workstation"),
-    # ("ardour6", "https://ardour.org", "digital audio workstation"),
-    # ("ardour7", "https://ardour.org", "digital audio workstation"),
+    ("ardour3", "https://ardour.org", "digital audio workstation"),
+    ("ardour4", "https://ardour.org", "digital audio workstation"),
+    ("ardour5", "https://ardour.org", "digital audio workstation"),
+    ("ardour6", "https://ardour.org", "digital audio workstation"),
+    ("ardour7", "https://ardour.org", "digital audio workstation"),
     ("carla-jack-multi", "https://github.com/falkTX/Carla", "plugin host multi"),
-    #carla-patchbay https://kx.studio/Clientlications:Carla jack patchbay
     ("carla-rack", "https://github.com/falkTX/Carla", "plugin host rack"),
     ("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
     ("fluajho", "https://laborejo.org", "soundfont player"),
@@ -91,7 +145,6 @@ nsm_clients = [
     ("loop192", "https://github.com/jean-emmanuel/loop192", "midi looper"),
     ("luppp", "http://openavproductions.com/luppp", "live looper"),
     ("mamba", "https://github.com/brummer10/Mamba", "virtual midi keyboard"),
-    #("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
     ("mfp", "https://github.com/bgribble/mfp", "visual composing"),
     ("padthv1_jack", "https://github.com/rncbc/padthv1", "additive synthesizer)",
     ("patroneo", "https://laborejo.org", "midi sequencer"),
@@ -106,11 +159,11 @@ nsm_clients = [
     ("shuriken", "https://rock-hopper.github.io/shuriken", "beat slicer"),
     ("synthpod_jack", "https://open-music-kontrollers.ch/lv2", "lv2 plugin container"), # FIXME
     ("synthv1_jack", "https://github.com/rncbc/synthv1", "substractive synthesizer"),
-    ("tembro", "https://laborejo.org/tembro/", "virtal instrument samples"),
+    ("tembro", "https://laborejo.org/tembro/", "virtual instrument samples"),
     ("xtuner", "https://github.com/brummer10/XTuner", "instrument tuner"),
-    #(zita-at1, https://github.com/royvegard/zita-at1, autotuner (unofficial)),
-    #(zita-rev1, https://github.com/royvegard/zita-rev1, reverb (unofficial)),
-    #("zynaddsubfx", "https://github.com/zynaddsubfx", "synthesizer"),
+    ("zita-at1", "https://github.com/royvegard/zita-at1", "autotuner (fork)"),
+    ("zita-rev1", "https://github.com/royvegard/zita-rev1", "reverb (fork)"),
+
 
         ]
 
@@ -127,6 +180,7 @@ blocked_clients = (
 
         # "non-midi-mapper", 
         # "non-mixer-noui"
+        #carla-patchbay https://kx.studio/Clientlications:Carla jack patchbay
 
         "nsmd", 
         "non-daw", 
