@@ -37,6 +37,16 @@ green_clients = [
         ("non-timeline", "http://non.tuxfamily.org", "non-daw audio recorder"),
         ("nsm-proxy", "http://non.tuxfamily.org", "launch tools with no nsm or gui"),
         ("jackpatch", "https://non.tuxfamily.org", "save jack connections"),
+        #("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
+        #("samplv1_jack", "https://github.com/rncbc/samplv1", "sampler synthesizer"),
+        #("padthv1_jack", "https://github.com/rncbc/padthv1", "additive synthesizer"),
+        #("synthv1_jack", "https://github.com/rncbc/synthv1", "substractive synthesizer"),
+        #("ardour", "https://ardour.org", "digital audio workstation"),
+        #("zynaddsubfx", "https://github.com/zynaddsubfx", "synthesizer"),
+        #("synthpod_jack", "https://open-music-kontrollers.ch/lv2", "lv2 plugin container"), # FIXME
+
+
+
 
         ]
 
@@ -58,7 +68,7 @@ nsm_clients = [
     ("carla-jack-multi", "https://github.com/falkTX/Carla", "plugin host multi"),
     #carla-patchbay https://kx.studio/Clientlications:Carla jack patchbay
     ("carla-rack", "https://github.com/falkTX/Carla", "plugin host rack"),
-    ("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
+    # ("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
     ("fluajho", "https://laborejo.org", "soundfont player"),
     ("guitarix", "https://github.com/brummer10/guitarix", "virtual guitar amplifier"),
     ("hydrogen", "https://github.com/hydrogen-music/hydrogen", "drum machine"),
@@ -70,7 +80,7 @@ nsm_clients = [
     ("mamba", "https://github.com/brummer10/Mamba", "virtual midi keyboard"),
     #("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
     ("mfp", "https://github.com/bgribble/mfp", "visual composing"),
-    ("padthv1_jack", "https://github.com/rncbc/padthv1", "additive synthesizer)",
+    # ("padthv1_jack", "https://github.com/rncbc/padthv1", "additive synthesizer)",
     ("patroneo", "https://laborejo.org", "midi sequencer"),
     ("petri-foo", "http://petri-foo.sourceforge.net", "sampler"),
     ("qmidiarp", "http://qmidiarp.sourceforge.net", "midi arpeggiator"),
@@ -78,11 +88,11 @@ nsm_clients = [
     ("qseq66", "https://github.com/ahlstromcj/seq66", "midi sequencer"),
     ("radium", "http://users.notam02.no/~kjetism/radium", "tracker"),
     ("radium_compressor", "http://users.notam02.no/~kjetism/radium", "compressor"),
-    ("samplv1_jack", "https://github.com/rncbc/samplv1", "sampler synthesizer"),
+    ("samplv1", "https://github.com/rncbc/samplv1", "sampler synthesizer"),
     ("seq192", "https://github.com/jean-emmanuel/seq192", "midi sequencer"),
     ("shuriken", "https://rock-hopper.github.io/shuriken", "beat slicer"),
-    ("synthpod_jack", "https://open-music-kontrollers.ch/lv2", "lv2 plugin container"),
-    ("synthv1_jack", "https://github.com/rncbc/synthv1", "substractive synthesizer"),
+    ("synthpod", "https://open-music-kontrollers.ch/lv2", "lv2 plugin container"), # FIXME
+    ("synthv1", "https://github.com/rncbc/synthv1", "substractive synthesizer"),
     ("tembro", "https://laborejo.org/tembro/", "virtal instrument samples"),
     ("xtuner", "https://github.com/brummer10/XTuner", "instrument tuner"),
     #(zita-at1, https://github.com/royvegard/zita-at1, autotuner (unofficial)),
@@ -91,6 +101,12 @@ nsm_clients = [
 
         ]
 
+'''
+zynaddsubfx-alsa.desktop
+zynaddsubfx-jack.desktop
+zynaddsubfx-jack-multi.desktop
+zynaddsubfx-oss.desktop
+'''
 
 # NOTE: maybe we don't need this. This is only for search all list.
 blocked_clients = (
