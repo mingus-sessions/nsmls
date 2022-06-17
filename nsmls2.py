@@ -16,11 +16,11 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 class Client:
     exec_name: str = ""
     url: str = "no_url_provided"
-    info: str = ""  # desktopEntry.getComment()
-    comment: str = ""
+    info: str = ""      
+    comment: str = ""  # desktopEntry.getComment()
     path: str = ""
     installed: bool = False
-    nsm_api: str = "?"
+    #nsm_api: str = "?"
     #nsm: bool = False
     desktop_entry: bool = False
 
@@ -136,7 +136,7 @@ def get_path(input_list):
         if path:
             entry.path = path
             entry.installed = True
-            entry.nsm_api = "!" 
+            # entry.nsm_api = "!" 
 
 
 
@@ -164,7 +164,7 @@ def get_entries(paths, nsm_clients):
                             #    path = ""
                             #known_client.path = path 
                             known_client.installed = True
-                            known_client.nsm_api = "!!"
+                            #known_client.nsm_api = "!!"
                             known_client.desktop_entry = True
                             result.append(known_client)
                             break
@@ -172,7 +172,7 @@ def get_entries(paths, nsm_clients):
                         comment = xdg.DesktopEntry.DesktopEntry(f).getComment()
                         if not comment:
                             comment = ""
-                        unknown_client = Client(exec_name=y, installed=True, nsm_api="!!", comment=comment, desktop_entry=True)
+                        unknown_client = Client(exec_name=y, installed=True, comment=comment, desktop_entry=True)
                         result.append(unknown_client)
     return result
 
