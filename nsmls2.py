@@ -21,6 +21,7 @@ class Client:
     path: str = ""
     installed: bool = False
     nsm_api: str = "?"
+    #nsm: bool = False
     desktop_entry: bool = False
 
 
@@ -88,6 +89,9 @@ def check_if_installed(input_list):
             entry.path = path
             entry.installed = True
             entry.nsm_api = "!" 
+
+
+check_if_installed(data_list)
 
 
 nsm_clients = [
@@ -182,6 +186,11 @@ def get_entries(paths, nsm_clients):
 #get_entries(xdg_paths)
 #entries = []
 programs = get_entries(xdg_paths, nsm_clients)
+
+
+for __, client in enumerate(data_list):
+    if client.installed:
+        programs.append(client)
 
 '''
 for __, xdg_item in enumerate(entries):
