@@ -101,6 +101,37 @@ nsm_clients = [
         ]
 
 
+# NOTE: maybe we don't need this. This is only for search all list.
+# Normally you wouldn't edit this.
+blocked_clients = (
+
+        # "non-midi-mapper", 
+        # "non-mixer-noui"
+        #carla-patchbay https://kx.studio/Clientlications:Carla jack patchbay
+
+        "nsmd",
+        "fluajho",  # FIXME
+        "non-daw", 
+        "carla", 
+        "agordejo", 
+        "adljack", 
+        "agordejo.bin",
+        # We block raysession specific tools to keep things simple.
+        "ray_control",
+        "ray-jack_checker_daemon",
+        "ray-pulse2jack",
+        "ray-daemon",
+        "ray-jack_config_script",
+        "raysession",
+        "ray_git",
+        "ray-proxy",
+        "ray-jackpatch",
+        # We block Agordejo specific tools to keep things simple.
+        "nsm-data",          
+        )
+
+
+
 xdg_paths = (
 
         Path("/usr/share/applications"),
@@ -125,7 +156,7 @@ def get_path(input_list):
 
 
 # xdg stuff was inspire by...
-def get_entries(paths, nsm_clients):
+def get_entries(paths, nsm_clients, blocked_client):
     result = []
     known = False
     for __, basePath in enumerate(paths):
@@ -133,6 +164,9 @@ def get_entries(paths, nsm_clients):
             if file.is_file() and file.suffix == ".desktop":
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
                 if found:
+                    if found in blocked_clients:
+                        print(f"{found} in {blocked_clients}")
+                        continue
                     for __, known_client in enumerate(nsm_clients):
                         if found == known_client.exec_name:
                             known = True
@@ -149,7 +183,7 @@ def get_entries(paths, nsm_clients):
     return result
 
 
-programs = get_entries(xdg_paths, nsm_clients)
+programs = get_entries(xdg_paths, nsm_clients, blocked_clients)
 
 
 get_path(data_list)
