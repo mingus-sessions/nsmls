@@ -44,6 +44,7 @@ custom_clients = [
 
         Client("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
         # ("exec_name", "url", "info"),
+        Client("mamba", "https://github.com/brummer10/Mamba", "virtual midi keyboard"),
 
 
         ]
@@ -108,7 +109,7 @@ nsm_clients = [
     Client("carla-jack-multi", "https://github.com/falkTX/Carla", "plugin host multi"),
     Client("carla-rack", "https://github.com/falkTX/Carla", "plugin host rack"),
     Client("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
-    Client("fluajho", "https://laborejo.org", "soundfont player"),
+    #Client("fluajho", "https://laborejo.org", "soundfont player"),
     Client("guitarix", "https://github.com/brummer10/guitarix", "virtual guitar amplifier"),
     Client("hydrogen", "https://github.com/hydrogen-music/hydrogen", "drum machine"),
     Client("jack_mixer", "https://rdio.space/jackmixer", "mixer"),
@@ -157,7 +158,7 @@ xdg_paths = (
 # xdg stuff was inspire by...
 def get_entries(paths, nsm_clients):
     result = []
-    known_client = False
+    known = False
     for __, basePath in enumerate(paths):
         for f in basePath.glob('**/*'):
             if f.is_file() and f.suffix == ".desktop":
@@ -199,7 +200,17 @@ for __, xdg_item in enumerate(entries):
             client.url 
 
 '''
-print(programs)
+
+
+# programs = set(programs) # NOTE use a key exec_name?
+
+for __, program in enumerate(programs):
+    print(f"{program.exec_name}")
+    print(f"{program.url}")
+    if program.info:
+        print(f"{program.info}")
+    elif program.comment:
+        print(f"comment {program.comment}")
 
 #    for __, entry in enumerate(xdg_paths):
         # if ... entry.nsm_api = "!!"
