@@ -7,7 +7,6 @@ class Client:
     exec_name: str = ""
     url: str = "no_url_provided"
     description: str = ""      
-    #comment: str = ""  # desktopEntry.getComment()
     path: str = ""
     installed: bool = False
     desktop_entry: bool = False
