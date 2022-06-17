@@ -12,6 +12,8 @@ class Client:
     exec_name: str = ""
     url: str = ""
     info: str = ""  # desktopEntry.getComment()
+    path: str = ""
+
 
 
 '''
@@ -30,7 +32,7 @@ class Client:
 # If on custom clients, just check if it's installed.
 custom_clients = [
 
-        # ("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
+        ("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
         # ("exec_name", "url", "info"),
 
 
@@ -54,20 +56,6 @@ green_clients = [
 
         ]
 
-if custom_clients:
-    convert to Dataclass
-
-for __, name in enumerate(custom_client_dataclass):
-    path =  which(name)  # NOTE should we do something with path.
-    if path:
-        yield name (add dataclass entry to a list_)
-
-if custom_clients or green_clients:
-    if green_clients:
-
-
-        else:
-           " we've only custom_clients."
 # Merge custom_clients and green_clients, they get the same threatment. 
 # [x + y[1:] for x, y in zip(a, b) if x[0] == y[0]]
 # [x + y[1:] for x, y in zip(, b) if x[0] == y[0]]
@@ -75,6 +63,7 @@ if custom_clients or green_clients:
 # Merge lists of  tuples
 new_list = [x + (z,) for x, (y, z) in zip(custom_clients, green_clients)]
 
+"""
 # Convert to dataclass.
 for __, entry_tuple in enumerate(new_list):
     yield Client(*entry_tuple)
@@ -221,7 +210,7 @@ self.blackList = set(("nsmd", "non-daw", "carla", "agordejo", "adljack", "agorde
     list. at least we don't want to do the work.
  14         self.unfilteredExecutables = None #in build()
 '''
-
+"""
 
 
 
