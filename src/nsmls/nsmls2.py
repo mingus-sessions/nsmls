@@ -20,6 +20,7 @@ from src.config.nsmlsconfig import green_clients
 from src.config.nsmlsconfig import nsm_clients
 from src.config.nsmlsconfig import blocked_clients
 from src.config.nsmlsconfig import xdg_paths 
+from src.config.nsmlsconfig import Client 
 
 
 joinedlist = custom_clients + green_clients

@@ -63,7 +63,7 @@ nsm_clients = [
     Client("carla-jack-multi", "https://github.com/falkTX/Carla", "plugin host multi"),
     Client("carla-rack", "https://github.com/falkTX/Carla", "plugin host rack"),
     Client("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
-    Client("fluajho", "https://laborejo.org", "soundfont player"),
+    #Client("fluajho", "https://laborejo.org", "soundfont player"),
     Client("guitarix", "https://github.com/brummer10/guitarix", "virtual guitar amplifier"),
     Client("hydrogen", "https://github.com/hydrogen-music/hydrogen", "drum machine"),
     Client("jack_mixer", "https://rdio.space/jackmixer", "mixer"),
