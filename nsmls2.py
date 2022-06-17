@@ -3,6 +3,7 @@
 from dataclasses import dataclass
 from shutil import which
 from pathlib import Path
+import os
 import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 #import xdg.IconTheme #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 
@@ -96,17 +97,26 @@ xdg_paths = (
         )
 
 
-# os walk?
+# os walk? First try without. os.listdir
 # if files endswith *.desktop
 # if desktopEntry.get("X-NSM-Exec")
 # match with list and add url or description accordingly 
 
 
 def get_entries(paths):
-    for __, entry in enumerate(xdg_paths):
+    for __, path in enumerate(paths):
+        files = os.listdir(path)
+        for __, file in enumerate(files):
+            yield desktopEntry.get("X-NSM-Exec")
+
+
+entries = get_entries(xdg_paths)
+
+
+#    for __, entry in enumerate(xdg_paths):
         # if ... entry.nsm_api = "!!"
         # installed = True
-        yield desktopEntry.get("X-NSM-Exec")
+#        yield desktopEntry.get("X-NSM-Exec")
 
 # https://pyxdg.readthedocs.io/_/downloads/en/latest/pdf/
 # Axdg.DesktopEntry.DesktopEntry(filename=None
