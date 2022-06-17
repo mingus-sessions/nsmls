@@ -2,9 +2,12 @@
 
 from dataclasses import dataclass
 from shutil import which
+from pathlib import Path
+import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
+#import xdg.IconTheme #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 
 # NOTE: the default file MUST not have a entry commented out, other then in custom_clients.
-
+# NOTE: xdg specifications only have url for LINK entry it seems": https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#recognized-keys
 
 # FIXME: should probably be a dictionary
 @dataclass(slots=True)
@@ -14,6 +17,9 @@ class Client:
     url: str = ""
     info: str = ""  # desktopEntry.getComment()
     path: str = ""
+    installed: bool = False
+    nsm_api: str = "?"
+    desktop_entry: bool = False
 
 
 
@@ -33,7 +39,7 @@ class Client:
 # If on custom clients, just check if it's installed.
 custom_clients = [
 
-        ("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
+        Client("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
         # ("exec_name", "url", "info"),
 
 
@@ -46,14 +52,14 @@ custom_clients = [
 # (Black)star clients.
 green_clients = [
 
-        ("non-midi-mapper", "http://non.tuxfamily.org", "non-daw midi to osc mapper"),
-        ("non-mixer", "http://non.tuxfamily.org", "non-daw mixer"),
-        ("non-mixer-noui", "http://non.tuxfamily.org", "non-daw mixer"),
-        ("non-sequencer", "http://non.tuxfamily.org/", "midi sequencer"),
-        ("non-timeline", "http://non.tuxfamily.org", "non-daw audio recorder"),
-        ("nsm-proxy", "http://non.tuxfamily.org", "launch tools with no nsm or gui"),
-        ("jackpatch", "https://non.tuxfamily.org", "save jack connections"),
-        ("zynaddsubfx", "https://github.com/zynaddsubfx", "synthesizer"),  # NOTE dificult one
+        Client("non-midi-mapper", "http://non.tuxfamily.org", "non-daw midi to osc mapper"),
+        Client("non-mixer", "http://non.tuxfamily.org", "non-daw mixer"),
+        Client("non-mixer-noui", "http://non.tuxfamily.org", "non-daw mixer"),
+        Client("non-sequencer", "http://non.tuxfamily.org/", "midi sequencer"),
+        Client("non-timeline", "http://non.tuxfamily.org", "non-daw audio recorder"),
+        Client("nsm-proxy", "http://non.tuxfamily.org", "launch tools with no nsm or gui"),
+        Client("jackpatch", "https://non.tuxfamily.org", "save jack connections"),
+        Client("zynaddsubfx", "https://github.com/zynaddsubfx", "synthesizer"),  # NOTE dificult one
 
         ]
 
@@ -67,18 +73,54 @@ joinedlist = custom_clients + green_clients
 
 #print(f"{joinedlist}")
 
-# Convert to dataclass.
-def tuple_to_dataclass(input_tuple):
-    for __, entry_tuple in enumerate(joinedlist):
-        yield Client(*entry_tuple)
-
 # Python code to convert into dictionary
   
-data_list = tuple_to_dataclass(joinedlist)
+#data_list = tuple_to_dataclass(joinedlist)
+data_list = joinedlist
 
 for __, entry in enumerate(data_list):
-    if which(entry.exec_name):
+    path = which(entry.exec_name)
+    if path:
+        entry.path = path
+        entry.installed = True
+        entry.nsm_api = "!" 
         print(f"{entry}")
+
+
+xdg_paths = (
+
+        Path("/usr/share/applications"),
+        Path("/usr/local/share/applications"),
+        #pathlib.Path(pathlib.Path.home(), ".local/share/applications"),
+
+        )
+
+
+# os walk?
+# if files endswith *.desktop
+# if desktopEntry.get("X-NSM-Exec")
+# match with list and add url or description accordingly 
+
+
+def get_entries(paths):
+    for __, entry in enumerate(xdg_paths):
+        # if ... entry.nsm_api = "!!"
+        # installed = True
+        yield desktopEntry.get("X-NSM-Exec")
+
+# https://pyxdg.readthedocs.io/_/downloads/en/latest/pdf/
+# Axdg.DesktopEntry.DesktopEntry(filename=None
+#findTryExec()
+#Looks in the PATH for the executable given in the TryExec field.
+#Returns the full path to the executable if it is found, None if not. Raises NoKeyError if TryExec is not
+#present.
+#New in version 0.26.
+
+#Convenience methods to get the values of specific fields. If the field is missing, these will simply return an
+#empty or zero value. There are similar methods for deprecated and KDE specific keys, but these are not
+#listed here
+
+print(f"{entries}")
 
 """
 # If it's installed, we take it
