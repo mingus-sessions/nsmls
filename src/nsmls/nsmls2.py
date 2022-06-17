@@ -16,14 +16,14 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 
 
 from src.config.nsmlsconfig import custom_clients 
-from src.config.nsmlsconfig import green_clients
+from src.config.nsmlsconfig import nsm_clients_plus
 from src.config.nsmlsconfig import nsm_clients
 from src.config.nsmlsconfig import blocked_clients
 from src.config.nsmlsconfig import xdg_paths 
 from src.config.nsmlsconfig import Client 
 
 
-joinedlist = custom_clients + green_clients
+joinedlist = custom_clients + nsm_clients_plus
 
 
 data_list = joinedlist  # FIXME
