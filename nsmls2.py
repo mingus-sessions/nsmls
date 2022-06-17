@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 @dataclass(slots=True)
 class Client:
-    name: str = ""
+    exec_name: str = ""
     url: str = ""
     info: str = ""
 
@@ -19,15 +19,19 @@ class Client:
  17                         result.append(data)
 '''
 
-
+# priority 1
+# Custom entries for custom or unknown clients. Please report if you think they should be known.
 custom_clients = [
-        #Client("example_name", "url", "info"),
+
+        # ("exec_name", "url", "info"),
 
         ]
 
 
 
-# Green clients, certainly have nsm support, buy may lack proper *.desktop file.
+# priority 2
+# Green clients, which certainly have nsm support, but lack proper *.desktop file and/ or lack active development.
+# (Black)star clients.
 green_clients = [
 
         ("non-midi-mapper", "http://non.tuxfamily.org", "non-daw midi to osc mapper"),
@@ -56,6 +60,16 @@ green_clients = [
 # NOTE: a dictionary always works, you don't need python 3.10.
 
 # Orange clients, known to have implemented nsm support, we check for *.desktop file entry.
+# Check for "carla-rack " in Exec? With a space? And X-NSM-Capable=true
+# There is also X-NSM-Exec=carla-rack
+
+# check for X-NSM-Exec and check if it's on the blocking list.
+# Add url when it's on the known list.
+
+# set to prevent duplicates
+
+# priority 3
+
 nsm_clients = [
 
     ("adljack", "https://github.com/jpcima/adljack", "opl3/opn2 synthesizer"),
@@ -68,19 +82,18 @@ nsm_clients = [
     ("carla-jack-multi", "https://github.com/falkTX/Carla", "plugin host multi"),
     #carla-patchbay https://kx.studio/Clientlications:Carla jack patchbay
     ("carla-rack", "https://github.com/falkTX/Carla", "plugin host rack"),
-    # ("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
+    ("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
     ("fluajho", "https://laborejo.org", "soundfont player"),
     ("guitarix", "https://github.com/brummer10/guitarix", "virtual guitar amplifier"),
     ("hydrogen", "https://github.com/hydrogen-music/hydrogen", "drum machine"),
     ("jack_mixer", "https://rdio.space/jackmixer", "mixer"),
-    ("jackpatch", "https://non.tuxfamily.org", "save jack connections"),
     ("laborejo", "https://laborejo.org", "music notation midi sequencing"),
     ("loop192", "https://github.com/jean-emmanuel/loop192", "midi looper"),
     ("luppp", "http://openavproductions.com/luppp", "live looper"),
     ("mamba", "https://github.com/brummer10/Mamba", "virtual midi keyboard"),
     #("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
     ("mfp", "https://github.com/bgribble/mfp", "visual composing"),
-    # ("padthv1_jack", "https://github.com/rncbc/padthv1", "additive synthesizer)",
+    ("padthv1_jack", "https://github.com/rncbc/padthv1", "additive synthesizer)",
     ("patroneo", "https://laborejo.org", "midi sequencer"),
     ("petri-foo", "http://petri-foo.sourceforge.net", "sampler"),
     ("qmidiarp", "http://qmidiarp.sourceforge.net", "midi arpeggiator"),
@@ -88,16 +101,16 @@ nsm_clients = [
     ("qseq66", "https://github.com/ahlstromcj/seq66", "midi sequencer"),
     ("radium", "http://users.notam02.no/~kjetism/radium", "tracker"),
     ("radium_compressor", "http://users.notam02.no/~kjetism/radium", "compressor"),
-    ("samplv1", "https://github.com/rncbc/samplv1", "sampler synthesizer"),
+    ("samplv1_jack", "https://github.com/rncbc/samplv1", "sampler synthesizer"),
     ("seq192", "https://github.com/jean-emmanuel/seq192", "midi sequencer"),
     ("shuriken", "https://rock-hopper.github.io/shuriken", "beat slicer"),
-    ("synthpod", "https://open-music-kontrollers.ch/lv2", "lv2 plugin container"), # FIXME
-    ("synthv1", "https://github.com/rncbc/synthv1", "substractive synthesizer"),
+    ("synthpod_jack", "https://open-music-kontrollers.ch/lv2", "lv2 plugin container"), # FIXME
+    ("synthv1_jack", "https://github.com/rncbc/synthv1", "substractive synthesizer"),
     ("tembro", "https://laborejo.org/tembro/", "virtal instrument samples"),
     ("xtuner", "https://github.com/brummer10/XTuner", "instrument tuner"),
     #(zita-at1, https://github.com/royvegard/zita-at1, autotuner (unofficial)),
     #(zita-rev1, https://github.com/royvegard/zita-rev1, reverb (unofficial)),
-    ("zynaddsubfx", "https://github.com/zynaddsubfx", "synthesizer"),
+    #("zynaddsubfx", "https://github.com/zynaddsubfx", "synthesizer"),
 
         ]
 
@@ -109,6 +122,7 @@ zynaddsubfx-oss.desktop
 '''
 
 # NOTE: maybe we don't need this. This is only for search all list.
+# Normally you wouldn't edit this.
 blocked_clients = (
 
         # "non-midi-mapper", 
@@ -120,7 +134,7 @@ blocked_clients = (
         "agordejo", 
         "adljack", 
         "agordejo.bin",
-        # We block raysession specific tools.
+        # We block raysession specific tools to keep things simple.
         "ray_control",
         "ray-jack_checker_daemon",
         "ray-pulse2jack",
@@ -130,7 +144,7 @@ blocked_clients = (
         "ray_git",
         "ray-proxy",
         "ray-jackpatch",
-        # We block Agordejo specific tools.
+        # We block Agordejo specific tools to keep things simple.
         "nsm-data",          
         )
 
