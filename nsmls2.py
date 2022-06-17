@@ -15,7 +15,7 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 #@dataclass()
 class Client:
     exec_name: str = ""
-    url: str = "unknown_url"
+    url: str = "no_url_provided"
     info: str = ""  # desktopEntry.getComment()
     comment: str = ""
     path: str = ""
@@ -51,9 +51,6 @@ custom_clients = [
 
 
 
-# priority 2
-# Green clients, which certainly have nsm support, but lack proper *.desktop file and/ or lack active development.
-# (Black)star clients.
 green_clients = [
 
         Client("non-midi-mapper", "http://non.tuxfamily.org", "non-daw midi to osc mapper"),
@@ -67,32 +64,6 @@ green_clients = [
 
         ]
 
-# Merge custom_clients and green_clients, they get the same threatment. 
-# [x + y[1:] for x, y in zip(a, b) if x[0] == y[0]]
-# [x + y[1:] for x, y in zip(, b) if x[0] == y[0]]
-# [x + (z,) for x, (y, z) in zip(a, b)]
-# Merge lists of  tuples
-#new_list = [x + (z,) for x, (y, z) in zip(custom_clients, green_clients)]
-joinedlist = custom_clients + green_clients
-
-#print(f"{joinedlist}")
-
-# Python code to convert into dictionary
-  
-#data_list = tuple_to_dataclass(joinedlist)
-data_list = joinedlist
-
-
-def check_if_installed(input_list):
-    for __, entry in enumerate(input_list):
-        path = which(entry.exec_name)
-        if path:
-            entry.path = path
-            entry.installed = True
-            entry.nsm_api = "!" 
-
-
-check_if_installed(data_list)
 
 
 nsm_clients = [
@@ -149,6 +120,27 @@ xdg_paths = (
         )
 
 
+joinedlist = custom_clients + green_clients
+
+#print(f"{joinedlist}")
+
+# Python code to convert into dictionary
+  
+#data_list = tuple_to_dataclass(joinedlist)
+data_list = joinedlist
+
+
+def get_path(input_list):
+    for __, entry in enumerate(input_list):
+        path = which(entry.exec_name)
+        if path:
+            entry.path = path
+            entry.installed = True
+            entry.nsm_api = "!" 
+
+
+
+
 # os walk? First try without. os.listdir
 # if files endswith *.desktop
 # if desktopEntry.get("X-NSM-Exec")
@@ -167,6 +159,10 @@ def get_entries(paths, nsm_clients):
                     for __, known_client in enumerate(nsm_clients):
                         if y == known_client.exec_name:
                             known = True
+                            #path = xdg.DesktopEntry.DesktopEntry(f).getPath()
+                            #if not path:
+                            #    path = ""
+                            #known_client.path = path 
                             known_client.installed = True
                             known_client.nsm_api = "!!"
                             known_client.desktop_entry = True
@@ -188,9 +184,14 @@ def get_entries(paths, nsm_clients):
 #entries = []
 programs = get_entries(xdg_paths, nsm_clients)
 
+get_path(data_list)
+get_path(programs)
+
+#programs = programs + data_list
 
 for __, client in enumerate(data_list):
     if client.installed:
+        #yield client
         programs.append(client)
 
 '''
@@ -211,6 +212,7 @@ for __, program in enumerate(programs):
         print(f"{program.info}")
     elif program.comment:
         print(f"comment {program.comment}")
+    print(f"{program.path}")
 
 #    for __, entry in enumerate(xdg_paths):
         # if ... entry.nsm_api = "!!"
