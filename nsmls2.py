@@ -33,9 +33,9 @@ class Client:
 # If on custom clients, just check if it's installed.
 custom_clients = [
 
-        Client("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
+        #Client("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
         # ("exec_name", "url", "info"),
-        Client("mamba", "https://github.com/brummer10/Mamba", "virtual midi keyboard"),
+        #Client("mamba", "https://github.com/brummer10/Mamba", "virtual midi keyboard"),
 
 
         ]
@@ -70,7 +70,7 @@ nsm_clients = [
     Client("carla-jack-multi", "https://github.com/falkTX/Carla", "plugin host multi"),
     Client("carla-rack", "https://github.com/falkTX/Carla", "plugin host rack"),
     Client("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
-    #Client("fluajho", "https://laborejo.org", "soundfont player"),
+    Client("fluajho", "https://laborejo.org", "soundfont player"),
     Client("guitarix", "https://github.com/brummer10/guitarix", "virtual guitar amplifier"),
     Client("hydrogen", "https://github.com/hydrogen-music/hydrogen", "drum machine"),
     Client("jack_mixer", "https://rdio.space/jackmixer", "mixer"),
@@ -122,9 +122,6 @@ def get_path(input_list):
         if path:
             entry.path = path
             entry.installed = True
-            # entry.nsm_api = "!" 
-
-
 
 
 # xdg stuff was inspire by...
@@ -132,27 +129,22 @@ def get_entries(paths, nsm_clients):
     result = []
     known = False
     for __, basePath in enumerate(paths):
-        for f in basePath.glob('**/*'):
-            if f.is_file() and f.suffix == ".desktop":
-                y = xdg.DesktopEntry.DesktopEntry(f).get('X-NSM-Exec')
-                if y:
+        for file in basePath.glob('**/*'):
+            if file.is_file() and file.suffix == ".desktop":
+                found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
+                if found:
                     for __, known_client in enumerate(nsm_clients):
-                        if y == known_client.exec_name:
+                        if found == known_client.exec_name:
                             known = True
-                            #path = xdg.DesktopEntry.DesktopEntry(f).getPath()
-                            #if not path:
-                            #    path = ""
-                            #known_client.path = path 
                             known_client.installed = True
-                            #known_client.nsm_api = "!!"
                             known_client.desktop_entry = True
                             result.append(known_client)
                             break
                     if not known:
-                        comment = xdg.DesktopEntry.DesktopEntry(f).getComment()
+                        comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                         if not comment:
                             comment = ""
-                        unknown_client = Client(exec_name=y, installed=True, known_client=False, comment=comment, desktop_entry=True)
+                        unknown_client = Client(exec_name=found, installed=True, known_client=False, comment=comment, desktop_entry=True)
                         result.append(unknown_client)
     return result
 
@@ -171,11 +163,11 @@ for __, client in enumerate(data_list):
 
 for __, program in enumerate(programs):
     print(f"{program.exec_name}")
-    print(f"{program.url}")
-    if program.info:
-        print(f"{program.info}")
-    elif program.comment:
-        print(f"comment {program.comment}")
-    print(f"{program.path}")
+    #print(f"{program.url}")
+    #if program.info:
+    #    print(f"{program.info}")
+    #elif program.comment:
+    #    print(f"comment {program.comment}")
+    #print(f"{program.path}")
 
 
