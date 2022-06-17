@@ -29,9 +29,12 @@ class Client:
 
 
 
+# CONFIG 
+
+
+# Blocking clients is normally done by just commenting them out, with a '#'. There is also a general default blocked_clients list, but normally you wouldn't edit it.
 
 # Custom entries for custom or unknown clients. Please report if you think they should be known.
-# If on custom clients, just check if it's installed.
 custom_clients = [
 
         #Client("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
@@ -42,6 +45,7 @@ custom_clients = [
         ]
 
 
+# List with clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. 
 green_clients = [
 
         Client("non-midi-mapper", "http://non.tuxfamily.org", "non-daw midi to osc mapper"),
@@ -56,7 +60,8 @@ green_clients = [
         ]
 
 
-
+# List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and add the client to your custom_clients list, after you've
+# commented it out in this list in meantime.
 nsm_clients = [
 
     Client("adljack", "https://github.com/jpcima/adljack", "opl3/opn2 synthesizer"),
@@ -102,8 +107,7 @@ nsm_clients = [
         ]
 
 
-# NOTE: maybe we don't need this. This is only for search all list.
-# Normally you wouldn't edit this.
+# Normally you wouldn't edit this list, unless you know what you're doing.
 blocked_clients = (
 
         # "non-midi-mapper", 
@@ -111,13 +115,12 @@ blocked_clients = (
         #carla-patchbay https://kx.studio/Clientlications:Carla jack patchbay
 
         "nsmd",
-        "fluajho",  # FIXME
         "non-daw", 
         "carla", 
         "agordejo", 
         "adljack", 
         "agordejo.bin",
-        # We block raysession specific tools to keep things simple.
+        # We block raysession specific tools to keep things simple and clean.
         "ray_control",
         "ray-jack_checker_daemon",
         "ray-pulse2jack",
@@ -127,7 +130,7 @@ blocked_clients = (
         "ray_git",
         "ray-proxy",
         "ray-jackpatch",
-        # We block Agordejo specific tools to keep things simple.
+        # We block Agordejo specific tools to keep things simple and clean.
         "nsm-data",          
         )
 
