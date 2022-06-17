@@ -77,12 +77,8 @@ for __, client in enumerate(data_list):
 
 
 for __, program in enumerate(programs):
-    print(f"{program.exec_name}")
-    #print(f"{program.url}")
-    #if program.info:
-    #    print(f"{program.info}")
-    #elif program.comment:
-    #    print(f"comment {program.comment}")
-    #print(f"{program.path}")
-
-
+    if program.info:
+        description = program.info
+    else:
+        description = program.comment
+    print(f"{program.exec_name}  {description}  {program.url}" )

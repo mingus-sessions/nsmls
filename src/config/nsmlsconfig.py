@@ -109,7 +109,7 @@ blocked_clients = (
         "agordejo", 
         "adljack", 
         "agordejo.bin",
-        # We block raysession specific tools to keep things simple and clean.
+        # We block tools which are designed to use in raysession.
         "ray_control",
         "ray-jack_checker_daemon",
         "ray-pulse2jack",
@@ -119,7 +119,7 @@ blocked_clients = (
         "ray_git",
         "ray-proxy",
         "ray-jackpatch",
-        # We block Agordejo specific tools to keep things simple and clean.
+        # We block tools which are designed to use in Agordejo. 
         "nsm-data",          
         )
 
