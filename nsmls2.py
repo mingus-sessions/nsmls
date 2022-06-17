@@ -10,6 +10,8 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 # NOTE: the default file MUST not have a entry commented out, other then in custom_clients.
 # NOTE: xdg specifications only have url for LINK entry it seems": https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#recognized-keys
 
+# TODO: check for multiple items
+
 # FIXME: should probably be a dictionary
 @dataclass(slots=True)
 #@dataclass()
@@ -20,9 +22,8 @@ class Client:
     comment: str = ""  # desktopEntry.getComment()
     path: str = ""
     installed: bool = False
-    #nsm_api: str = "?"
-    #nsm: bool = False
     desktop_entry: bool = False
+    known_client: bool = True
 
 
 
@@ -172,7 +173,7 @@ def get_entries(paths, nsm_clients):
                         comment = xdg.DesktopEntry.DesktopEntry(f).getComment()
                         if not comment:
                             comment = ""
-                        unknown_client = Client(exec_name=y, installed=True, comment=comment, desktop_entry=True)
+                        unknown_client = Client(exec_name=y, installed=True, known_client=False, comment=comment, desktop_entry=True)
                         result.append(unknown_client)
     return result
 
