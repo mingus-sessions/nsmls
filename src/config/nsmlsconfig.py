@@ -31,21 +31,6 @@ custom_clients = [
         ]
 
 
-# List with clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. 
-green_clients = [
-
-        Client("non-midi-mapper", "http://non.tuxfamily.org", "non-daw midi to osc mapper"),
-        Client("non-mixer", "http://non.tuxfamily.org", "non-daw mixer"),
-        Client("non-mixer-noui", "http://non.tuxfamily.org", "non-daw mixer"),
-        Client("non-sequencer", "http://non.tuxfamily.org/", "midi sequencer"),
-        Client("non-timeline", "http://non.tuxfamily.org", "non-daw audio recorder"),
-        Client("nsm-proxy", "http://non.tuxfamily.org", "launch tools with no nsm or gui"),
-        Client("jackpatch", "https://non.tuxfamily.org", "save jack connections"),
-        Client("zynaddsubfx", "https://github.com/zynaddsubfx", "synthesizer"),  # NOTE dificult one
-
-        ]
-
-
 # List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and add the client to your custom_clients list, after you've
 # commented it out in this list in meantime.
 nsm_clients = [
@@ -91,6 +76,22 @@ nsm_clients = [
 
 
         ]
+
+
+# List with clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. Normally you wouldn't edit this.
+green_clients = [
+
+        Client("non-midi-mapper", "http://non.tuxfamily.org", "non-daw midi to osc mapper"),
+        Client("non-mixer", "http://non.tuxfamily.org", "non-daw mixer"),
+        Client("non-mixer-noui", "http://non.tuxfamily.org", "non-daw mixer"),
+        Client("non-sequencer", "http://non.tuxfamily.org/", "midi sequencer"),
+        Client("non-timeline", "http://non.tuxfamily.org", "non-daw audio recorder"),
+        Client("nsm-proxy", "http://non.tuxfamily.org", "launch tools with no nsm or gui"),
+        Client("jackpatch", "https://non.tuxfamily.org", "save jack connections"),
+        Client("zynaddsubfx", "https://github.com/zynaddsubfx", "synthesizer"),  # NOTE dificult one
+
+        ]
+
 
 
 # Normally you wouldn't edit this list, unless you know what you're doing.
