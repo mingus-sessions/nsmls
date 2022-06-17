@@ -23,6 +23,7 @@ class Client:
 # Blocking clients is normally done by just commenting them out, with a '#'. There is also a general default blocked_clients list, but normally you wouldn't edit it. When possible, report the issue, don't block.
 
 # Custom entries for custom or unknown clients. Please report if you think they should be known.
+# They are added to the list if they're installed. No xdg *.desktop file check.
 custom_clients = [
 
         #Client("application", "", ""),
