@@ -23,7 +23,6 @@ class Client:
 # Blocking clients is normally done by just commenting them out, with a '#'. There is also a general default blocked_clients list, but normally you wouldn't edit it.
 
 # Custom entries for custom or unknown clients. Please report if you think they should be known.
-# We need 3 entries, for the url and description one can also simply use "". 
 custom_clients = [
 
         #Client("application", "", ""),
