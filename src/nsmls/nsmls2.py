@@ -75,4 +75,4 @@ for __, client in enumerate(data_list):
 
 
 for __, program in enumerate(programs):
-    print(f"{program.exec_name} - {program.description} - {program.url}" )
+    print(f"{program.exec_name} - {program.installed} - {program.desktop_entry} - {program.description} - {program.url}" )
