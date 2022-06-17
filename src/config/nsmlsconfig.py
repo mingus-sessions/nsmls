@@ -6,7 +6,7 @@ from pathlib import Path
 class Client:
     exec_name: str = ""
     url: str = "no_url_provided"
-    info: str = ""      
+    description: str = ""      
     #comment: str = ""  # desktopEntry.getComment()
     path: str = ""
     installed: bool = False
@@ -24,11 +24,10 @@ class Client:
 # Blocking clients is normally done by just commenting them out, with a '#'. There is also a general default blocked_clients list, but normally you wouldn't edit it.
 
 # Custom entries for custom or unknown clients. Please report if you think they should be known.
+# We need 3 entries, for the url and description one can also simply use "". 
 custom_clients = [
 
-        #Client("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
-        # ("application", "", ""),
-        Client("mamba", "https://github.com/brummer10/Mamba", "virtual midi keyboard"),
+        #Client("application", "", ""),
 
 
         ]
@@ -132,5 +131,3 @@ xdg_paths = (
         Path(Path.home(), ".local/share/applications"),
 
         )
-
-
