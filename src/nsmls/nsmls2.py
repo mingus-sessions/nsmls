@@ -44,6 +44,7 @@ def get_entries(paths, nsm_clients, blocked_clients):
     for __, basePath in enumerate(paths):
         for file in basePath.glob('**/*'):
             if file.is_file() and file.suffix == ".desktop":
+                # There is also ("X-NSM-Capable")
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
                 if found and found not in blocked_clients:
                     for __, known_client in enumerate(nsm_clients):
