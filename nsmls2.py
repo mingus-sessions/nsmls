@@ -11,12 +11,13 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 # NOTE: xdg specifications only have url for LINK entry it seems": https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#recognized-keys
 
 # FIXME: should probably be a dictionary
-@dataclass(slots=True)
+@dataclass(slots=True, kw_only=True)
 #@dataclass()
 class Client:
     exec_name: str = ""
     url: str = ""
     info: str = ""  # desktopEntry.getComment()
+    comment: str = ""
     path: str = ""
     installed: bool = False
     nsm_api: str = "?"
@@ -79,13 +80,59 @@ joinedlist = custom_clients + green_clients
 #data_list = tuple_to_dataclass(joinedlist)
 data_list = joinedlist
 
+'''
 for __, entry in enumerate(data_list):
     path = which(entry.exec_name)
     if path:
         entry.path = path
         entry.installed = True
         entry.nsm_api = "!" 
-        print(f"{entry}")
+        #print(f"{entry}")
+'''
+
+nsm_clients = [
+
+    Client("adljack", "https://github.com/jpcima/adljack", "opl3/opn2 synthesizer"),
+    Client("ams", "http://alsamodular.sourceforge.net", "modular synthesizer"),
+    Client("amsynth", "http://amsynth.github.io", "analog modelling synthesizer"),
+    Client("ardour", "https://ardour.org", "digital audio workstation"),
+    Client("ardour3", "https://ardour.org", "digital audio workstation"),
+    Client("ardour4", "https://ardour.org", "digital audio workstation"),
+    Client("ardour5", "https://ardour.org", "digital audio workstation"),
+    Client("ardour6", "https://ardour.org", "digital audio workstation"),
+    Client("ardour7", "https://ardour.org", "digital audio workstation"),
+    Client("carla-jack-multi", "https://github.com/falkTX/Carla", "plugin host multi"),
+    Client("carla-rack", "https://github.com/falkTX/Carla", "plugin host rack"),
+    Client("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
+    Client("fluajho", "https://laborejo.org", "soundfont player"),
+    Client("guitarix", "https://github.com/brummer10/guitarix", "virtual guitar amplifier"),
+    Client("hydrogen", "https://github.com/hydrogen-music/hydrogen", "drum machine"),
+    Client("jack_mixer", "https://rdio.space/jackmixer", "mixer"),
+    Client("laborejo", "https://laborejo.org", "music notation midi sequencing"),
+    Client("loop192", "https://github.com/jean-emmanuel/loop192", "midi looper"),
+    Client("luppp", "http://openavproductions.com/luppp", "live looper"),
+    Client("mamba", "https://github.com/brummer10/Mamba", "virtual midi keyboard"),
+    Client("mfp", "https://github.com/bgribble/mfp", "visual composing"),
+    Client("padthv1_jack", "https://github.com/rncbc/padthv1", "additive synthesizer"),
+    Client("patroneo", "https://laborejo.org", "midi sequencer"),
+    Client("petri-foo", "http://petri-foo.sourceforge.net", "sampler"),
+    Client("qmidiarp", "http://qmidiarp.sourceforge.net", "midi arpeggiator"),
+    Client("qtractor", "https://github.com/rncbc/qtractor", "digital audio workstation"),
+    Client("qseq66", "https://github.com/ahlstromcj/seq66", "midi sequencer"),
+    Client("radium", "http://users.notam02.no/~kjetism/radium", "tracker"),
+    Client("radium_compressor", "http://users.notam02.no/~kjetism/radium", "compressor"),
+    Client("samplv1_jack", "https://github.com/rncbc/samplv1", "sampler synthesizer"),
+    Client("seq192", "https://github.com/jean-emmanuel/seq192", "midi sequencer"),
+    Client("shuriken", "https://rock-hopper.github.io/shuriken", "beat slicer"),
+    Client("synthpod_jack", "https://open-music-kontrollers.ch/lv2", "lv2 plugin container"), # FIXME
+    Client("synthv1_jack", "https://github.com/rncbc/synthv1", "substractive synthesizer"),
+    Client("tembro", "https://laborejo.org/tembro/", "virtual instrument samples"),
+    Client("xtuner", "https://github.com/brummer10/XTuner", "instrument tuner"),
+    Client("zita-at1", "https://github.com/royvegard/zita-at1", "autotuner (fork)"),
+    Client("zita-rev1", "https://github.com/royvegard/zita-rev1", "reverb (fork)"),
+
+
+        ]
 
 
 xdg_paths = (
@@ -103,15 +150,44 @@ xdg_paths = (
 # match with list and add url or description accordingly 
 
 
-def get_entries(paths):
-    for __, path in enumerate(paths):
-        files = os.listdir(path)
-        for __, file in enumerate(files):
-            yield desktopEntry.get("X-NSM-Exec")
+# xdg stuff was inspire by...
+def get_entries(paths, nsm_clients):
+    result = []
+    known_client = False
+    for __, basePath in enumerate(paths):
+        for f in basePath.glob('**/*'):
+            if f.is_file() and f.suffix == ".desktop":
+                y = xdg.DesktopEntry.DesktopEntry(f).get('X-NSM-Exec')
+                if y:
+                    for item, known_client in enumerate(nsm_clients):
+                        if y == item.name:
+                            known_client = True
+                            result.append(known_client)
+                            break
+                    if not known_client:
+                        comment = xdg.DesktopEntry.DesktopEntry(f).getComment()
+                        if not comment:
+                            comment = ""
+                        unknown_client = Client(exec_name=y, installed=True, nsm_api="!!", comment=comment, desktop_entry=True)
+                        result.append(unknown_client)
+    return result
 
 
-entries = get_entries(xdg_paths)
 
+
+#entries = tuple(get_entries(xdg_paths))
+#get_entries(xdg_paths)
+#entries = []
+programs = get_entries(xdg_paths, nsm_clients)
+
+'''
+for __, xdg_item in enumerate(entries):
+    for __, client in enumerate(datat_list):
+        if xdg_item = client:
+            client.url 
+
+'''
+print(programs)
 
 #    for __, entry in enumerate(xdg_paths):
         # if ... entry.nsm_api = "!!"
@@ -130,7 +206,6 @@ entries = get_entries(xdg_paths)
 #empty or zero value. There are similar methods for deprecated and KDE specific keys, but these are not
 #listed here
 
-print(f"{entries}")
 
 """
 # If it's installed, we take it
