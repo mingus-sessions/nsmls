@@ -13,6 +13,7 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 
 # TODO: check for multiple items
 
+
 @dataclass(slots=True)
 #@dataclass()
 class Client:
@@ -38,7 +39,6 @@ custom_clients = [
 
 
         ]
-
 
 
 green_clients = [
@@ -105,19 +105,15 @@ xdg_paths = (
 
         Path("/usr/share/applications"),
         Path("/usr/local/share/applications"),
-        #pathlib.Path(pathlib.Path.home(), ".local/share/applications"),
+        Path(Path.home(), ".local/share/applications"),
 
         )
 
 
 joinedlist = custom_clients + green_clients
 
-#print(f"{joinedlist}")
 
-# Python code to convert into dictionary
-  
-#data_list = tuple_to_dataclass(joinedlist)
-data_list = joinedlist
+data_list = joinedlist  # FIXME
 
 
 def get_path(input_list):
@@ -161,25 +157,17 @@ def get_entries(paths, nsm_clients):
     return result
 
 
-
-
-#entries = tuple(get_entries(xdg_paths))
-#get_entries(xdg_paths)
-#entries = []
 programs = get_entries(xdg_paths, nsm_clients)
+
 
 get_path(data_list)
 get_path(programs)
 
-#programs = programs + data_list
 
 for __, client in enumerate(data_list):
     if client.installed:
-        #yield client
         programs.append(client)
 
-
-# programs = set(programs) # NOTE use a key exec_name?
 
 for __, program in enumerate(programs):
     print(f"{program.exec_name}")
