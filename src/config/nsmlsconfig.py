@@ -45,9 +45,11 @@ nsm_clients = [
     Client("ardour6", "https://ardour.org", "digital audio workstation"),
     Client("ardour7", "https://ardour.org", "digital audio workstation"),
     Client("carla-jack-multi", "https://github.com/falkTX/Carla", "plugin host multi"),
+    Client("carla-jack-single", "https://github.com/falkTX/Carla", "plugin host multi"),
+    Client("carla-patchbay", "https://github.com/falkTX/Carla", "plugin host multi"),
     Client("carla-rack", "https://github.com/falkTX/Carla", "plugin host rack"),
     Client("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
-    #Client("fluajho", "https://laborejo.org", "soundfont player"),
+    Client("fluajho", "https://laborejo.org", "soundfont player"),
     Client("guitarix", "https://github.com/brummer10/guitarix", "virtual guitar amplifier"),
     Client("hydrogen", "https://github.com/hydrogen-music/hydrogen", "drum machine"),
     Client("jack_mixer", "https://rdio.space/jackmixer", "mixer"),
@@ -96,10 +98,6 @@ green_clients = [
 
 # Normally you wouldn't edit this list, unless you know what you're doing.
 blocked_clients = (
-
-        # "non-midi-mapper", 
-        # "non-mixer-noui"
-        #carla-patchbay https://kx.studio/Clientlications:Carla jack patchbay
 
         "nsmd",
         "non-daw", 
