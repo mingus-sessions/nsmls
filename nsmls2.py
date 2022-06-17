@@ -12,6 +12,7 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 # xdg.IconTheme.getIconPath(desktopEntry.getIcon    ()
 
 # TODO: check for multiple items
+# TODO: check if installed, for all of them.
 
 
 @dataclass(slots=True)
@@ -35,7 +36,7 @@ custom_clients = [
 
         #Client("mixbus", "https://harrisonconsoles.com", "digital audio workstation"),
         # ("exec_name", "url", "info"),
-        #Client("mamba", "https://github.com/brummer10/Mamba", "virtual midi keyboard"),
+        Client("mamba", "https://github.com/brummer10/Mamba", "virtual midi keyboard"),
 
 
         ]
@@ -163,10 +164,7 @@ def get_entries(paths, nsm_clients, blocked_client):
         for file in basePath.glob('**/*'):
             if file.is_file() and file.suffix == ".desktop":
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
-                if found:
-                    if found in blocked_clients:
-                        print(f"{found} in {blocked_clients}")
-                        continue
+                if found and not in blocked_clients
                     for __, known_client in enumerate(nsm_clients):
                         if found == known_client.exec_name:
                             known = True
