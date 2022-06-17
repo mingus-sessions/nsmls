@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from dataclasses import dataclass
-import shutil
+from shutil import which
 
 # NOTE: the default file MUST not have a entry commented out, other then in custom_clients.
 
@@ -77,7 +77,7 @@ def tuple_to_dataclass(input_tuple):
 data_list = tuple_to_dataclass(joinedlist)
 
 for __, entry in enumerate(data_list):
-    if which(entry.name):
+    if which(entry.exec_name):
         print(f"{entry}")
 
 """
