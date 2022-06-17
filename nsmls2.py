@@ -8,6 +8,7 @@ import shutil
 
 # FIXME: should probably be a dictionary
 @dataclass(slots=True)
+#@dataclass()
 class Client:
     exec_name: str = ""
     url: str = ""
@@ -64,15 +65,20 @@ green_clients = [
 #new_list = [x + (z,) for x, (y, z) in zip(custom_clients, green_clients)]
 joinedlist = custom_clients + green_clients
 
-print(f"{joinedlist}")
+#print(f"{joinedlist}")
 
 # Convert to dataclass.
 def tuple_to_dataclass(input_tuple):
     for __, entry_tuple in enumerate(joinedlist):
         yield Client(*entry_tuple)
 
-
+# Python code to convert into dictionary
+  
 data_list = tuple_to_dataclass(joinedlist)
+
+for __, entry in enumerate(data_list):
+    if which(entry.name):
+        print(f"{entry}")
 
 """
 # If it's installed, we take it
