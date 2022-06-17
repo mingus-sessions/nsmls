@@ -9,7 +9,6 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 
 # NOTE: the default file MUST not have a entry commented out, other then in custom_clients.
 # NOTE: xdg specifications only have url for LINK entry it seems": https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#recognized-keys
-# xdg.IconTheme.getIconPath(desktopEntry.getIcon    ()
 
 # TODO: check for multiple items
 # TODO: check if installed, for all of them.
