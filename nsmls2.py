@@ -61,13 +61,20 @@ green_clients = [
 # [x + y[1:] for x, y in zip(, b) if x[0] == y[0]]
 # [x + (z,) for x, (y, z) in zip(a, b)]
 # Merge lists of  tuples
-new_list = [x + (z,) for x, (y, z) in zip(custom_clients, green_clients)]
+#new_list = [x + (z,) for x, (y, z) in zip(custom_clients, green_clients)]
+joinedlist = custom_clients + green_clients
+
+print(f"{joinedlist}")
+
+# Convert to dataclass.
+def tuple_to_dataclass(input_tuple):
+    for __, entry_tuple in enumerate(joinedlist):
+        yield Client(*entry_tuple)
+
+
+data_list = tuple_to_dataclass(joinedlist)
 
 """
-# Convert to dataclass.
-for __, entry_tuple in enumerate(new_list):
-    yield Client(*entry_tuple)
-
 # If it's installed, we take it
 for __, list_ in enumerate(dataclassses):
     if which(list_.name):
