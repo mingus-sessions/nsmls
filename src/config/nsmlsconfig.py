@@ -1,3 +1,23 @@
+from dataclasses import dataclass
+from pathlib import Path
+
+
+@dataclass(slots=True)
+class Client:
+    exec_name: str = ""
+    url: str = "no_url_provided"
+    info: str = ""      
+    comment: str = ""  # desktopEntry.getComment()
+    path: str = ""
+    installed: bool = False
+    desktop_entry: bool = False
+    known_client: bool = True
+
+
+
+
+
+
 # CONFIG 
 
 

@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-from dataclasses import dataclass
 from shutil import which
 from pathlib import Path
 import os
@@ -16,20 +15,12 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 # TODO: check if installed, for all of them.
 
 
-@dataclass(slots=True)
-#@dataclass()
-class Client:
-    exec_name: str = ""
-    url: str = "no_url_provided"
-    info: str = ""      
-    comment: str = ""  # desktopEntry.getComment()
-    path: str = ""
-    installed: bool = False
-    desktop_entry: bool = False
-    known_client: bool = True
 
-
-from config.nsmlsconfig import * 
+from src.config.nsmlsconfig import custom_clients 
+from src.config.nsmlsconfig import green_clients
+from src.config.nsmlsconfig import nsm_clients
+from src.config.nsmlsconfig import blocked_clients
+from src.config.nsmlsconfig import xdg_paths 
 
 
 joinedlist = custom_clients + green_clients
@@ -47,14 +38,16 @@ def get_path(input_list):
 
 
 # xdg stuff was inspire by...
-def get_entries(paths, nsm_clients, blocked_client):
+def get_entries(paths, nsm_clients, blocked_clients):
     result = []
     known = False
     for __, basePath in enumerate(paths):
         for file in basePath.glob('**/*'):
             if file.is_file() and file.suffix == ".desktop":
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
-                if found and not in blocked_clients
+                if found:
+                    if found in blocked_clients:
+                        continue
                     for __, known_client in enumerate(nsm_clients):
                         if found == known_client.exec_name:
                             known = True
