@@ -11,11 +11,11 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 # NOTE: xdg specifications only have url for LINK entry it seems": https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#recognized-keys
 
 # FIXME: should probably be a dictionary
-@dataclass(slots=True, kw_only=True)
+@dataclass(slots=True)
 #@dataclass()
 class Client:
     exec_name: str = ""
-    url: str = ""
+    url: str = "unknown_url"
     info: str = ""  # desktopEntry.getComment()
     comment: str = ""
     path: str = ""
@@ -80,15 +80,15 @@ joinedlist = custom_clients + green_clients
 #data_list = tuple_to_dataclass(joinedlist)
 data_list = joinedlist
 
-'''
-for __, entry in enumerate(data_list):
-    path = which(entry.exec_name)
-    if path:
-        entry.path = path
-        entry.installed = True
-        entry.nsm_api = "!" 
-        #print(f"{entry}")
-'''
+
+def check_if_installed(input_list):
+    for __, entry in enumerate(input_list):
+        path = which(entry.exec_name)
+        if path:
+            entry.path = path
+            entry.installed = True
+            entry.nsm_api = "!" 
+
 
 nsm_clients = [
 
@@ -159,12 +159,15 @@ def get_entries(paths, nsm_clients):
             if f.is_file() and f.suffix == ".desktop":
                 y = xdg.DesktopEntry.DesktopEntry(f).get('X-NSM-Exec')
                 if y:
-                    for item, known_client in enumerate(nsm_clients):
-                        if y == item.name:
-                            known_client = True
+                    for __, known_client in enumerate(nsm_clients):
+                        if y == known_client.exec_name:
+                            known = True
+                            known_client.installed = True
+                            known_client.nsm_api = "!!"
+                            known_client.desktop_entry = True
                             result.append(known_client)
                             break
-                    if not known_client:
+                    if not known:
                         comment = xdg.DesktopEntry.DesktopEntry(f).getComment()
                         if not comment:
                             comment = ""
