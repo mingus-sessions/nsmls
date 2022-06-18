@@ -90,7 +90,7 @@ nsm_clients = [
 
 
 # List with clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. They're added to the list if they're installed. Normally you wouldn't edit this.
-nsm_clients_plus = [
+nsm_clients_star = [
 
         Client("non-midi-mapper", "http://non.tuxfamily.org", "non-daw midi to osc mapper"),
         Client("non-mixer", "http://non.tuxfamily.org", "non-daw mixer"),

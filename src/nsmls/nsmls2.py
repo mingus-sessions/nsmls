@@ -15,7 +15,7 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 
 
 from src.config.nsmlsconfig import user_clients 
-from src.config.nsmlsconfig import nsm_clients_plus
+from src.config.nsmlsconfig import nsm_clients_star
 from src.config.nsmlsconfig import nsm_clients
 from src.config.nsmlsconfig import blocked_clients
 from src.config.nsmlsconfig import xdg_paths 
@@ -80,12 +80,12 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
 
 # We set the status.
 set_status(user_clients, status="user")
-set_status(nsm_clients_plus, status="plus")
+set_status(nsm_clients_star, status="plus")
 # user_blocked
 # blocked
 
 # We concatenate both list which only needs a 'installed' check.
-nsm_list = user_clients + nsm_clients_plus
+nsm_list = user_clients + nsm_clients_star
 
 
 # We go through the xdg desktop files to find the 'NSM' entry.
