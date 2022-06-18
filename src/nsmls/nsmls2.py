@@ -39,9 +39,9 @@ def set_description(client, comment):
 
 
 
-def set_status(input_list, status):
+def set_listed(input_list, listed):
     for __, client in enumerate(input_list):
-        client.status = status
+        client.listed = listed
         client.known = True
 
 
@@ -84,27 +84,26 @@ def get_entries(paths, nsm_clients, user_list, nsm_list, blocked_clients):
                 # There is also ("X-NSM-Capable")
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
                 if found and (found not in blocked_clients) and (found not in user_blocked_clients):
-                    print(found)
+                    #print(found)
                     comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                     client = check_if_known(found, user_list)
-                    if client:
-                        print(f"user_ls {client}")
                     if not client:
                         client = check_if_known(found, nsm_clients)
-                        print(f"nsm_ls {client}")
+                        #print(f"nsm_ls {client}")
                     if client:
-                        print(f"GOT {client}")
-                        client.status = "found"
+                        #print(f"GOT {client}")
                         client.known = True
+                        client.desktop_file=True
                         check_for_description(found, comment, nsm_clients)  # If no description, we set the one from the *.desktop file if exists.
                         if check_for_duplicate(found, nsm_list):  # We don't have to add it, if it's already on the user or star list.
                             continue
                         else:
+                            client.listed = "found"
                             result.append(client)
                     else:
-                        print(f" not known: {found}")
+                        #print(f" not known: {found}")
                         # The application isn't listed.
-                        client = Client(exec_name=found, known=False, status="found")
+                        client = Client(exec_name=found, known=False, listed="found", desktop_file=True)
                         set_description(client, comment)
                         result.append(client)
     return result
@@ -113,9 +112,9 @@ def get_entries(paths, nsm_clients, user_list, nsm_list, blocked_clients):
 
 validate_user_entries(user_clients, user_blocked_clients)
 
-# We set the status.
-set_status(user_clients, status="user")
-set_status(nsm_clients_star, status="star")
+# We set the listed.
+set_listed(user_clients, listed="user")
+set_listed(nsm_clients_star, listed="star")
 # user_blocked
 # blocked
 
@@ -158,5 +157,5 @@ for __, client in enumerate(nsm_list):
 
 # We print the output.
 for __, program in enumerate(programs):
-    print(f"{program.exec_name} - {program.known} - {program.status} - {program.description} - {program.url}" )
+    print(f"{program.exec_name} - {program.desktop_file} - {program.listed} - {program.description} - {program.url}" )
 

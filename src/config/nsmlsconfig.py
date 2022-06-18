@@ -12,7 +12,7 @@ class Client:
     description: str = ""      
     path: str = ""
     installed: bool = False
-    status: str = "not_found"
+    listed: str = ""
     known: bool = False
     desktop_file: bool = False
 
