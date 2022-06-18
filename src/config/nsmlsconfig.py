@@ -42,6 +42,7 @@ user_blocked_clients = (
         # "example1",
         # "example2",
         # "fluajho",
+        "non-sequencer",
 
          )
 
