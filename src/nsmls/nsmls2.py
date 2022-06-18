@@ -33,7 +33,7 @@ def check_if_recognize():
 # We add the applications from the nsm_list, which are installed.
 def add_installed_to_list(input_list, programs):
     for __, client in enumerate(input_list):
-        if client.installed:
+        if client.installed and client.exec_name not in config.user_blocked_clients:
             programs.append(client)
 
 
@@ -148,7 +148,6 @@ set_listed(config.user_clients, listed="user")
 set_listed(config.nsm_star_clients, listed="star")
 # user_blocked
 # blocked
-
 
 
 if config.user_clients:
