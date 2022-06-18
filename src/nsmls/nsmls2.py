@@ -42,19 +42,17 @@ def get_path(input_list):
             entry.installed = True
 
 
-
 def check_for_description(found, comment, input_list):
     for __, client in enumerate(input_list):
         if found == client.exec_name:
             if not client.description:
                 set_description(client, comment)
+                return
  
 
 def check_for_duplicate(found, comment, input_list):
     for __, client in enumerate(input_list):
         if found == client.exec_name:
-            if not client.description:
-                set_description(client, comment)
             return True 
     
 
@@ -78,11 +76,10 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
                     comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                     client = check_if_known(found, nsm_clients)
                     if client:
-                        # The application is listed.
                         client.status = "found"
                         client.known = True
-                        check_for_description(found, comment, nsm_list)
-                        if check_for_duplicate(found, comment, nsm_list):
+                        check_for_description(found, comment, nsm_list)  # If no description, we set the one from the *.desktop file if exists.
+                        if check_for_duplicate(found, comment, nsm_list):  # We don't have to add it, if it's already on the user or star list.
                             continue
                         else:
                             result.append(client)
