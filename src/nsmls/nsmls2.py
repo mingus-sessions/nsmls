@@ -171,10 +171,10 @@ add_installed_to_list(config.user_clients, programs)
 add_installed_to_list(config.nsm_star_clients, programs)
 
 
-print(f"programs {config.nsm_clients}")
+#print(f"programs {config.nsm_clients}")
 
 #print(f"programs {programs}")
-print("##########################################")
+#print("##########################################")
 
 
 # We print the output.
