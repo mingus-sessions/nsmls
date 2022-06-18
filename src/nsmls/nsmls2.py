@@ -148,6 +148,13 @@ set_listed(config.user_clients, listed="user")
 set_listed(config.nsm_star_clients, listed="nsm_clients")
 set_listed(config.nsm_star_clients, listed="star")
 
+# We set the path (and check if installed or not).
+get_path(config.user_clients)
+get_path(config.nsm_clients)
+get_path(config.nsm_star_clients)
+
+
+
 # user_blocked
 # blocked
 
@@ -171,9 +178,8 @@ print("##########################################")
 
 # We set the path (and check if installed or not).
 get_path(config.user_clients)
+get_path(config.nsm_clients)
 get_path(config.nsm_star_clients)
-get_path(programs)
-
 
 
 add_installed_to_list(config.user_clients, programs)
