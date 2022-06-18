@@ -13,10 +13,8 @@ class Client:
     xdg_comment: str = ""
     path: str = ""
     installed: bool = False
-    origin: str = ""
+    origin: str = "unknown"
     nsm: str = "not confirmed"
-    #known: bool = False
-    # desktop_file: bool = False
     blocked: bool = False
 
 
