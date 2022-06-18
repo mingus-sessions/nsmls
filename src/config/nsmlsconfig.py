@@ -16,7 +16,7 @@ class Client:
     origin: str = ""
     nsm: str = "not confirmed"
     #known: bool = False
-    desktop_file: bool = False
+    # desktop_file: bool = False
     blocked: bool = False
 
 

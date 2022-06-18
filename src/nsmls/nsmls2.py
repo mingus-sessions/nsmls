@@ -137,7 +137,7 @@ def get_entries():
                     client = check_if_known(found)
                     if client:
                         client.nsm = "confirmed"
-                        client.desktop_file = True
+                        # client.desktop_file = True
                         if xdg_comment:
                             check_for_info(found, xdg_comment)  # If no info, we set the one from the *.desktop file if exists.
                         if check_for_duplicate(found):  # We don't have to add it, if it's already on the user or star list.
@@ -147,7 +147,7 @@ def get_entries():
                             result.append(client)
                     else:
                         # The application isn't origin.
-                        client = Client(exec_name=found, origin="xdg", nsm="confirmed", desktop_file=True)
+                        client = Client(exec_name=found, origin="xdg", nsm="confirmed")
                         set_info(client, xdg_comment)
                         result.append(client)
     return result
