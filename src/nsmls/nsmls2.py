@@ -18,6 +18,25 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 import src.config.nsmlsconfig as config 
 
 
+# check if user_clients are known:
+def check_if_recognize():
+    for __, entry in enumerate(config.user_list):
+        for __, client in enumerate(config.nsm_clients):
+            if entry.exec_name == client.exec_name:
+                if not entry.url:
+                    entry.url = client.url
+                if not entry.description:
+                    entry.description = client.description
+                break
+
+
+# We add the applications from the nsm_list, which are installed.
+def add_installed_to_list(input_list, programs):
+    for __, client in enumerate(input_list):
+        if client.installed:
+            programs.append(client)
+
+
 def validate_user_entries():
     for __, client in enumerate(config.user_clients):
         if client.exec_name in config.user_blocked_clients:
@@ -131,17 +150,6 @@ set_listed(config.nsm_star_clients, listed="star")
 # blocked
 
 
-# check if user_clients are known:
-def check_if_recognize():
-    for __, entry in enumerate(config.user_list):
-        for __, client in enumerate(config.nsm_clients):
-            if entry.exec_name == client.exec_name:
-                if not entry.url:
-                    entry.url = client.url
-                if not entry.description:
-                    entry.description = client.description
-                break
-
 
 if config.user_clients:
     check_if_recognize()
@@ -165,12 +173,6 @@ get_path(config.user_clients)
 get_path(config.nsm_star_clients)
 get_path(programs)
 
-
-# We add the applications from the nsm_list, which are installed.
-def add_installed_to_list(input_list, programs):
-    for __, client in enumerate(input_list):
-        if client.installed:
-            programs.append(client)
 
 
 add_installed_to_list(config.user_clients, programs)
