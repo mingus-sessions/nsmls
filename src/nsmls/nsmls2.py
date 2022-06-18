@@ -74,7 +74,7 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
             if file.is_file() and file.suffix == ".desktop":
                 # There is also ("X-NSM-Capable")
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
-                if found and (found not in blocked_clients):
+                if found and (found not in blocked_clients) and (found not in user_blocked_clients):
                     comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                     client = check_if_known(found, nsm_clients)
                     if client:

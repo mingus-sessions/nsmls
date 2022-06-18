@@ -30,15 +30,18 @@ user_clients = [
         # Client("carla-patchbay", "https://github.com/falkTX/Carla", "plugin host multi"),
         # Client("example1", "", ""),
         # Client("example2"),
-        # Client("carla-patchbay")
 
 
         ]
 
 
-user_blocked_clients = [
+user_blocked_clients = (
 
-         ]
+        # "example1",
+        # "example2",
+        "fluajho",
+
+         )
 
 
 # List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and add the client to your custom_clients list, after you've
