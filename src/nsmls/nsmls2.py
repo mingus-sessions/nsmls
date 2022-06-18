@@ -91,7 +91,7 @@ def check_for_duplicate(found):
 def check_this_list(found, input_list):
     for __, client in enumerate(input_list):
         if found == client.exec_name:
-            print(f"known {found}")
+            #print(f"known {found}")
             return client
 
     
@@ -171,15 +171,9 @@ if config.user_clients:
 programs = get_entries()
 
 
-print(f"programs {programs}")
+#print(f"programs {programs}")
+#print("##########################################")
 
-print("##########################################")
-
-
-# We set the path (and check if installed or not).
-get_path(config.user_clients)
-get_path(config.nsm_clients)
-get_path(config.nsm_star_clients)
 
 
 add_installed_to_list(config.user_clients, programs)
