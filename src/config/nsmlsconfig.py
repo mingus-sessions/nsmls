@@ -9,7 +9,8 @@ from pathlib import Path
 class Client:
     exec_name: str = ""
     url: str = ""
-    info: str = ""      
+    info: str = ""
+    comment: str = ""
     path: str = ""
     installed: bool = False
     status: str = ""
