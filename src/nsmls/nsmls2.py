@@ -76,10 +76,11 @@ def check_for_info(found, comment):
             client.comment = comment
             return
     for __, client in enumerate(config.nsm_star_clients):
-         if found == client.exec_name:
-                    if not client.info and comment:
-                        set_info(client, comment)
-                        return
+        if found == client.exec_name:
+            if not client.info:
+                client.info = comment
+            client.comment = comment
+            return
 
 
 def check_for_duplicate(found):
@@ -173,7 +174,7 @@ add_installed_to_list(config.user_clients, programs)
 add_installed_to_list(config.nsm_star_clients, programs)
 
 
-#print(f"programs {config.nsm_clients}")
+print(f"programs {config.nsm_clients}")
 
 #print(f"programs {programs}")
 #print("##########################################")
@@ -181,5 +182,5 @@ add_installed_to_list(config.nsm_star_clients, programs)
 
 # We print the output.
 for __, program in enumerate(programs):
-    print(f"{program.exec_name} - {program.blocked} - {program.status} - {program.info} - {program.url}" )
+    print(f"{program.exec_name} - {program.blocked} - {program.comment} - {program.url}" )
 
