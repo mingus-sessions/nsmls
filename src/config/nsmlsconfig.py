@@ -12,9 +12,10 @@ class Client:
     info: str = ""      
     path: str = ""
     installed: bool = False
-    listed: str = ""
+    status: str = ""
     known: bool = False
     desktop_file: bool = False
+    blocked: bool = False
 
 
 
