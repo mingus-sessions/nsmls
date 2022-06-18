@@ -29,10 +29,9 @@ import src.nsmls.nsmls2 as nsmls
 
 
 def print_output(args):
-    pprint(args.user_clients)
     pprint(args.nsm_clients)
-    #pprint(args.user_clients)
-
+    pprint(args.nsm_star_clients)
+    pprint(args.user_clients)  # FIXME: also in nsm_clients list
     '''
     match args:
         case args.d:
@@ -46,10 +45,11 @@ def print_output(args):
 def data_mining():
     nsmls.validate_user_entries()
     # We set the origin.
-    nsmls.set_origin(config.user_clients, origin="user")
     nsmls.set_origin(config.nsm_clients, origin="nsm_clients")
     nsmls.set_origin(config.nsm_star_clients, origin="star")
-    nsmls.set_nsm_star_status(config.nsm_star_clients)
+    nsmls.set_origin(config.user_clients, origin="user")  # Needs the last
+    nsmls.set_nsm_status(status="star")
+    nsmls.set_nsm_status(status="user")
 
     # We set the path (and check if installed or not).
     nsmls.get_path(config.user_clients)

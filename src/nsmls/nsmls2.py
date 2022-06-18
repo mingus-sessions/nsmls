@@ -44,9 +44,15 @@ def validate_user_entries():
             sys.exit(1)
 
 
-def set_nsm_star_status():
-    for __, client in enumerate(config.nsm_star_clients):
-        client.nsm = "star"
+def set_nsm_status(status):
+    if status == "star":
+        for __, client in enumerate(config.nsm_star_clients):
+            if client not in config.user_clients:
+                client.nsm = "star" 
+    elif status == "user":
+        for __, client in enumerate(config.user_clients):
+            client.nsm = "user assumed" 
+
 
 
 def set_info(client, xdg_comment):
