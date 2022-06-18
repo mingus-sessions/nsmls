@@ -15,18 +15,12 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 # TODO: check if installed, for all of them.
 
 
-from src.config.nsmlsconfig import user_clients 
-from src.config.nsmlsconfig import nsm_clients_star
-from src.config.nsmlsconfig import nsm_clients
-from src.config.nsmlsconfig import blocked_clients
-from src.config.nsmlsconfig import user_blocked_clients
-from src.config.nsmlsconfig import xdg_paths 
-from src.config.nsmlsconfig import Client
+import src.config.nsmlsconfig as config 
 
 
-def validate_user_entries(user_clients, user_blocked_clients):
-    for __, client in enumerate(user_clients):
-        if client.exec_name in user_blocked_clients:
+def validate_user_entries():
+    for __, client in enumerate(config.user_clients):
+        if client.exec_name in config.user_blocked_clients:
             print("Error: you can't add and block the same custom client.", file=sys.stderr)
             sys.exit(1)
 
@@ -53,49 +47,67 @@ def get_path(input_list):
             entry.installed = True
 
 
-def check_for_description(found, comment, input_list):
-    for __, client in enumerate(input_list):
+def check_for_description(found, comment):
+    for __, client in enumerate(config.nsm_clients):
         if found == client.exec_name:
             if not client.description and comment:
                 set_description(client, comment)
                 return
- 
+    for __, client in enumerate(config.nsm_star_clients):
+         if found == client.exec_name:
+                    if not client.description and comment:
+                        set_description(client, comment)
+                        return
 
-def check_for_duplicate(found, input_list):
-    for __, client in enumerate(input_list):
+
+def check_for_duplicate(found):
+    for __, client in enumerate(config.user_clients):
         if found == client.exec_name:
             return True 
-    
+    for __, client in enumerate(config.nsm_star_clients):
+        if found == client.exec_name:
+            return True 
 
-def check_if_known(found, input_list):
+
+def check_this_list(found, input_list):
     for __, client in enumerate(input_list):
         if found == client.exec_name:
             print(f"known {found}")
             return client
 
+    
+
+def check_if_known(found):
+    client = check_this_list(found, config.user_clients)
+    if client:
+        return client
+    client = check_this_list(found, config.nsm_clients)
+    if client:
+        return client
+    client = check_this_list(found, config.nsm_star_clients)
+    if client:
+        return client
+
 
 # xdg stuff was inspire by...
-def get_entries(paths, nsm_clients, user_list, nsm_list, blocked_clients):
+def get_entries():
     result = []
     known = False
-    for __, path in enumerate(paths):
+    for __, path in enumerate(config.xdg_paths):
         for file in path.glob('**/*'):
             if file.is_file() and file.suffix == ".desktop":
                 # There is also ("X-NSM-Capable")
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
-                if found and (found not in blocked_clients) and (found not in user_blocked_clients):
+                if found and (found not in config.blocked_clients) and (found not in config.user_blocked_clients):
                     #print(found)
                     comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
-                    client = check_if_known(found, user_list)
-                    if not client:
-                        client = check_if_known(found, nsm_clients)
-                        #print(f"nsm_ls {client}")
+                    client = check_if_known(found)
                     if client:
                         #print(f"GOT {client}")
                         client.known = True
                         client.desktop_file=True
-                        check_for_description(found, comment, nsm_clients)  # If no description, we set the one from the *.desktop file if exists.
-                        if check_for_duplicate(found, nsm_list):  # We don't have to add it, if it's already on the user or star list.
+                        check_for_description(found, comment)  # If no description, we set the one from the *.desktop file if exists.
+                        if check_for_duplicate(found):  # We don't have to add it, if it's already on the user or star list.
                             continue
                         else:
                             client.listed = "found"
@@ -110,19 +122,19 @@ def get_entries(paths, nsm_clients, user_list, nsm_list, blocked_clients):
 
 
 
-validate_user_entries(user_clients, user_blocked_clients)
+validate_user_entries()
 
 # We set the listed.
-set_listed(user_clients, listed="user")
-set_listed(nsm_clients_star, listed="star")
+set_listed(config.user_clients, listed="user")
+set_listed(config.nsm_star_clients, listed="star")
 # user_blocked
 # blocked
 
 
 # check if user_clients are known:
-def check_if_recognize(user_list, nsm_clients):
-    for __, entry in enumerate(user_list):
-        for __, client in enumerate(nsm_clients):
+def check_if_recognize():
+    for __, entry in enumerate(config.user_list):
+        for __, client in enumerate(config.nsm_clients):
             if entry.exec_name == client.exec_name:
                 if not entry.url:
                     entry.url = client.url
@@ -131,29 +143,33 @@ def check_if_recognize(user_list, nsm_clients):
                 break
 
 
-if user_clients:
-    check_if_recognize(user_clients, nsm_clients)
+if config.user_clients:
+    check_if_recognize()
 
 
 # We concatenate both list which only needs a 'installed' check.
 # FIXME check for duplicates + warning
 
-nsm_list = user_clients + nsm_clients_star
 
 # We go through the xdg desktop files to find the 'NSM' entry.
-programs = get_entries(xdg_paths, nsm_clients, user_clients, nsm_list, blocked_clients)
+programs = get_entries()
 
 print(f"programs {programs}")
 
 
 # We set the path (and check if installed or not).
-get_path(nsm_list)
+get_path(config.user_clients)
+get_path(config.nsm_star_clients)
 get_path(programs)
 
 # We add the applications from the nsm_list, which are installed.
-for __, client in enumerate(nsm_list):
-    if client.installed:
-        programs.append(client)
+def add_installed_to_list(input_list, programs):
+    for __, client in enumerate(input_list):
+        if client.installed:
+            programs.append(client)
+
+add_installed_to_list(config.user_clients, programs)
+add_installed_to_list(config.nsm_star_clients, programs)
 
 # We print the output.
 for __, program in enumerate(programs):
