@@ -72,15 +72,17 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
     return result
 
 
-# We go through the xdg desktop files to find the 'NSM' entry.
-programs = get_entries(xdg_paths, nsm_clients, nsm_list, blocked_clients)
-
 # We set the status.
 set_status(user_clients, status="user")
 set_status(nsm_clients_plus, status="plus")
 
+
 # We concatenate both list which only needs a 'installed' check.
 nsm_list = user_clients + nsm_clients_plus
+
+
+# We go through the xdg desktop files to find the 'NSM' entry.
+programs = get_entries(xdg_paths, nsm_clients, nsm_list, blocked_clients)
 
 # We set the path (and check if installed or not).
 get_path(nsm_list)
