@@ -11,6 +11,7 @@ class Client:
     description: str = ""      
     path: str = ""
     installed: bool = False
+    status: str = ""
     desktop_entry: bool = False
     known_client: bool = True
 

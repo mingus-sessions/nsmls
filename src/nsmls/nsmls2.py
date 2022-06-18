@@ -23,6 +23,11 @@ from src.config.nsmlsconfig import Client
 
 
 
+def set_status(input_list, status):
+    for __, client in enumerate(input_list):
+        client.status = status
+
+
 def get_path(input_list):
     for __, entry in enumerate(input_list):
         path = which(entry.exec_name)
@@ -54,32 +59,38 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
                             known = True
                             known_client.installed = True
                             known_client.desktop_entry = True
+                            known_client.status = "found" 
                             result.append(known_client)
                             break
                     if not known:
                         description = xdg.DesktopEntry.DesktopEntry(file).getComment()
                         if not description:
                             description = ""
-                        unknown_client = Client(exec_name=found, installed=True, known_client=False, description=description, desktop_entry=True)
+                        unknown_client = Client(exec_name=found, installed=True, known_client=False, status="found", description=description, desktop_entry=True)
                         result.append(unknown_client)
+                        known = False
     return result
 
 
-
-nsm_list = user_clients + nsm_clients_plus
-
-
+# We go through the xdg desktop files to find the 'NSM' entry.
 programs = get_entries(xdg_paths, nsm_clients, nsm_list, blocked_clients)
 
+# We set the status.
+set_status(user_clients, status="user")
+set_status(nsm_clients_plus, status="plus")
 
+# We concatenate both list which only needs a 'installed' check.
+nsm_list = user_clients + nsm_clients_plus
+
+# We set the path (and check if installed or not).
 get_path(nsm_list)
 get_path(programs)
 
-
+# We add the applications from the nsm_list, which are installed.
 for __, client in enumerate(nsm_list):
     if client.installed:
         programs.append(client)
 
-
+# We print the output.
 for __, program in enumerate(programs):
     print(f"{program.exec_name} - {program.installed} - {program.desktop_entry} - {program.description} - {program.url}" )
