@@ -18,6 +18,7 @@ from src.config.nsmlsconfig import user_clients
 from src.config.nsmlsconfig import nsm_clients_star
 from src.config.nsmlsconfig import nsm_clients
 from src.config.nsmlsconfig import blocked_clients
+from src.config.nsmlsconfig import user_blocked_clients
 from src.config.nsmlsconfig import xdg_paths 
 from src.config.nsmlsconfig import Client
 

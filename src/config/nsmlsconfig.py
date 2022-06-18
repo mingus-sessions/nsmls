@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-#@dataclass(slots=False)
+#@dataclass(slots=True)
 @dataclass()
 class Client:
     exec_name: str = ""
@@ -36,9 +36,9 @@ user_clients = [
         ]
 
 
-#user_blocked_clients = [
+user_blocked_clients = [
 
-#         ]
+         ]
 
 
 # List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and add the client to your custom_clients list, after you've
