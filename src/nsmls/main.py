@@ -2,7 +2,7 @@
 
 import argparse
 import sys
-
+from pprint import pprint
 
 '''
 pseudo:
@@ -18,6 +18,7 @@ pseudo:
     list all: all clients, installed, not installed, confirmed, unconfirmed. (status?)
 
     list blocked
+    List who doesn't have a desktop file
 
     dump: dump 'all' information.
 
@@ -28,7 +29,10 @@ import src.nsmls.nsmls2 as nsmls
 
 
 def print_output(args):
-    print(args.programs)
+    if args.dump:
+        pprint(args.programs)
+    #for __, program in enumerate(args.programs):
+    #    print(program.exec_name)
             
 
 def data_mining():
@@ -48,7 +52,8 @@ def data_mining():
 
     # We go through the xdg desktop files to find the 'NSM' entry.
     programs = nsmls.get_entries()
- 
+
+    # We add the user_clients and the nsm_star_clients.
     nsmls.add_installed_to_list(config.user_clients, programs)
     nsmls.add_installed_to_list(config.nsm_star_clients, programs)
 
@@ -60,7 +65,7 @@ def main():
     parser = argparse.ArgumentParser()
     programs = data_mining()
     parser.set_defaults(programs=programs)
-    parser.add_argument("--nsm", help="increase output verbosity",
+    parser.add_argument("--dump", help="increase output verbosity",
                     action="store_true")
     parser.set_defaults(func=print_output)
     args = parser.parse_args()
