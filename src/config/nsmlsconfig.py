@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -14,9 +16,6 @@ class Client:
 
 
 
-
-
-
 # CONFIG 
 
 
@@ -24,12 +23,20 @@ class Client:
 
 # Custom entries for custom or unknown clients. Please report if you think they should be known.
 # They are added to the list if they're installed. No xdg *.desktop file check.
-custom_clients = [
-
-        #Client("application", "", ""),
+user_clients = [
+    
+        # Client("carla-patchbay", "https://github.com/falkTX/Carla", "plugin host multi"),
+        # Client("example1", "", ""),
+        # Client("example2"),
+        Client("carla-patchbay")
 
 
         ]
+
+
+#user_blocked_clients = [
+
+#         ]
 
 
 # List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and add the client to your custom_clients list, after you've
@@ -47,7 +54,7 @@ nsm_clients = [
     Client("ardour7", "https://ardour.org", "digital audio workstation"),
     Client("carla-jack-multi", "https://github.com/falkTX/Carla", "plugin host multi"),
     Client("carla-jack-single", "https://github.com/falkTX/Carla", "plugin host multi"),
-    Client("carla-patchbay", "https://github.com/falkTX/Carla", "plugin host multi"),
+    #Client("carla-patchbay", "https://github.com/falkTX/Carla", "plugin host multi"),
     Client("carla-rack", "https://github.com/falkTX/Carla", "plugin host rack"),
     Client("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
     Client("fluajho", "https://laborejo.org", "soundfont player"),
