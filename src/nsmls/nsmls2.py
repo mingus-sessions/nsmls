@@ -71,9 +71,10 @@ def get_path(input_list):
 def check_for_info(found, comment):
     for __, client in enumerate(config.nsm_clients):
         if found == client.exec_name:
-            if not client.info and comment:
-                set_info(client, comment)
-                return
+            if not client.info:
+                client.info = comment
+            client.comment = comment
+            return
     for __, client in enumerate(config.nsm_star_clients):
          if found == client.exec_name:
                     if not client.info and comment:
@@ -124,7 +125,8 @@ def get_entries():
                     client = check_if_known(found)
                     if client:
                         client.desktop_file = True
-                        check_for_info(found, comment)  # If no info, we set the one from the *.desktop file if exists.
+                        if comment:
+                            check_for_info(found, comment)  # If no info, we set the one from the *.desktop file if exists.
                         if check_for_duplicate(found):  # We don't have to add it, if it's already on the user or star list.
                             continue
                         else:
