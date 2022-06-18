@@ -32,6 +32,7 @@ def set_description(client, comment):
 def set_status(input_list, status):
     for __, client in enumerate(input_list):
         client.status = status
+        client.known = True
 
 
 def get_path(input_list):
@@ -108,7 +109,6 @@ programs = get_entries(xdg_paths, nsm_clients, nsm_list, blocked_clients)
 # We set the path (and check if installed or not).
 get_path(nsm_list)
 get_path(programs)
-set_status(programs, status="found")
 
 # We add the applications from the nsm_list, which are installed.
 for __, client in enumerate(nsm_list):

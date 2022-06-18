@@ -12,7 +12,7 @@ class Client:
     path: str = ""
     installed: bool = False
     status: str = "not_found"
-    known: bool = True
+    known: bool = False
     desktop_file: bool = False
 
 
