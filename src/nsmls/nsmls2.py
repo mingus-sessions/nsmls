@@ -54,7 +54,7 @@ def set_info(client, comment):
 
 def set_status(input_list, status):
     for __, client in enumerate(input_list):
-        if client in config.user_blocked_clients or client in config.blocked_clients:
+        if client.exec_name in config.user_blocked_clients or client in config.blocked_clients:
             client.blocked = True
         client.status = status
         client.known = True
@@ -143,7 +143,7 @@ validate_user_entries()
 
 # We set the status.
 set_status(config.user_clients, status="user")
-set_status(config.nsm_star_clients, status="nsm_clients")
+set_status(config.nsm_clients, status="nsm_clients")
 set_status(config.nsm_star_clients, status="star")
 
 # We set the path (and check if installed or not).
@@ -165,16 +165,19 @@ if config.user_clients:
 programs = get_entries()
 
 
-#print(f"programs {programs}")
-#print("##########################################")
-
 
 
 add_installed_to_list(config.user_clients, programs)
 add_installed_to_list(config.nsm_star_clients, programs)
 
 
+print(f"programs {config.nsm_clients}")
+
+#print(f"programs {programs}")
+print("##########################################")
+
+
 # We print the output.
 for __, program in enumerate(programs):
-    print(f"{program.exec_name} - {program.desktop_file} - {program.status} - {program.info} - {program.url}" )
+    print(f"{program.exec_name} - {program.blocked} - {program.status} - {program.info} - {program.url}" )
 

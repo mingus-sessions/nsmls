@@ -28,7 +28,7 @@ user_clients = [
         # Client("example1", "https://github.com/", "my info"),
         # Client("example2", "", ""),
         # Client("example3"),
-        Client("fluajho")
+        #Client("fluajho")
 
 
         ]
@@ -39,6 +39,7 @@ user_blocked_clients = (
 
         # "example",
         # "example1",
+        "fluajho",
 
          )
 
