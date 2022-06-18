@@ -12,7 +12,7 @@ class Client:
     path: str = ""
     installed: bool = False
     status: str = "not_found"
-    known_client: bool = True
+    known: bool = True
     desktop_file: bool = False
 
 
@@ -54,8 +54,8 @@ nsm_clients = [
     Client("ardour6", "https://ardour.org", "digital audio workstation"),
     Client("ardour7", "https://ardour.org", "digital audio workstation"),
     Client("carla-jack-multi", "https://github.com/falkTX/Carla", "plugin host multi"),
-    Client("carla-jack-single", "https://github.com/falkTX/Carla", "plugin host multi"),
-    #Client("carla-patchbay", "https://github.com/falkTX/Carla", "plugin host multi"),
+    Client("carla-jack-single", "https://github.com/falkTX/Carla", "plugin host single"),
+    Client("carla-patchbay", "https://github.com/falkTX/Carla", "patchbay"),
     Client("carla-rack", "https://github.com/falkTX/Carla", "plugin host rack"),
     Client("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
     Client("fluajho", "https://laborejo.org", "soundfont player"),
