@@ -145,7 +145,9 @@ validate_user_entries()
 
 # We set the listed.
 set_listed(config.user_clients, listed="user")
+set_listed(config.nsm_star_clients, listed="nsm_clients")
 set_listed(config.nsm_star_clients, listed="star")
+
 # user_blocked
 # blocked
 
