@@ -80,7 +80,7 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
 
 # We set the status.
 set_status(user_clients, status="user")
-set_status(nsm_clients_star, status="plus")
+set_status(nsm_clients_star, status="star")
 # user_blocked
 # blocked
 
