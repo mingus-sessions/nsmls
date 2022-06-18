@@ -10,6 +10,7 @@ class Client:
     exec_name: str = ""
     url: str = ""
     info: str = ""      
+    comment: str = ""
     path: str = ""
     installed: bool = False
     status: str = ""
@@ -39,7 +40,7 @@ user_blocked_clients = (
 
         # "example",
         # "example1",
-        "fluajho",
+        # "fluajho",
 
          )
 
