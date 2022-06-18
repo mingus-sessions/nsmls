@@ -27,7 +27,7 @@ from src.config.nsmlsconfig import Client
 def validate_user_entries(user_clients, user_blocked_clients):
     for __, client in enumerate(user_clients):
         if client.exec_name in user_blocked_clients:
-            print("Error: Duplicated user entries", file=sys.stderr)
+            print("Error: you can't add and block the same custom client.", file=sys.stderr)
             sys.exit(1)
 
 

@@ -37,6 +37,7 @@ user_clients = [
         ]
 
 
+# Blocked clients by the user. NOTE: Syntax is different.
 user_blocked_clients = (
 
         # "example1",
