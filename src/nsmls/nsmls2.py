@@ -8,7 +8,7 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 #import xdg.IconTheme #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 
 
-# NOTE: the default file MUST not have a entry commented out, other then in user_clients.
+# NOTE: the default file MUST not have a entry xdg_commented out, other then in user_clients.
 # NOTE: xdg specifications only have url for LINK entry it seems": https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#recognized-keys
 
 # TODO: check for multiple items
@@ -44,9 +44,9 @@ def validate_user_entries():
             sys.exit(1)
 
 
-def set_info(client, comment):
-    if comment:
-        client.info = comment
+def set_info(client, xdg_comment):
+    if xdg_comment:
+        client.info = xdg_comment
     else:
         client.info = "" 
 
@@ -68,18 +68,18 @@ def get_path(input_list):
             entry.installed = True
 
 
-def check_for_info(found, comment):
+def check_for_info(found, xdg_comment):
     for __, client in enumerate(config.nsm_clients):
         if found == client.exec_name:
             if not client.info:
-                client.info = comment
-            client.comment = comment
+                client.info = xdg_comment
+            client.xdg_comment = xdg_comment
             return
     for __, client in enumerate(config.nsm_star_clients):
         if found == client.exec_name:
             if not client.info:
-                client.info = comment
-            client.comment = comment
+                client.info = xdg_comment
+            client.xdg_comment = xdg_comment
             return
 
 
@@ -122,12 +122,12 @@ def get_entries():
                 # There is also ("X-NSM-Capable")
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
                 if found and (found not in config.blocked_clients) and (found not in config.user_blocked_clients):
-                    comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
+                    xdg_comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                     client = check_if_known(found)
                     if client:
                         client.desktop_file = True
-                        if comment:
-                            check_for_info(found, comment)  # If no info, we set the one from the *.desktop file if exists.
+                        if xdg_comment:
+                            check_for_info(found, xdg_comment)  # If no info, we set the one from the *.desktop file if exists.
                         if check_for_duplicate(found):  # We don't have to add it, if it's already on the user or star list.
                             continue
                         else:
@@ -136,7 +136,7 @@ def get_entries():
                     else:
                         # The application isn't status.
                         client = Client(exec_name=found, known=False, status="xdg", desktop_file=True)
-                        set_info(client, comment)
+                        set_info(client, xdg_comment)
                         result.append(client)
     return result
 
@@ -182,5 +182,5 @@ print(f"programs {config.nsm_clients}")
 
 # We print the output.
 for __, program in enumerate(programs):
-    print(f"{program.exec_name} - {program.blocked} - {program.comment} - {program.url}" )
+    print(f"{program.exec_name} - {program.blocked} - {program.xdg_comment} - {program.url}" )
 

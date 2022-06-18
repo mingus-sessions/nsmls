@@ -10,7 +10,7 @@ class Client:
     exec_name: str = ""
     url: str = ""
     info: str = ""
-    comment: str = ""
+    xdg_comment: str = ""
     path: str = ""
     installed: bool = False
     status: str = ""
