@@ -57,7 +57,7 @@ def set_origin(input_list, origin):
         if client.exec_name in config.user_blocked_clients or client in config.blocked_clients:
             client.blocked = True
         client.origin = origin
-        client.known = True
+        # client.known = True
 
 
 def get_path(input_list):
@@ -135,7 +135,7 @@ def get_entries():
                             result.append(client)
                     else:
                         # The application isn't origin.
-                        client = Client(exec_name=found, known=False, origin="xdg", desktop_file=True)
+                        client = Client(exec_name=found, origin="xdg", desktop_file=True)
                         set_info(client, xdg_comment)
                         result.append(client)
     return result

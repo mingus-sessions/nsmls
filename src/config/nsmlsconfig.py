@@ -14,7 +14,7 @@ class Client:
     path: str = ""
     installed: bool = False
     origin: str = ""
-    known: bool = False
+    #known: bool = False
     desktop_file: bool = False
     blocked: bool = False
 
