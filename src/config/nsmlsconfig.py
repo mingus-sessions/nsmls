@@ -9,7 +9,7 @@ from pathlib import Path
 class Client:
     exec_name: str = ""
     url: str = ""
-    description: str = ""      
+    info: str = ""      
     path: str = ""
     installed: bool = False
     listed: str = ""
@@ -27,9 +27,9 @@ class Client:
 # They are added to the list if they're installed. No xdg *.desktop file check.
 user_clients = [
     
-        # Client("carla-patchbay", "https://github.com/falkTX/Carla", "plugin host multi"),
-        # Client("example1", "", ""),
-        # Client("example2"),
+        # Client("example1", "https://github.com/", "my info"),
+        # Client("example2", "", ""),
+        # Client("example3"),
 
 
         ]
@@ -38,8 +38,8 @@ user_clients = [
 # Blocked clients by the user. NOTE: Syntax is different.
 user_blocked_clients = (
 
+        # "example",
         # "example1",
-        # "example2",
 
          )
 

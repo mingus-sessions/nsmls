@@ -19,14 +19,14 @@ import src.config.nsmlsconfig as config
 
 
 # check if user_clients are known:
-def check_if_recognize():
+def set_missing_url_info():
     for __, entry in enumerate(config.user_list):
         for __, client in enumerate(config.nsm_clients):
             if entry.exec_name == client.exec_name:
                 if not entry.url:
                     entry.url = client.url
-                if not entry.description:
-                    entry.description = client.description
+                if not entry.info:
+                    entry.info = client.info
                 break
 
 
@@ -44,11 +44,11 @@ def validate_user_entries():
             sys.exit(1)
 
 
-def set_description(client, comment):
+def set_info(client, comment):
     if comment:
-        client.description = comment
+        client.info = comment
     else:
-        client.description = "" 
+        client.info = "" 
 
 
 
@@ -66,16 +66,16 @@ def get_path(input_list):
             entry.installed = True
 
 
-def check_for_description(found, comment):
+def check_for_info(found, comment):
     for __, client in enumerate(config.nsm_clients):
         if found == client.exec_name:
-            if not client.description and comment:
-                set_description(client, comment)
+            if not client.info and comment:
+                set_info(client, comment)
                 return
     for __, client in enumerate(config.nsm_star_clients):
          if found == client.exec_name:
-                    if not client.description and comment:
-                        set_description(client, comment)
+                    if not client.info and comment:
+                        set_info(client, comment)
                         return
 
 
@@ -125,7 +125,7 @@ def get_entries():
                         #print(f"GOT {client}")
                         client.known = True
                         client.desktop_file=True
-                        check_for_description(found, comment)  # If no description, we set the one from the *.desktop file if exists.
+                        check_for_info(found, comment)  # If no info, we set the one from the *.desktop file if exists.
                         if check_for_duplicate(found):  # We don't have to add it, if it's already on the user or star list.
                             continue
                         else:
@@ -135,7 +135,7 @@ def get_entries():
                         #print(f" not known: {found}")
                         # The application isn't listed.
                         client = Client(exec_name=found, known=False, listed="xdg", desktop_file=True)
-                        set_description(client, comment)
+                        set_info(client, comment)
                         result.append(client)
     return result
 
@@ -153,10 +153,6 @@ get_path(config.user_clients)
 get_path(config.nsm_clients)
 get_path(config.nsm_star_clients)
 
-
-
-# user_blocked
-# blocked
 
 
 if config.user_clients:
@@ -182,5 +178,5 @@ add_installed_to_list(config.nsm_star_clients, programs)
 
 # We print the output.
 for __, program in enumerate(programs):
-    print(f"{program.exec_name} - {program.desktop_file} - {program.listed} - {program.description} - {program.url}" )
+    print(f"{program.exec_name} - {program.desktop_file} - {program.listed} - {program.info} - {program.url}" )
 
