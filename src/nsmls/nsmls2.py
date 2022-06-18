@@ -62,12 +62,12 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
                     for __, known_client in enumerate(nsm_clients):
                         if found == known_client.exec_name:
                             known = True
+                            known_client.desktop_file = True 
                             if not known_client.description:
                                 set_description(known_client, file)
                         if check_for_duplicate(found, nsm_list):
                             continue
-                        known_client.installed = True
-                        known_client.status = "found" 
+                        # known_client.installed = True
                         result.append(known_client)
                         break
                     if not known:
@@ -94,6 +94,7 @@ programs = get_entries(xdg_paths, nsm_clients, nsm_list, blocked_clients)
 # We set the path (and check if installed or not).
 get_path(nsm_list)
 get_path(programs)
+set_status(programs, status="found")
 
 # We add the applications from the nsm_list, which are installed.
 for __, client in enumerate(nsm_list):

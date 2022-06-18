@@ -13,6 +13,7 @@ class Client:
     installed: bool = False
     status: str = "not_found"
     known_client: bool = True
+    desktop_file: bool = False
 
 
 
