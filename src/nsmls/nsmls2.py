@@ -42,6 +42,14 @@ def get_path(input_list):
             entry.installed = True
 
 
+
+def check_for_description(found, comment, input_list):
+    for __, client in enumerate(input_list):
+        if found == client.exec_name:
+            if not client.description:
+                set_description(client, comment)
+ 
+
 def check_for_duplicate(found, comment, input_list):
     for __, client in enumerate(input_list):
         if found == client.exec_name:
@@ -49,8 +57,6 @@ def check_for_duplicate(found, comment, input_list):
                 set_description(client, comment)
             return True 
     
-
-#programs = get_entries(xdg_paths, nsm_clients, nsm_list, blocked_clients)
 
 def check_if_known(found, nsm_clients):
     for __, client in enumerate(nsm_clients):
@@ -72,14 +78,16 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
                     comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                     client = check_if_known(found, nsm_clients)
                     if client:
+                        # The application is listed.
                         client.status = "found"
                         client.known = True
-                        if not client.description:
-                            set_description(client, comment)
+                        check_for_description(found, comment, nsm_list)
                         if check_for_duplicate(found, comment, nsm_list):
                             continue
-                        result.append(client)
+                        else:
+                            result.append(client)
                     else:
+                        # The application isn't listed.
                         client = Client(exec_name=found, known=False, status="found")
                         set_description(client, comment)
                         result.append(client)
