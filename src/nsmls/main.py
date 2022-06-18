@@ -29,10 +29,18 @@ import src.nsmls.nsmls2 as nsmls
 
 
 def print_output(args):
-    if args.dump:
-        pprint(args.programs)
-    #for __, program in enumerate(args.programs):
-    #    print(program.exec_name)
+    pprint(args.user_clients)
+    pprint(args.nsm_clients)
+    #pprint(args.user_clients)
+
+    '''
+    match args:
+        case args.d:
+            pprint(args.programs)
+        case _:
+            for __, program in enumerate(args.programs):
+                print(program.exec_name)
+    '''
             
 
 def data_mining():
@@ -64,8 +72,14 @@ def main():
 
     parser = argparse.ArgumentParser()
     programs = data_mining()
-    parser.set_defaults(programs=programs)
-    parser.add_argument("--dump", help="increase output verbosity",
+    parser.set_defaults(
+            programs=programs, 
+            user_clients=config.user_clients,
+            nsm_clients=config.nsm_clients,
+            nsm_star_clients=config.nsm_star_clients,
+            )
+
+    parser.add_argument("-d", help="dump all info",
                     action="store_true")
     parser.set_defaults(func=print_output)
     args = parser.parse_args()
