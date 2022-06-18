@@ -8,7 +8,7 @@ from pathlib import Path
 @dataclass()
 class Client:
     exec_name: str = ""
-    url: str = "no_url_provided"
+    url: str = ""
     description: str = ""      
     path: str = ""
     installed: bool = False
@@ -31,7 +31,6 @@ user_clients = [
         # Client("example1", "", ""),
         # Client("example2"),
         Client("fluajho"),
-        
 
 
         ]
@@ -42,7 +41,6 @@ user_blocked_clients = (
 
         # "example1",
         # "example2",
-        "fluajho",
 
          )
 
