@@ -22,6 +22,13 @@ from src.config.nsmlsconfig import xdg_paths
 from src.config.nsmlsconfig import Client
 
 
+def set_description(client, file):
+    print(f"!{client.exec_name}")
+    description = xdg.DesktopEntry.DesktopEntry(file).getComment()
+    if not description:
+        description = ""
+    client.description = description 
+
 
 def set_status(input_list, status):
     for __, client in enumerate(input_list):
@@ -36,8 +43,8 @@ def get_path(input_list):
             entry.installed = True
 
 
-def check_for_duplicate(found, nsm_list):
-    for __, client in enumerate(nsm_list):
+def check_for_duplicate(found, input_list):
+    for __, client in enumerate(input_list):
         if found == client.exec_name:
             return True 
     
@@ -52,20 +59,20 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
                 # There is also ("X-NSM-Capable")
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
                 if found and found not in blocked_clients:
-                    if check_for_duplicate(found, nsm_list):
-                        continue
                     for __, known_client in enumerate(nsm_clients):
                         if found == known_client.exec_name:
                             known = True
-                            known_client.installed = True
-                            known_client.status = "found" 
-                            result.append(known_client)
-                            break
+                            if not known_client.description:
+                                set_description(known_client, file)
+                        if check_for_duplicate(found, nsm_list):
+                            continue
+                        known_client.installed = True
+                        known_client.status = "found" 
+                        result.append(known_client)
+                        break
                     if not known:
-                        description = xdg.DesktopEntry.DesktopEntry(file).getComment()
-                        if not description:
-                            description = ""
-                        unknown_client = Client(exec_name=found, installed=True, known_client=False, status="found", description=description)
+                        unknown_client = Client(exec_name=found, installed=True, known_client=False, status="found")
+                        set_description(unknown_client, file)
                         result.append(unknown_client)
                         known = False
     return result
@@ -74,7 +81,8 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
 # We set the status.
 set_status(user_clients, status="user")
 set_status(nsm_clients_plus, status="plus")
-
+# user_blocked
+# blocked
 
 # We concatenate both list which only needs a 'installed' check.
 nsm_list = user_clients + nsm_clients_plus
@@ -94,4 +102,4 @@ for __, client in enumerate(nsm_list):
 
 # We print the output.
 for __, program in enumerate(programs):
-    print(f"{program.exec_name} - {program.installed} - {program.status} - {program.description} - {program.url}" )
+    print(f"{program.exec_name} - {program.known_client} - {program.status} - {program.description} - {program.url}" )
