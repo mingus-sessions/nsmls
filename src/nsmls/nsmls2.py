@@ -44,11 +44,11 @@ def validate_user_entries():
             sys.exit(1)
 
 
-def set_info(client, setting, info=True):
-    if info:
-        client.info = setting
+def set_info(client, comment):
+    if comment:
+        client.info = comment
     else:
-        client.comment = setting
+        client.info = "" 
 
 
 
@@ -68,17 +68,24 @@ def get_path(input_list):
             entry.installed = True
 
 
-def check_for_info(found, comment, all_clients):
-    for __, client in enumerate(all_clients):
+def check_for_info(found, comment):
+    for __, client in enumerate(config.nsm_clients):
         if found == client.exec_name:
-            if not client.info:
+            if not client.info and comment:
                 set_info(client, comment)
-            set_info(client, comment, info=False)
-            return
+                return
+    for __, client in enumerate(config.nsm_star_clients):
+         if found == client.exec_name:
+                    if not client.info and comment:
+                        set_info(client, comment)
+                        return
 
 
-def check_for_duplicate(found, all_clients):
-    for __, client in enumerate(all_clients):
+def check_for_duplicate(found):
+    for __, client in enumerate(config.user_clients):
+        if found == client.exec_name:
+            return True 
+    for __, client in enumerate(config.nsm_star_clients):
         if found == client.exec_name:
             return True 
 
@@ -104,7 +111,7 @@ def check_if_known(found):
 
 
 # xdg stuff was inspire by...
-def get_entries(all_clients):
+def get_entries():
     result = []
     known = False
     for __, path in enumerate(config.xdg_paths):
@@ -113,14 +120,12 @@ def get_entries(all_clients):
                 # There is also ("X-NSM-Capable")
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
                 if found and (found not in config.blocked_clients) and (found not in config.user_blocked_clients):
-
                     comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                     client = check_if_known(found)
                     if client:
                         client.desktop_file = True
-                        if comment:
-                            check_for_info(found, comment, all_clients)  # If no info, we set the one from the *.desktop file if exists.
-                        if check_for_duplicate(found, all_clients):  # We don't have to add it, if it's already on the user or star list.
+                        check_for_info(found, comment)  # If no info, we set the one from the *.desktop file if exists.
+                        if check_for_duplicate(found):  # We don't have to add it, if it's already on the user or star list.
                             continue
                         else:
                             client.status = "xdg"
@@ -141,21 +146,15 @@ set_status(config.user_clients, status="user")
 set_status(config.nsm_clients, status="nsm_clients")
 set_status(config.nsm_star_clients, status="star")
 
+# We set the path (and check if installed or not).
+get_path(config.user_clients)
+get_path(config.nsm_clients)
+get_path(config.nsm_star_clients)
+
+
 
 if config.user_clients:
     set_missing_url_info()
-
-
-
-# We set the path (and check if installed or not).
-
-all_clients = config.user_clients + config.nsm_clients + config.nsm_star_clients  # NOTE: there may be duplicates.
-
-get_path(all_clients)
-#get_path(config.nsm_clients)
-#get_path(config.nsm_star_clients)
-
-
 
 
 # We concatenate both list which only needs a 'installed' check.
@@ -163,7 +162,7 @@ get_path(all_clients)
 
 
 # We go through the xdg desktop files to find the 'NSM' entry.
-programs = get_entries(all_clients)
+programs = get_entries()
 
 
 
