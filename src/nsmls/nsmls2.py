@@ -58,7 +58,6 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
                         if found == known_client.exec_name:
                             known = True
                             known_client.installed = True
-                            known_client.desktop_entry = True
                             known_client.status = "found" 
                             result.append(known_client)
                             break
@@ -66,7 +65,7 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
                         description = xdg.DesktopEntry.DesktopEntry(file).getComment()
                         if not description:
                             description = ""
-                        unknown_client = Client(exec_name=found, installed=True, known_client=False, status="found", description=description, desktop_entry=True)
+                        unknown_client = Client(exec_name=found, installed=True, known_client=False, status="found", description=description)
                         result.append(unknown_client)
                         known = False
     return result
@@ -95,4 +94,4 @@ for __, client in enumerate(nsm_list):
 
 # We print the output.
 for __, program in enumerate(programs):
-    print(f"{program.exec_name} - {program.installed} - {program.desktop_entry} - {program.description} - {program.url}" )
+    print(f"{program.exec_name} - {program.installed} - {program.status} - {program.description} - {program.url}" )
