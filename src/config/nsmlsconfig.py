@@ -13,7 +13,7 @@ class Client:
     xdg_comment: str = ""
     path: str = ""
     installed: bool = False
-    status: str = ""
+    origin: str = ""
     known: bool = False
     desktop_file: bool = False
     blocked: bool = False

@@ -52,11 +52,11 @@ def set_info(client, xdg_comment):
 
 
 
-def set_status(input_list, status):
+def set_origin(input_list, origin):
     for __, client in enumerate(input_list):
         if client.exec_name in config.user_blocked_clients or client in config.blocked_clients:
             client.blocked = True
-        client.status = status
+        client.origin = origin
         client.known = True
 
 
@@ -131,11 +131,11 @@ def get_entries():
                         if check_for_duplicate(found):  # We don't have to add it, if it's already on the user or star list.
                             continue
                         else:
-                            client.status = "xdg"
+                            client.origin = "xdg"
                             result.append(client)
                     else:
-                        # The application isn't status.
-                        client = Client(exec_name=found, known=False, status="xdg", desktop_file=True)
+                        # The application isn't origin.
+                        client = Client(exec_name=found, known=False, origin="xdg", desktop_file=True)
                         set_info(client, xdg_comment)
                         result.append(client)
     return result

@@ -15,7 +15,7 @@ pseudo:
     list default + description
     list default + url
 
-    list all: all clients, installed, not installed, confirmed, unconfirmed. (status?)
+    list all: all clients, installed, not installed, confirmed, unconfirmed. (origin?)
 
     list blocked
     List who doesn't have a desktop file
@@ -45,10 +45,10 @@ def print_output(args):
 
 def data_mining():
     nsmls.validate_user_entries()
-    # We set the status.
-    nsmls.set_status(config.user_clients, status="user")
-    nsmls.set_status(config.nsm_clients, status="nsm_clients")
-    nsmls.set_status(config.nsm_star_clients, status="star")
+    # We set the origin.
+    nsmls.set_origin(config.user_clients, origin="user")
+    nsmls.set_origin(config.nsm_clients, origin="nsm_clients")
+    nsmls.set_origin(config.nsm_star_clients, origin="star")
 
     # We set the path (and check if installed or not).
     nsmls.get_path(config.user_clients)
