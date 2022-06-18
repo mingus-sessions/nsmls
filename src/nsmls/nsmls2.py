@@ -129,7 +129,7 @@ def get_entries():
                         if check_for_duplicate(found):  # We don't have to add it, if it's already on the user or star list.
                             continue
                         else:
-                            client.listed = "found"
+                            client.listed = "xdg"
                             result.append(client)
                     else:
                         #print(f" not known: {found}")
