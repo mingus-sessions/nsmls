@@ -70,12 +70,12 @@ def check_for_duplicate(found, input_list):
 def check_if_known(found, input_list):
     for __, client in enumerate(input_list):
         if found == client.exec_name:
-            print(f"url{client.url}")
+            print(f"known {found}")
             return client
 
 
 # xdg stuff was inspire by...
-def get_entries(paths, nsm_clients, user_list, blocked_clients):
+def get_entries(paths, nsm_clients, user_list, nsm_list, blocked_clients):
     result = []
     known = False
     for __, path in enumerate(paths):
@@ -84,19 +84,25 @@ def get_entries(paths, nsm_clients, user_list, blocked_clients):
                 # There is also ("X-NSM-Capable")
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
                 if found and (found not in blocked_clients) and (found not in user_blocked_clients):
+                    print(found)
                     comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                     client = check_if_known(found, user_list)
+                    if client:
+                        print(f"user_ls {client}")
                     if not client:
                         client = check_if_known(found, nsm_clients)
+                        print(f"nsm_ls {client}")
                     if client:
+                        print(f"GOT {client}")
                         client.status = "found"
                         client.known = True
                         check_for_description(found, comment, nsm_clients)  # If no description, we set the one from the *.desktop file if exists.
-                        if check_for_duplicate(found, nsm_clients):  # We don't have to add it, if it's already on the user or star list.
+                        if check_for_duplicate(found, nsm_list):  # We don't have to add it, if it's already on the user or star list.
                             continue
                         else:
                             result.append(client)
                     else:
+                        print(f" not known: {found}")
                         # The application isn't listed.
                         client = Client(exec_name=found, known=False, status="found")
                         set_description(client, comment)
@@ -117,13 +123,13 @@ set_status(nsm_clients_star, status="star")
 # check if user_clients are known:
 def check_if_recognize(user_list, nsm_clients):
     for __, entry in enumerate(user_list):
-        for __, client in enumerate(user_list):
+        for __, client in enumerate(nsm_clients):
             if entry.exec_name == client.exec_name:
                 if not entry.url:
-                    print("TURE")
                     entry.url = client.url
                 if not entry.description:
                     entry.description = client.description
+                break
 
 
 if user_clients:
@@ -133,12 +139,14 @@ if user_clients:
 # We concatenate both list which only needs a 'installed' check.
 # FIXME check for duplicates + warning
 
+nsm_list = user_clients + nsm_clients_star
 
 # We go through the xdg desktop files to find the 'NSM' entry.
-programs = get_entries(xdg_paths, nsm_clients, user_clients, blocked_clients)
+programs = get_entries(xdg_paths, nsm_clients, user_clients, nsm_list, blocked_clients)
+
+print(f"programs {programs}")
 
 
-nsm_list = user_clients + nsm_clients_star
 # We set the path (and check if installed or not).
 get_path(nsm_list)
 get_path(programs)
@@ -151,3 +159,4 @@ for __, client in enumerate(nsm_list):
 # We print the output.
 for __, program in enumerate(programs):
     print(f"{program.exec_name} - {program.known} - {program.status} - {program.description} - {program.url}" )
+
