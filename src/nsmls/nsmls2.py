@@ -8,7 +8,7 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 #import xdg.IconTheme #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 
 
-# NOTE: the default file MUST not have a entry commented out, other then in user_list.
+# NOTE: the default file MUST not have a entry commented out, other then in user_clients.
 # NOTE: xdg specifications only have url for LINK entry it seems": https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#recognized-keys
 
 # TODO: check for multiple items
@@ -24,12 +24,10 @@ from src.config.nsmlsconfig import xdg_paths
 from src.config.nsmlsconfig import Client
 
 
-
-
-def validate_user_entries(user_list, user_blocked_clients):
-    for __, client in enumerate(user_list):
+def validate_user_entries(user_clients, user_blocked_clients):
+    for __, client in enumerate(user_clients):
         if client.exec_name in user_blocked_clients:
-            print("Error: you can't add and block the same custom client!", file=sys.stderr)
+            print("Error: Duplicated user entries", file=sys.stderr)
             sys.exit(1)
 
 
@@ -103,25 +101,18 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
     return result
 
 
-def tuple_to_dataclass(input_list):
-    for __, the_tuple in enumerate(input_list):
-        print(f"{ Client(*the_tuple)}")
-        yield Client(*the_tuple)
 
-
-user_list = list(tuple_to_dataclass(user_clients))
-
-validate_user_entries(user_list, user_blocked_clients)
+validate_user_entries(user_clients, user_blocked_clients)
 
 # We set the status.
-set_status(user_list, status="user")
+set_status(user_clients, status="user")
 set_status(nsm_clients_star, status="star")
 # user_blocked
 # blocked
 
 # We concatenate both list which only needs a 'installed' check.
 # FIXME check for duplicates + warning
-nsm_list = user_list + nsm_clients_star
+nsm_list = user_clients + nsm_clients_star
 
 
 # We go through the xdg desktop files to find the 'NSM' entry.

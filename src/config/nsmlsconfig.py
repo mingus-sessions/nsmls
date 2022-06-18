@@ -26,19 +26,17 @@ class Client:
 # Custom entries for custom or unknown clients. Please report if you think they should be known.
 # They are added to the list if they're installed. No xdg *.desktop file check.
 user_clients = [
-   
-        # NOTE: let users use a tuple?
+    
         # Client("carla-patchbay", "https://github.com/falkTX/Carla", "plugin host multi"),
         # Client("example1", "", ""),
         # Client("example2"),
-        ("nsmd", " " , " "),
+        Client("fluajho"),
         
 
 
         ]
 
 
-# Custom entries for blocking clients.
 user_blocked_clients = (
 
         # "example1",
