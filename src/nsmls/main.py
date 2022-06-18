@@ -49,6 +49,7 @@ def data_mining():
     nsmls.set_origin(config.user_clients, origin="user")
     nsmls.set_origin(config.nsm_clients, origin="nsm_clients")
     nsmls.set_origin(config.nsm_star_clients, origin="star")
+    nsmls.set_nsm_star_status(config.nsm_star_clients)
 
     # We set the path (and check if installed or not).
     nsmls.get_path(config.user_clients)
