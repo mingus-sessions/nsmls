@@ -33,7 +33,7 @@ user_clients = [
         ]
 
 
-# Blocked clients by the user. NOTE: Syntax is different.
+# Blocked clients by the user. NOTE: Syntax is different. We just need the executable name, with quotes and a comma.
 user_blocked_clients = (
 
         # "example",
