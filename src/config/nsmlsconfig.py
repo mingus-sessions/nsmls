@@ -30,6 +30,8 @@ user_clients = [
         # Client("carla-patchbay", "https://github.com/falkTX/Carla", "plugin host multi"),
         # Client("example1", "", ""),
         # Client("example2"),
+        Client("fluajho"),
+        
 
 
         ]
@@ -44,8 +46,9 @@ user_blocked_clients = (
          )
 
 
-# List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and add the client to your custom_clients list, after you've
-# commented it out in this list in meantime.
+# List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and add the client to your custom_clients list.
+# Normally a user shouldn't edit this.
+
 nsm_clients = [
 
     Client("adljack", "https://github.com/jpcima/adljack", "opl3/opn2 synthesizer"),

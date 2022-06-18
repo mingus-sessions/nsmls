@@ -3,6 +3,7 @@
 from shutil import which
 from pathlib import Path
 import os
+import sys
 import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 #import xdg.IconTheme #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 
@@ -21,6 +22,13 @@ from src.config.nsmlsconfig import blocked_clients
 from src.config.nsmlsconfig import user_blocked_clients
 from src.config.nsmlsconfig import xdg_paths 
 from src.config.nsmlsconfig import Client
+
+
+def validate_user_entries(user_clients, user_blocked_clients):
+    for __, client in enumerate(user_clients):
+        if client.exec_name in user_blocked_clients:
+            print("Error: Duplicated user entries", file=sys.stderr)
+            sys.exit(1)
 
 
 def set_description(client, comment):
@@ -92,6 +100,9 @@ def get_entries(paths, nsm_clients, nsm_list, blocked_clients):
                         result.append(client)
     return result
 
+
+
+validate_user_entries(user_clients, user_blocked_clients)
 
 # We set the status.
 set_status(user_clients, status="user")
