@@ -134,7 +134,7 @@ def get_entries():
                     else:
                         #print(f" not known: {found}")
                         # The application isn't listed.
-                        client = Client(exec_name=found, known=False, listed="found", desktop_file=True)
+                        client = Client(exec_name=found, known=False, listed="xdg", desktop_file=True)
                         set_description(client, comment)
                         result.append(client)
     return result
