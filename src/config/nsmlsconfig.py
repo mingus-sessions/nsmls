@@ -30,7 +30,6 @@ user_clients = [
         # Client("carla-patchbay", "https://github.com/falkTX/Carla", "plugin host multi"),
         # Client("example1", "", ""),
         # Client("example2"),
-        # Client("fluajho"),
 
 
         ]
@@ -41,7 +40,6 @@ user_blocked_clients = (
 
         # "example1",
         # "example2",
-        # "fluajho",
 
          )
 
