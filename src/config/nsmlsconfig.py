@@ -11,7 +11,7 @@ class Client:
     description: str = ""      
     path: str = ""
     installed: bool = False
-    status: str = ""
+    status: str = "not_found"
     known_client: bool = True
 
 
