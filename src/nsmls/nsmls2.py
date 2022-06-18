@@ -118,11 +118,9 @@ def get_entries():
                 # There is also ("X-NSM-Capable")
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
                 if found and (found not in config.blocked_clients) and (found not in config.user_blocked_clients):
-                    #print(found)
                     comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                     client = check_if_known(found)
                     if client:
-                        #print(f"GOT {client}")
                         client.known = True
                         client.desktop_file=True
                         check_for_info(found, comment)  # If no info, we set the one from the *.desktop file if exists.
@@ -132,7 +130,6 @@ def get_entries():
                             client.listed = "xdg"
                             result.append(client)
                     else:
-                        #print(f" not known: {found}")
                         # The application isn't listed.
                         client = Client(exec_name=found, known=False, listed="xdg", desktop_file=True)
                         set_info(client, comment)
