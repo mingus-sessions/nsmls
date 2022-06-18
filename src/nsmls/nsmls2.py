@@ -154,7 +154,10 @@ if config.user_clients:
 # We go through the xdg desktop files to find the 'NSM' entry.
 programs = get_entries()
 
+
 print(f"programs {programs}")
+
+print("##########################################")
 
 
 # We set the path (and check if installed or not).
@@ -162,14 +165,17 @@ get_path(config.user_clients)
 get_path(config.nsm_star_clients)
 get_path(programs)
 
+
 # We add the applications from the nsm_list, which are installed.
 def add_installed_to_list(input_list, programs):
     for __, client in enumerate(input_list):
         if client.installed:
             programs.append(client)
 
+
 add_installed_to_list(config.user_clients, programs)
 add_installed_to_list(config.nsm_star_clients, programs)
+
 
 # We print the output.
 for __, program in enumerate(programs):

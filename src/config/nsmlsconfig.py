@@ -41,7 +41,7 @@ user_blocked_clients = (
 
         # "example1",
         # "example2",
-        "fluajho",
+        # "fluajho",
 
          )
 
@@ -65,7 +65,7 @@ nsm_clients = [
     Client("carla-patchbay", "https://github.com/falkTX/Carla", "patchbay"),
     Client("carla-rack", "https://github.com/falkTX/Carla", "plugin host rack"),
     Client("drumkv1_jack", "https://github.com/rncbc/drumkv1", "drumkit sampler"),
-    Client("fluajho", "https://laborejo.org", "soundfont player"),
+    #Client("fluajho", "https://laborejo.org", "soundfont player"),
     Client("guitarix", "https://github.com/brummer10/guitarix", "virtual guitar amplifier"),
     Client("hydrogen", "https://github.com/hydrogen-music/hydrogen", "drum machine"),
     Client("jack_mixer", "https://rdio.space/jackmixer", "mixer"),
@@ -98,6 +98,7 @@ nsm_clients = [
 
 # List with clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. They're added to the list if they're installed. Normally you wouldn't edit this.
 nsm_star_clients = [
+        Client("fluajho", "https://laborejo.org", "soundfont player"),
 
         Client("non-midi-mapper", "http://non.tuxfamily.org", "non-daw midi to osc mapper"),
         Client("non-mixer", "http://non.tuxfamily.org", "non-daw mixer"),
