@@ -20,7 +20,7 @@ import src.config.nsmlsconfig as config
 
 # check if user_clients are known:
 def set_missing_url_info():
-    for __, entry in enumerate(config.user_list):
+    for __, entry in enumerate(config.user_clients):
         for __, client in enumerate(config.nsm_clients):
             if entry.exec_name == client.exec_name:
                 if not entry.url:
@@ -156,7 +156,7 @@ get_path(config.nsm_star_clients)
 
 
 if config.user_clients:
-    check_if_recognize()
+    set_missing_url_info()
 
 
 # We concatenate both list which only needs a 'installed' check.

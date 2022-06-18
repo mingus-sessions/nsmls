@@ -30,6 +30,7 @@ user_clients = [
         # Client("example1", "https://github.com/", "my info"),
         # Client("example2", "", ""),
         # Client("example3"),
+        Client("fluajho")
 
 
         ]
