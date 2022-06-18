@@ -4,7 +4,8 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-@dataclass(slots=True)
+#@dataclass(slots=False)
+@dataclass()
 class Client:
     exec_name: str = ""
     url: str = "no_url_provided"
@@ -29,7 +30,7 @@ user_clients = [
         # Client("carla-patchbay", "https://github.com/falkTX/Carla", "plugin host multi"),
         # Client("example1", "", ""),
         # Client("example2"),
-        Client("carla-patchbay")
+        # Client("carla-patchbay")
 
 
         ]
