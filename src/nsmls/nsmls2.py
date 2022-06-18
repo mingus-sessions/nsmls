@@ -121,7 +121,6 @@ def get_entries():
                     comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                     client = check_if_known(found)
                     if client:
-                        client.known = True
                         client.desktop_file=True
                         check_for_info(found, comment)  # If no info, we set the one from the *.desktop file if exists.
                         if check_for_duplicate(found):  # We don't have to add it, if it's already on the user or star list.
