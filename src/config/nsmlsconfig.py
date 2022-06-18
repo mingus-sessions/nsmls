@@ -18,13 +18,10 @@ class Client:
 
 
 
-# CONFIG 
+# USER CONFIG 
 
 
-# Blocking clients is normally done by just commenting them out, with a '#'. There is also a general default blocked_clients list, but normally you wouldn't edit it. When possible, report the issue, don't block.
-
-# Custom entries for custom or unknown clients. Please report if you think they should be known.
-# They are added to the list if they're installed. No xdg *.desktop file check.
+# Custom entries for custom or unknown clients. Please report if you think they should be known. This overrides global blocking.
 user_clients = [
     
         # Client("example1", "https://github.com/", "my info"),
@@ -43,6 +40,11 @@ user_blocked_clients = (
         # "example1",
 
          )
+
+
+# END USER CONFIG
+
+
 
 
 # List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and add the client to your custom_clients list.
