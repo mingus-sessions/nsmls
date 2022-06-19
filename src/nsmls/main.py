@@ -29,11 +29,11 @@ import src.nsmls.nsmls2 as nsmls
 
 
 def print_output(args):
-    for __, client in enumerate(args.nsm_star_clients):
-        print(f'Client("{client.exec_name}", "{client.url}", "{client.info}"),')
-    #pprint(args.nsm_clients)
-    #pprint(args.nsm_star_clients)
-    #pprint(args.user_clients)  # FIXME: also in nsm_clients list
+    #for __, client in enumerate(args.nsm_star_clients):
+    #    print(f'Client("{client.exec_name}", "{client.url}", "{client.info}"),')
+    pprint(args.nsm_clients)
+    pprint(args.nsm_star_clients)
+    pprint(args.user_clients)  # FIXME: also in nsm_clients list
     '''
     match args:
         case args.d:

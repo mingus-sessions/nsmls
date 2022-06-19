@@ -3,6 +3,11 @@
 from dataclasses import dataclass
 from pathlib import Path
 
+# DEVELOPER NOTE: for bash a list in the following format would be easier to process:
+# zynaddsubfx https://github.com/zynaddsubfx synthesizer
+# with space as delimiter.
+
+
 
 #@dataclass(slots=True)
 @dataclass()
@@ -28,9 +33,9 @@ class Client:
 # Custom entries for custom or unknown clients. Please report if you think they should be known. This overrides global blocking.
 user_clients = [
     
-        # Client("example1", "https://github.com/", "my info"),
-        # Client("example2", "", ""),
-        # Client("example3"),
+        # Client("app", "description", "https://github.com/"),
+        # Client("app", "description"),
+        # Client("app"),
         Client("fluajho")
 
 
@@ -151,3 +156,5 @@ xdg_paths = (
         Path(Path.home(), ".local/share/applications"),
 
         )
+
+
