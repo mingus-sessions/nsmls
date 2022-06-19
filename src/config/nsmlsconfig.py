@@ -1,32 +1,9 @@
 #!/usr/bin/env python
 
-from dataclasses import dataclass
 from pathlib import Path
+from src.libnsmls.nsmls_dataclass import Client
 
-# DEVELOPER NOTE: for bash a list in the following format would be easier to process:
-# zynaddsubfx https://github.com/zynaddsubfx synthesizer
-# with space as delimiter.
-
-
-
-#@dataclass(slots=True)
-@dataclass()
-class Client:
-    exec_name: str = ""
-    info: str = ""
-    url: str = ""
-    installed: bool = False
-    path: str = ""
-    blocked: bool = False
-    config_list: str = "unknown"
-    xdg_nsm_confirmed: bool = False 
-    xdg_nsm_exec: str = ""
-    xdg_name: str = ""
-    xdg_comment: str = ""
-    # xdg_version: str = ""
-    xdg_icon: str = ""
-    
-
+  
 # USER CONFIG 
 
 
@@ -160,5 +137,12 @@ xdg_paths = (
         )
 
 
-# Obsolete/ blocked: 
-# 
+
+
+# DEVELOPER NOTE: for bash a list in the following format would be easier to process:
+# zynaddsubfx https://github.com/zynaddsubfx synthesizer
+# with space as delimiter.
+
+
+
+  

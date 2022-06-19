@@ -25,7 +25,7 @@ pseudo:
 '''
 
 import src.config.nsmlsconfig as data 
-import src.nsmls.nsmls2 as nsmls
+import src.libnsmls.nsmls2 as nsmls
 
 
 def print_output(args):
