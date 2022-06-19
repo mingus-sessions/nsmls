@@ -8,7 +8,7 @@ from src.libnsmls.nsmls_dataclass import Client
 
 
 # Custom entries for custom or unknown clients. Please report if you think they should be known. This overrides global blocking.
-user_clients = [
+user_star_clients = [
     
         # Client("app", "description", "https://github.com/"),
         # Client("app", "description"),

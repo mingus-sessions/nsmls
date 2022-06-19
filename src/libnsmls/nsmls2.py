@@ -8,7 +8,7 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 #import xdg.IconTheme #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 
 
-# NOTE: the default file MUST not have a entry xdg_commented out, other then in user_clients.
+# NOTE: the default file MUST not have a entry xdg_commented out, other then in user_star_clients.
 # NOTE: xdg specifications only have url for LINK entry it seems": https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#recognized-keys
 
 # TODO: check for multiple items
@@ -20,7 +20,7 @@ from src.libnsmls.nsmls_dataclass import Client
 
 
 def validate_user_entries():
-    for __, client in enumerate(data.user_clients):
+    for __, client in enumerate(data.user_star_clients):
         if client.exec_name in data.user_blocked_clients:
             print("Error: you can't add and block the same client in user settings. Fix your config.", file=sys.stderr)
             sys.exit(1)
@@ -29,7 +29,7 @@ def validate_user_entries():
 
 # FIXME: code
 def set_missing_url_info():
-    for __, entry in enumerate(data.user_clients):
+    for __, entry in enumerate(data.user_star_clients):
         for __, client in enumerate(data.nsm_clients):
             if entry.exec_name == client.exec_name:
                 if not entry.url:
@@ -80,7 +80,7 @@ def get_path(input_list):
 
 # FIXME: code.
 def check_for_duplicate(X_NSM_Exec):
-    for __, client in enumerate(data.user_clients):
+    for __, client in enumerate(data.user_star_clients):
         if X_NSM_Exec == client.exec_name:
             return True 
     for __, client in enumerate(data.nsm_star_clients):
@@ -97,7 +97,7 @@ def check_this_list(X_NSM_Exec, input_list):
     
 # FIXME: code.
 def check_if_known(X_NSM_Exec):
-    client = check_this_list(X_NSM_Exec, data.user_clients)
+    client = check_this_list(X_NSM_Exec, data.user_star_clients)
     if client:
         return client
     client = check_this_list(X_NSM_Exec, data.nsm_clients)

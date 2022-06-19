@@ -33,7 +33,7 @@ def print_output(args):
     #    print(f'Client("{client.exec_name}", "{client.url}", "{client.info}"),')
     pprint(args.nsm_clients)
     pprint(args.nsm_star_clients)
-    pprint(args.user_clients)  # FIXME: also in nsm_clients list
+    pprint(args.user_star_clients)  # FIXME: also in nsm_clients list
     '''
     match args:
         case args.d:
@@ -49,23 +49,23 @@ def data_mining():
     # We set the origin.
     nsmls.set_config_list(data.nsm_clients, config_list="nsm_clients")
     nsmls.set_config_list(data.nsm_star_clients, config_list="nsm_star")
-    nsmls.set_config_list(data.user_clients, config_list="nsm_user_clients")  # Needs the last
+    nsmls.set_config_list(data.user_star_clients, config_list="nsm_user_star")  # Needs the last
 
     # We set the path (and check if installed or not).
-    nsmls.get_path(data.user_clients)
+    nsmls.get_path(data.user_star_clients)
     nsmls.get_path(data.nsm_clients)
     nsmls.get_path(data.nsm_star_clients)
 
     # If we have a url, we add the url.
-    if data.user_clients:
+    if data.user_star_clients:
         print(f"INFO data.user_cient")
         nsmls.set_missing_url_info()
 
     # We go through the xdg desktop files to find the 'NSM' entry.
     programs = nsmls.get_entries()
 
-    # We add the user_clients and the nsm_star_clients.
-    nsmls.add_installed_to_list(data.user_clients, programs)
+    # We add the user_star_clients and the nsm_star_clients.
+    nsmls.add_installed_to_list(data.user_star_clients, programs)
     nsmls.add_installed_to_list(data.nsm_star_clients, programs)
 
     return programs
@@ -77,7 +77,7 @@ def main():
     programs = data_mining()
     parser.set_defaults(
             programs=programs, 
-            user_clients=data.user_clients,
+            user_star_clients=data.user_star_clients,
             nsm_clients=data.nsm_clients,
             nsm_star_clients=data.nsm_star_clients,
             )
