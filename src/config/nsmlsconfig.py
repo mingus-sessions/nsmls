@@ -142,9 +142,9 @@ xdg_paths = (
 
 
 
-# DEVELOPER NOTE: for bash a list in the following format would be easier to process:
+# DEVELOPER NOTE: for BASH a list in the following format would be easier to parse:
 # zynaddsubfx https://github.com/zynaddsubfx synthesizer
-# with space as delimiter.
+# with space as delimiter, which is default in BASH.
 
 
 
