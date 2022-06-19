@@ -17,8 +17,8 @@ class Client:
     url: str = ""
     installed: bool = False
     path: str = ""
-    config_list: str = "unknown"
     blocked: bool = False
+    config_list: str = "unknown"
     xdg_nsm_confirmed: bool = False 
     xdg_nsm_exec: str = ""
     xdg_name: str = ""
@@ -36,7 +36,7 @@ user_clients = [
         # Client("app", "description", "https://github.com/"),
         # Client("app", "description"),
         # Client("app"),
-        Client("fluajho")
+        # Client("fluajho")
 
 
         ]
