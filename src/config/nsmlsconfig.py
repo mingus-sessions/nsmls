@@ -7,7 +7,7 @@ from src.libnsmls.nsmls_dataclass import Client
 # USER CONFIG 
 
 
-# Custom entries for custom or unknown clients. Please report if you think they should be known. This overrides global blocking.
+# Custom entries for custom added nsm clients. Please report if you think they should be on the nsm_clients list. This overrides entries in the global blocked_clients list.
 user_star_clients = [
     
         # Client("app", "description", "https://github.com/"),
