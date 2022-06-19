@@ -98,7 +98,6 @@ def check_if_known(xdg_nsm_exec):
         return client
 
 
-# xdg stuff was inspire by...
 def get_entries():
     result = []
     known = False
