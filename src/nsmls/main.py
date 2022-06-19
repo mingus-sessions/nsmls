@@ -56,6 +56,7 @@ def data_mining():
     nsmls.get_path(data.nsm_clients)
     nsmls.get_path(data.nsm_star_clients)
 
+    # If we have a url, we add the url.
     if data.user_clients:
         nsmls.set_missing_url_info()
 

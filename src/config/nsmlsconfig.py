@@ -98,6 +98,7 @@ nsm_clients = [
         Client("shuriken", "beat slicer", "https://rock-hopper.github.io/shuriken"),
         Client("synthpod_jack", "lv2 plugin container", "https://open-music-kontrollers.ch/lv2"),
         Client("synthv1_jack", "substractive synthesizer", "https://github.com/rncbc/synthv1"),
+        Client("tap192", "midi-controlled virtual sampler", "https://github.com/PlagiatBros/tap192"),
         Client("tembro", "virtual instrument samples", "https://laborejo.org"),
         Client("xtuner", "instrument tuner", "https://github.com/brummer10/XTuner"),
         Client("zita-at1", "autotuner (fork)", "https://github.com/royvegard/zita-at1"),
