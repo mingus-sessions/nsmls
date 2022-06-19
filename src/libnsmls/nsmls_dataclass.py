@@ -12,7 +12,7 @@ class Client:
     config_list: str = "unknown"
     xdg_nsm_confirmed: bool = False 
     X_NSM_Exec: str = ""
-    X_NSM_Capable: str = "" 
+    #X_NSM_Capable: str = "" 
     xdg_name: str = ""
     xdg_comment: str = ""
     # xdg_version: str = ""
