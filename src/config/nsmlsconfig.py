@@ -10,15 +10,17 @@ class Client:
     exec_name: str = ""
     url: str = ""
     info: str = ""
-    path: str = ""
-    icon: str = ""
-    xdg_comment: str = ""
     installed: bool = False
-    origin: str = "unknown"
-    nsm: str = "not confirmed"
+    path: str = ""
+    config_list: str = "unknown"
     blocked: bool = False
-
-
+    nsm: str = "not confirmed"
+    xdg_nsm_exec: str = ""
+    xdg_name: str = ""
+    xdg_comment: str = ""
+    xdg_version: str = ""
+    xdg_icon: str = ""
+    
 
 # USER CONFIG 
 

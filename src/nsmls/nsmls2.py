@@ -15,7 +15,7 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 # TODO: check if installed, for all of them.
 
 
-import src.data.nsmlsdata as data 
+import src.config.nsmlsconfig as data 
 
 
 # check if user_clients are known:
@@ -63,11 +63,11 @@ def set_info(client, xdg_comment):
 
 
 
-def set_origin(input_list, origin):
+def set_config_list(input_list, config_list):
     for __, client in enumerate(input_list):
         if client.exec_name in data.user_blocked_clients or client in data.blocked_clients:
             client.blocked = True
-        client.origin = origin
+        client.config_list = config_list
         # client.known = True
 
 
@@ -79,46 +79,46 @@ def get_path(input_list):
             entry.installed = True
 
 
-def check_for_info(found, xdg_comment):
+def check_for_info(xdg_nsm_exec, xdg_comment):
     for __, client in enumerate(data.nsm_clients):
-        if found == client.exec_name:
+        if xdg_nsm_exec == client.exec_name:
             if not client.info:
                 client.info = xdg_comment
             client.xdg_comment = xdg_comment
             return
     for __, client in enumerate(data.nsm_star_clients):
-        if found == client.exec_name:
+        if xdg_nsm_exec == client.exec_name:
             if not client.info:
                 client.info = xdg_comment
             client.xdg_comment = xdg_comment
             return
 
 
-def check_for_duplicate(found):
+def check_for_duplicate(xdg_nsm_exec):
     for __, client in enumerate(data.user_clients):
-        if found == client.exec_name:
+        if xdg_nsm_exec == client.exec_name:
             return True 
     for __, client in enumerate(data.nsm_star_clients):
-        if found == client.exec_name:
+        if xdg_nsm_exec == client.exec_name:
             return True 
 
 
-def check_this_list(found, input_list):
+def check_this_list(xdg_nsm_exec, input_list):
     for __, client in enumerate(input_list):
-        if found == client.exec_name:
-            #print(f"known {found}")
+        if xdg_nsm_exec == client.exec_name:
+            #print(f"known {xdg_nsm_exec}")
             return client
 
     
 
-def check_if_known(found):
-    client = check_this_list(found, data.user_clients)
+def check_if_known(xdg_nsm_exec):
+    client = check_this_list(xdg_nsm_exec, data.user_clients)
     if client:
         return client
-    client = check_this_list(found, data.nsm_clients)
+    client = check_this_list(xdg_nsm_exec, data.nsm_clients)
     if client:
         return client
-    client = check_this_list(found, data.nsm_star_clients)
+    client = check_this_list(xdg_nsm_exec, data.nsm_star_clients)
     if client:
         return client
 
@@ -130,24 +130,27 @@ def get_entries():
     for __, path in enumerate(data.xdg_paths):
         for file in path.glob('**/*'):
             if file.is_file() and file.suffix == ".desktop":
-                # There is also ("X-NSM-Capable")
-                found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
-                if found and (found not in data.blocked_clients) and (found not in data.user_blocked_clients):
+                # xdg_nsm = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Capable')  # We skip that for now. We hope we don't need it.
+                xdg_nsm_exec = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
+                if xdg_nsm_exec:
                     xdg_comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
-                    icon = xdg.DesktopEntry.DesktopEntry(file).getIcon()
-                    client = check_if_known(found)
-                    if client:
-                        client.nsm = "confirmed"
-                        client.comment = xdg_comment
-                        client.icon = icon
-                        if check_for_duplicate(found):  # We don't have to add it, if it's already on the user or star list.
-                            continue
-                        else:
-                            client.origin = "xdg"
-                            result.append(client)
-                    else:
-                        # The application isn't origin.
-                        client = Client(exec_name=found, origin="xdg", nsm="confirmed")
-                        set_info(client, xdg_comment)
+                    xdg_icon = xdg.DesktopEntry.DesktopEntry(file).getIcon()
+                    xdg_name = xdg.DesktopEntry.DesktopEntry(file).getName()
+                    xdg_version = xdg.DesktopEntry.DesktopEntry(file).getVersionString()
+                    client = check_if_known(xdg_nsm_exec)
+                    if not client:
+                        client = Client(exec_name=xdg_nsm_exec, config_list="unknown", xdg_comment=xdg_comment, xdg_icon=xdg_icon, xdg_name=xdg_name, xdg_version=xdg_version, nsm="confirmed")
                         result.append(client)
+                        continue
+                    else:
+                        client.nsm = "confirmed"
+                        client.xdg_nsm_exec = xdg_nsm_exec 
+                        client.xdg_comment = xdg_comment
+                        client.xdg_icon = xdg_icon
+                        client.xdg_name = xdg_name
+                        client.xdg_version = xdg_version
+                        if client not in data.user_blocked_clients and client not in data.blocked_clients and check_for_duplicate(xdg_nsm_exec): 
+                            result.append(client)
+                        else:
+                            continue
     return result

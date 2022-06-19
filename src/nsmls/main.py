@@ -24,7 +24,7 @@ pseudo:
 
 '''
 
-import src.data.nsmlsdata as data 
+import src.config.nsmlsconfig as data 
 import src.nsmls.nsmls2 as nsmls
 
 
@@ -45,9 +45,9 @@ def print_output(args):
 def data_mining():
     nsmls.validate_user_entries()
     # We set the origin.
-    nsmls.set_origin(data.nsm_clients, origin="nsm_clients")
-    nsmls.set_origin(data.nsm_star_clients, origin="star")
-    nsmls.set_origin(data.user_clients, origin="user")  # Needs the last
+    nsmls.set_config_list(data.nsm_clients, config_list="nsm_clients")
+    nsmls.set_config_list(data.nsm_star_clients, config_list="star")
+    nsmls.set_config_list(data.user_clients, config_list="user")  # Needs the last
     nsmls.set_nsm_status(status="star")
     nsmls.set_nsm_status(status="user")
 
