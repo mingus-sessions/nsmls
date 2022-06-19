@@ -26,7 +26,7 @@ def validate_user_entries():
             sys.exit(1)
 
 
-# check if user_clients are known:
+
 # FIXME: code
 def set_missing_url_info():
     for __, entry in enumerate(data.user_clients):
