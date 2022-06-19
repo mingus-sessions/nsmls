@@ -23,7 +23,7 @@ class Client:
     xdg_nsm_exec: str = ""
     xdg_name: str = ""
     xdg_comment: str = ""
-    xdg_version: str = ""
+    # xdg_version: str = ""
     xdg_icon: str = ""
     
 
