@@ -116,7 +116,7 @@ def get_entries():
             if file.is_file() and file.suffix == ".desktop":
                 X_NSM_Exec = xdg.DesktopEntry.DesktopEntry(file).get('X_NSM_Exec')
                 # X_NSM_Capable = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Capable')  
-                # We hope we don't need a extra check. Apps should have X_NSM_Exec in their *.desktop file to be listed by this app. Grabbing for both on all apps seems slow.
+                # We hope we don't need a extra check. Apps should have X_NSM_Exec in their *.desktop file to be listed by this app (KISS). Grabbing for both on all apps seems slow too.
                 if X_NSM_Exec:  # or X_NSM_Capable:
                     xdg_comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                     xdg_icon = xdg.DesktopEntry.DesktopEntry(file).getIcon()
