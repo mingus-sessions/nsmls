@@ -119,7 +119,7 @@ def get_entries():
     for __, path in enumerate(data.xdg_paths):
         for file in path.glob('**/*'):
             if file.is_file() and file.suffix == ".desktop":
-                xdg_nsm = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Capable')  # For this app we need the executable. We hope we don't need a extra check. Apps should have X-NSM-Exec in their *.desktop file.
+                xdg_nsm = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Capable')  # We hope we don't need a extra check. Apps should have X-NSM-Exec in their *.desktop file to be listed by this app.
                 xdg_nsm_exec = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
                 if xdg_nsm_exec or xdg_nsm:
                     xdg_comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
