@@ -11,8 +11,8 @@ class Client:
     blocked: bool = False
     config_list: str = "unknown"
     xdg_nsm_confirmed: bool = False 
-    xdg_nsm_exec: str = ""
-    xdg_nsm_capable: str = "" 
+    X_NSM_Exec: str = ""
+    X_NSM_Capable: str = "" 
     xdg_name: str = ""
     xdg_comment: str = ""
     # xdg_version: str = ""

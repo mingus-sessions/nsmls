@@ -16,6 +16,7 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 
 
 import src.config.nsmlsconfig as data 
+from src.libnsmls.nsmls_dataclass import Client 
 
 
 def validate_user_entries():
@@ -69,31 +70,31 @@ def get_path(input_list):
 
 
 # FIXME: code.
-def check_for_duplicate(xdg_nsm_exec):
+def check_for_duplicate(X_NSM_Exec):
     for __, client in enumerate(data.user_clients):
-        if xdg_nsm_exec == client.exec_name:
+        if X_NSM_Exec == client.exec_name:
             return True 
     for __, client in enumerate(data.nsm_star_clients):
-        if xdg_nsm_exec == client.exec_name:
+        if X_NSM_Exec == client.exec_name:
             return True 
 
 
-def check_this_list(xdg_nsm_exec, input_list):
+def check_this_list(X_NSM_Exec, input_list):
     for __, client in enumerate(input_list):
-        if xdg_nsm_exec == client.exec_name:
-            #print(f"known {xdg_nsm_exec}")
+        if X_NSM_Exec == client.exec_name:
+            #print(f"known {X_NSM_Exec}")
             return client
 
     
 # FIXME: code.
-def check_if_known(xdg_nsm_exec):
-    client = check_this_list(xdg_nsm_exec, data.user_clients)
+def check_if_known(X_NSM_Exec):
+    client = check_this_list(X_NSM_Exec, data.user_clients)
     if client:
         return client
-    client = check_this_list(xdg_nsm_exec, data.nsm_clients)
+    client = check_this_list(X_NSM_Exec, data.nsm_clients)
     if client:
         return client
-    client = check_this_list(xdg_nsm_exec, data.nsm_star_clients)
+    client = check_this_list(X_NSM_Exec, data.nsm_star_clients)
     if client:
         return client
 
@@ -104,24 +105,24 @@ def get_entries():
     for __, path in enumerate(data.xdg_paths):
         for file in path.glob('**/*'):
             if file.is_file() and file.suffix == ".desktop":
-                xdg_nsm_exec = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
-                xdg_nsm = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Capable')  # We hope we don't need a extra check. Apps should have X-NSM-Exec in their *.desktop file to be listed by this app.
-                if xdg_nsm_exec or xdg_nsm:
+                X_NSM_Exec = xdg.DesktopEntry.DesktopEntry(file).get('X_NSM_Exec')
+                X_NSM_Capable = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Capable')  # We hope we don't need a extra check. Apps should have X_NSM_Exec in their *.desktop file to be listed by this app.
+                if X_NSM_Exec or X_NSM_Capable:
                     xdg_comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                     xdg_icon = xdg.DesktopEntry.DesktopEntry(file).getIcon()
                     xdg_name = xdg.DesktopEntry.DesktopEntry(file).getName()
-                    client = check_if_known(xdg_nsm_exec)
+                    client = check_if_known(X_NSM_Exec)
                     if not client:
-                        client = Client(exec_name=xdg_nsm_exec)
+                        client = Client(exec_name=X_NSM_Exec)
                     client.xdg_nsm_confirmed = True 
-                    client.xdg_nsm_capable = xdg_nsm
-                    client.xdg_nsm_exec = xdg_nsm_exec 
+                    client.X_NSM_Capable = X_NSM_Capable
+                    client.X_NSM_Exec = X_NSM_Exec 
                     client.xdg_comment = xdg_comment
                     client.xdg_icon = xdg_icon
                     client.xdg_name = xdg_name
                     if client in data.user_blocked_clients or client in data.blocked_clients:
                         client.blocked = True
-                    if check_for_duplicate(xdg_nsm_exec): 
+                    if check_for_duplicate(X_NSM_Exec): 
                         continue
                     else:
                         result.append(client)
