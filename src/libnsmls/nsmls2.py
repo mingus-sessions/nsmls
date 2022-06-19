@@ -119,22 +119,21 @@ def get_entries():
     for __, path in enumerate(data.xdg_paths):
         for file in path.glob('**/*'):
             if file.is_file() and file.suffix == ".desktop":
-                # xdg_nsm = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Capable')  # For this app we need the executable. We hope we don't need a extra check. Apps should have X-NSM-Exec in their *.desktop file.
+                xdg_nsm = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Capable')  # For this app we need the executable. We hope we don't need a extra check. Apps should have X-NSM-Exec in their *.desktop file.
                 xdg_nsm_exec = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
-                if xdg_nsm_exec:
+                if xdg_nsm_exec or xdg_nsm:
                     xdg_comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                     xdg_icon = xdg.DesktopEntry.DesktopEntry(file).getIcon()
                     xdg_name = xdg.DesktopEntry.DesktopEntry(file).getName()
-                    # xdg_version = xdg.DesktopEntry.DesktopEntry(file).getVersionString()
                     client = check_if_known(xdg_nsm_exec)
                     if not client:
                         client = Client(exec_name=xdg_nsm_exec)
                     client.xdg_nsm_confirmed = True 
+                    client.xdg_nsm_capable = xdg_nsm
                     client.xdg_nsm_exec = xdg_nsm_exec 
                     client.xdg_comment = xdg_comment
                     client.xdg_icon = xdg_icon
                     client.xdg_name = xdg_name
-                    # client.xdg_version = xdg_version
                     if client in data.user_blocked_clients or client in data.blocked_clients:
                         client.blocked = True
                     if check_for_duplicate(xdg_nsm_exec): 
