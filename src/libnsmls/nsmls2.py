@@ -18,6 +18,14 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 import src.config.nsmlsconfig as data 
 
 
+def validate_user_entries():
+    for __, client in enumerate(data.user_clients):
+        if client.exec_name in data.user_blocked_clients:
+            print("Error: you can't add and block the same client in user settings. Fix your config.", file=sys.stderr)
+            sys.exit(1)
+
+
+
 # check if user_clients are known:
 def set_missing_url_info():
     for __, entry in enumerate(data.user_clients):
@@ -37,19 +45,11 @@ def add_installed_to_list(input_list, programs):
             programs.append(client)
 
 
-def validate_user_entries():
-    for __, client in enumerate(data.user_clients):
-        if client.exec_name in data.user_blocked_clients:
-            print("Error: you can't add and block the same client in user settings. Fix your config.", file=sys.stderr)
-            sys.exit(1)
-
-
 def set_info(client, xdg_comment):
     if xdg_comment:
         client.info = xdg_comment
     else:
         client.info = "" 
-
 
 
 def set_config_list(input_list, config_list):
@@ -68,21 +68,7 @@ def get_path(input_list):
             entry.installed = True
 
 
-def check_for_info(xdg_nsm_exec, xdg_comment):
-    for __, client in enumerate(data.nsm_clients):
-        if xdg_nsm_exec == client.exec_name:
-            if not client.info:
-                client.info = xdg_comment
-            client.xdg_comment = xdg_comment
-            return
-    for __, client in enumerate(data.nsm_star_clients):
-        if xdg_nsm_exec == client.exec_name:
-            if not client.info:
-                client.info = xdg_comment
-            client.xdg_comment = xdg_comment
-            return
-
-
+# FIXME: code.
 def check_for_duplicate(xdg_nsm_exec):
     for __, client in enumerate(data.user_clients):
         if xdg_nsm_exec == client.exec_name:
@@ -99,7 +85,7 @@ def check_this_list(xdg_nsm_exec, input_list):
             return client
 
     
-
+# FIXME: code.
 def check_if_known(xdg_nsm_exec):
     client = check_this_list(xdg_nsm_exec, data.user_clients)
     if client:
