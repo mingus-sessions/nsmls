@@ -36,7 +36,7 @@ user_blocked_clients = (
 
 
 # List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and copy the Client to your user_star_clients list.
-# Normally a user shouldn't edit this.
+# Normally a user shouldn't edit this (other then copying a entry).
 
 nsm_clients = [
         
