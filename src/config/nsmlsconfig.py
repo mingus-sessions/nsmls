@@ -61,8 +61,9 @@ user_blocked_clients = (
 # Normally a user shouldn't edit this.
 
 nsm_clients = [
-
+        
         Client("adljack", "opl3/opn2 synthesizer", "https://github.com/jpcima/adljack"),
+        Client("ADLplug", "FM Chip Synthesizer", "https://github.com/jpcima/ADLplug"),
         Client("ams", "modular synthesizer", "http://alsamodular.sourceforge.net"),
         Client("amsynth", "analog modelling synthesizer", "http://amsynth.github.io"),
         Client("ardour", "digital audio workstation", "https://ardour.org"),
@@ -131,7 +132,7 @@ blocked_clients = (
         "nsmd",
         "non-daw", 
         "carla", 
-        "adljack", 
+        # "adljack", 
         # We block tools which are designed to use in raysession.
         "ray_control",
         "ray-jack_checker_daemon",
@@ -159,3 +160,5 @@ xdg_paths = (
         )
 
 
+# Obsolete/ blocked: 
+# 
