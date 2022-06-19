@@ -35,7 +35,7 @@ user_blocked_clients = (
 
 
 
-# List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and add the client to your custom_clients list.
+# List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and copy the Client to your user_star_clients list.
 # Normally a user shouldn't edit this.
 
 nsm_clients = [
@@ -90,7 +90,7 @@ nsm_clients = [
         ]
 
 
-# List with (black)star clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. They're added to the list if they're installed. This list is short for the reason that in a ideal world, 'all' NSM clients would have a good *.desktop file with a NSM entry. Normally you wouldn't edit this.
+# List with (black)star clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. They're added to the list if they're installed. This list is short for the reason that in a ideal world, 'all' NSM clients would have a good *.desktop file with a NSM entryt . Normally you wouldn't edit this.
 nsm_star_clients = [
 
         Client("non-midi-mapper", "non-daw midi to osc mapper", "http://non.tuxfamily.org"),
