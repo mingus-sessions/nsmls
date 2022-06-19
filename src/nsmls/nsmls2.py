@@ -139,8 +139,8 @@ def get_entries():
                     # xdg_version = xdg.DesktopEntry.DesktopEntry(file).getVersionString()
                     client = check_if_known(xdg_nsm_exec)
                     if not client:
-                        client = Client(exec_name=xdg_nsm_exec) #, nsm_confirmed=True, xdg_comment=xdg_comment, xdg_icon=xdg_icon, xdg_name=xdg_name)  # xdg_version=xdg_version
-                    client.nsm_confirmed = True 
+                        client = Client(exec_name=xdg_nsm_exec)
+                    client.xdg_nsm_confirmed = True 
                     client.xdg_nsm_exec = xdg_nsm_exec 
                     client.xdg_comment = xdg_comment
                     client.xdg_icon = xdg_icon
