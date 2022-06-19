@@ -19,7 +19,7 @@ class Client:
     path: str = ""
     config_list: str = "unknown"
     blocked: bool = False
-    nsm: str = "not confirmed"
+    nsm_confirmed: bool = False 
     xdg_nsm_exec: str = ""
     xdg_name: str = ""
     xdg_comment: str = ""

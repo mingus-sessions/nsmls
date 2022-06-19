@@ -50,8 +50,8 @@ def data_mining():
     nsmls.set_config_list(data.nsm_clients, config_list="nsm_clients")
     nsmls.set_config_list(data.nsm_star_clients, config_list="star")
     nsmls.set_config_list(data.user_clients, config_list="user")  # Needs the last
-    nsmls.set_nsm_status(status="star")
-    nsmls.set_nsm_status(status="user")
+    #nsmls.set_nsm_status(status="star")
+    #nsmls.set_nsm_status(status="user")
 
     # We set the path (and check if installed or not).
     nsmls.get_path(data.user_clients)

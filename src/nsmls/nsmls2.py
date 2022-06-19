@@ -139,18 +139,15 @@ def get_entries():
                     # xdg_version = xdg.DesktopEntry.DesktopEntry(file).getVersionString()
                     client = check_if_known(xdg_nsm_exec)
                     if not client:
-                        client = Client(exec_name=xdg_nsm_exec, config_list="unknown", nsm="confirmed", xdg_comment=xdg_comment, xdg_icon=xdg_icon, xdg_name=xdg_name)  # xdg_version=xdg_version
+                        client = Client(exec_name=xdg_nsm_exec) #, nsm_confirmed=True, xdg_comment=xdg_comment, xdg_icon=xdg_icon, xdg_name=xdg_name)  # xdg_version=xdg_version
+                    client.nsm_confirmed = True 
+                    client.xdg_nsm_exec = xdg_nsm_exec 
+                    client.xdg_comment = xdg_comment
+                    client.xdg_icon = xdg_icon
+                    client.xdg_name = xdg_name
+                    # client.xdg_version = xdg_version
+                    if client not in data.user_blocked_clients and client not in data.blocked_clients and check_for_duplicate(xdg_nsm_exec): 
                         result.append(client)
-                        continue
                     else:
-                        client.nsm = "confirmed"
-                        client.xdg_nsm_exec = xdg_nsm_exec 
-                        client.xdg_comment = xdg_comment
-                        client.xdg_icon = xdg_icon
-                        client.xdg_name = xdg_name
-                        # client.xdg_version = xdg_version
-                        if client not in data.user_blocked_clients and client not in data.blocked_clients and check_for_duplicate(xdg_nsm_exec): 
-                            result.append(client)
-                        else:
-                            continue
+                        continue
     return result
