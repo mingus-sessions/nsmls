@@ -18,11 +18,6 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 import src.config.nsmlsconfig as data 
 
 
-def set_blocked_status():
-    for __, client in enumerate(data.user_blocked_clients):
-
-
-
 # check if user_clients are known:
 def set_missing_url_info():
     for __, entry in enumerate(data.user_clients):
@@ -45,7 +40,7 @@ def add_installed_to_list(input_list, programs):
 def validate_user_entries():
     for __, client in enumerate(data.user_clients):
         if client.exec_name in data.user_blocked_clients:
-            print("Error: you can't add and block the same custom client.", file=sys.stderr)
+            print("Error: you can't add and block the same client in user settings. Fix your config.", file=sys.stderr)
             sys.exit(1)
 
 
