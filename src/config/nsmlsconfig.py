@@ -10,8 +10,9 @@ class Client:
     exec_name: str = ""
     url: str = ""
     info: str = ""
-    xdg_comment: str = ""
     path: str = ""
+    icon: str = ""
+    xdg_comment: str = ""
     installed: bool = False
     origin: str = "unknown"
     nsm: str = "not confirmed"

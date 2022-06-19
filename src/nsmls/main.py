@@ -24,7 +24,7 @@ pseudo:
 
 '''
 
-import src.config.nsmlsconfig as config 
+import src.data.nsmlsdata as data 
 import src.nsmls.nsmls2 as nsmls
 
 
@@ -45,26 +45,26 @@ def print_output(args):
 def data_mining():
     nsmls.validate_user_entries()
     # We set the origin.
-    nsmls.set_origin(config.nsm_clients, origin="nsm_clients")
-    nsmls.set_origin(config.nsm_star_clients, origin="star")
-    nsmls.set_origin(config.user_clients, origin="user")  # Needs the last
+    nsmls.set_origin(data.nsm_clients, origin="nsm_clients")
+    nsmls.set_origin(data.nsm_star_clients, origin="star")
+    nsmls.set_origin(data.user_clients, origin="user")  # Needs the last
     nsmls.set_nsm_status(status="star")
     nsmls.set_nsm_status(status="user")
 
     # We set the path (and check if installed or not).
-    nsmls.get_path(config.user_clients)
-    nsmls.get_path(config.nsm_clients)
-    nsmls.get_path(config.nsm_star_clients)
+    nsmls.get_path(data.user_clients)
+    nsmls.get_path(data.nsm_clients)
+    nsmls.get_path(data.nsm_star_clients)
 
-    if config.user_clients:
+    if data.user_clients:
         nsmls.set_missing_url_info()
 
     # We go through the xdg desktop files to find the 'NSM' entry.
     programs = nsmls.get_entries()
 
     # We add the user_clients and the nsm_star_clients.
-    nsmls.add_installed_to_list(config.user_clients, programs)
-    nsmls.add_installed_to_list(config.nsm_star_clients, programs)
+    nsmls.add_installed_to_list(data.user_clients, programs)
+    nsmls.add_installed_to_list(data.nsm_star_clients, programs)
 
     return programs
 
@@ -75,9 +75,9 @@ def main():
     programs = data_mining()
     parser.set_defaults(
             programs=programs, 
-            user_clients=config.user_clients,
-            nsm_clients=config.nsm_clients,
-            nsm_star_clients=config.nsm_star_clients,
+            user_clients=data.user_clients,
+            nsm_clients=data.nsm_clients,
+            nsm_star_clients=data.nsm_star_clients,
             )
 
     parser.add_argument("-d", help="dump all info",
@@ -102,7 +102,7 @@ def main():
     args.func(args)
 
 
-    #print(f"programs {config.nsm_clients}")
+    #print(f"programs {data.nsm_clients}")
 
     #print(f"programs {programs}")
     #print("##########################################")

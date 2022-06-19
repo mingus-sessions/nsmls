@@ -15,13 +15,13 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 # TODO: check if installed, for all of them.
 
 
-import src.config.nsmlsconfig as config 
+import src.data.nsmlsdata as data 
 
 
 # check if user_clients are known:
 def set_missing_url_info():
-    for __, entry in enumerate(config.user_clients):
-        for __, client in enumerate(config.nsm_clients):
+    for __, entry in enumerate(data.user_clients):
+        for __, client in enumerate(data.nsm_clients):
             if entry.exec_name == client.exec_name:
                 if not entry.url:
                     entry.url = client.url
@@ -33,24 +33,24 @@ def set_missing_url_info():
 # We add the applications from the nsm_list, which are installed.
 def add_installed_to_list(input_list, programs):
     for __, client in enumerate(input_list):
-        if client.installed and client.exec_name not in config.user_blocked_clients:
+        if client.installed and client.exec_name not in data.user_blocked_clients:
             programs.append(client)
 
 
 def validate_user_entries():
-    for __, client in enumerate(config.user_clients):
-        if client.exec_name in config.user_blocked_clients:
+    for __, client in enumerate(data.user_clients):
+        if client.exec_name in data.user_blocked_clients:
             print("Error: you can't add and block the same custom client.", file=sys.stderr)
             sys.exit(1)
 
 
 def set_nsm_status(status):
     if status == "star":
-        for __, client in enumerate(config.nsm_star_clients):
-            if client not in config.user_clients:
+        for __, client in enumerate(data.nsm_star_clients):
+            if client not in data.user_clients:
                 client.nsm = "star" 
     elif status == "user":
-        for __, client in enumerate(config.user_clients):
+        for __, client in enumerate(data.user_clients):
             client.nsm = "user assumed" 
 
 
@@ -65,7 +65,7 @@ def set_info(client, xdg_comment):
 
 def set_origin(input_list, origin):
     for __, client in enumerate(input_list):
-        if client.exec_name in config.user_blocked_clients or client in config.blocked_clients:
+        if client.exec_name in data.user_blocked_clients or client in data.blocked_clients:
             client.blocked = True
         client.origin = origin
         # client.known = True
@@ -80,13 +80,13 @@ def get_path(input_list):
 
 
 def check_for_info(found, xdg_comment):
-    for __, client in enumerate(config.nsm_clients):
+    for __, client in enumerate(data.nsm_clients):
         if found == client.exec_name:
             if not client.info:
                 client.info = xdg_comment
             client.xdg_comment = xdg_comment
             return
-    for __, client in enumerate(config.nsm_star_clients):
+    for __, client in enumerate(data.nsm_star_clients):
         if found == client.exec_name:
             if not client.info:
                 client.info = xdg_comment
@@ -95,10 +95,10 @@ def check_for_info(found, xdg_comment):
 
 
 def check_for_duplicate(found):
-    for __, client in enumerate(config.user_clients):
+    for __, client in enumerate(data.user_clients):
         if found == client.exec_name:
             return True 
-    for __, client in enumerate(config.nsm_star_clients):
+    for __, client in enumerate(data.nsm_star_clients):
         if found == client.exec_name:
             return True 
 
@@ -112,13 +112,13 @@ def check_this_list(found, input_list):
     
 
 def check_if_known(found):
-    client = check_this_list(found, config.user_clients)
+    client = check_this_list(found, data.user_clients)
     if client:
         return client
-    client = check_this_list(found, config.nsm_clients)
+    client = check_this_list(found, data.nsm_clients)
     if client:
         return client
-    client = check_this_list(found, config.nsm_star_clients)
+    client = check_this_list(found, data.nsm_star_clients)
     if client:
         return client
 
@@ -127,12 +127,12 @@ def check_if_known(found):
 def get_entries():
     result = []
     known = False
-    for __, path in enumerate(config.xdg_paths):
+    for __, path in enumerate(data.xdg_paths):
         for file in path.glob('**/*'):
             if file.is_file() and file.suffix == ".desktop":
                 # There is also ("X-NSM-Capable")
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
-                if found and (found not in config.blocked_clients) and (found not in config.user_blocked_clients):
+                if found and (found not in data.blocked_clients) and (found not in data.user_blocked_clients):
                     xdg_comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
                     client = check_if_known(found)
                     if client:
