@@ -62,6 +62,7 @@ nsm_clients = [
         Client("loop192", "midi looper", "https://github.com/jean-emmanuel/loop192"),
         Client("luppp", "live looper", "http://openavproductions.com/luppp"),
         Client("mamba", "virtual midi keyboard", "https://github.com/brummer10/Mamba"),
+        Client("mixbus", "digital audio workstation", "https://harrisonconsoles.com"),  # FIXME
         Client("mfp", "visual composing", "https://github.com/bgribble/mfp"),
         Client("padthv1_jack", "additive synthesizer", "https://github.com/rncbc/padthv1"),
         Client("patroneo", "midi sequencer", "https://laborejo.org"),
