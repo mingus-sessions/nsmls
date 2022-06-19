@@ -18,6 +18,11 @@ import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 import src.config.nsmlsconfig as data 
 
 
+def set_blocked_status():
+    for __, client in enumerate(data.user_blocked_clients):
+
+
+
 # check if user_clients are known:
 def set_missing_url_info():
     for __, entry in enumerate(data.user_clients):
@@ -135,8 +140,10 @@ def get_entries():
                     client.xdg_icon = xdg_icon
                     client.xdg_name = xdg_name
                     # client.xdg_version = xdg_version
-                    if client not in data.user_blocked_clients and client not in data.blocked_clients and check_for_duplicate(xdg_nsm_exec): 
-                        result.append(client)
-                    else:
+                    if client in data.user_blocked_clients or client in data.blocked_clients:
+                        client.blocked = True
+                    if check_for_duplicate(xdg_nsm_exec): 
                         continue
+                    else:
+                        result.append(client)
     return result
