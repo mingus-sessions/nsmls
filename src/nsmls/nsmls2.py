@@ -134,12 +134,12 @@ def get_entries():
                 found = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Exec')
                 if found and (found not in data.blocked_clients) and (found not in data.user_blocked_clients):
                     xdg_comment = xdg.DesktopEntry.DesktopEntry(file).getComment()
+                    icon = xdg.DesktopEntry.DesktopEntry(file).getIcon()
                     client = check_if_known(found)
                     if client:
                         client.nsm = "confirmed"
-                        # client.desktop_file = True
-                        if xdg_comment:
-                            check_for_info(found, xdg_comment)  # If no info, we set the one from the *.desktop file if exists.
+                        client.comment = xdg_comment
+                        client.icon = icon
                         if check_for_duplicate(found):  # We don't have to add it, if it's already on the user or star list.
                             continue
                         else:
