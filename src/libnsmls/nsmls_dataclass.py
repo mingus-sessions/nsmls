@@ -16,5 +16,5 @@ class Client:
     xdg_name: str = ""
     xdg_comment: str = ""
     # xdg_version: str = ""
-    xdg_icon: str = ""
+    #xdg_icon: str = ""
  
