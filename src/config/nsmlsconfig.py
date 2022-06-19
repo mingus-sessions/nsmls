@@ -8,8 +8,8 @@ from pathlib import Path
 @dataclass()
 class Client:
     exec_name: str = ""
-    url: str = ""
     info: str = ""
+    url: str = ""
     installed: bool = False
     path: str = ""
     config_list: str = "unknown"
@@ -57,47 +57,46 @@ user_blocked_clients = (
 
 nsm_clients = [
 
-
-        Client('adljack', 'opl3/opn2 synthesizer', 'https://github.com/jpcima/adljack'),
-        Client('ams', 'modular synthesizer', 'http://alsamodular.sourceforge.net'),
-        Client('amsynth', 'analog modelling synthesizer', 'http://amsynth.github.io'),
-        Client('ardour', 'digital audio workstation', 'https://ardour.org'),
-        Client('ardour3', 'digital audio workstation', 'https://ardour.org'),
-        Client('ardour4', 'digital audio workstation', 'https://ardour.org'),
-        Client('ardour5', 'digital audio workstation', 'https://ardour.org'),
-        Client('ardour6', 'digital audio workstation', 'https://ardour.org'),
-        Client('ardour7', 'digital audio workstation', 'https://ardour.org'),
-        Client('carla-jack-multi', 'plugin host multi', 'https://github.com/falkTX/Carla'),
-        Client('carla-jack-single', 'plugin host single', 'https://github.com/falkTX/Carla'),
-        Client('carla-patchbay', 'patchbay', 'https://github.com/falkTX/Carla'),
-        Client('carla-rack', 'plugin host rack', 'https://github.com/falkTX/Carla'),
-        Client('drumkv1_jack', 'drumkit sampler', 'https://github.com/rncbc/drumkv1'),
-        Client('fluajho', 'soundfont player', 'https://laborejo.org'),
-        Client('guitarix', 'virtual guitar amplifier', 'https://github.com/brummer10/guitarix'),
-        Client('hydrogen', 'drum machine', 'https://github.com/hydrogen-music/hydrogen'),
-        Client('jack_mixer', 'mixer', 'https://rdio.space/jackmixer'),
-        Client('laborejo', 'music notation midi sequencing', 'https://laborejo.org'),
-        Client('loop192', 'midi looper', 'https://github.com/jean-emmanuel/loop192'),
-        Client('luppp', 'live looper', 'http://openavproductions.com/luppp'),
-        Client('mamba', 'virtual midi keyboard', 'https://github.com/brummer10/Mamba'),
-        Client('mfp', 'visual composing', 'https://github.com/bgribble/mfp'),
-        Client('padthv1_jack', 'additive synthesizer', 'https://github.com/rncbc/padthv1'),
-        Client('patroneo', 'midi sequencer', 'https://laborejo.org'),
-        Client('petri-foo', 'sampler', 'http://petri-foo.sourceforge.net'),
-        Client('qmidiarp', 'midi arpeggiator', 'http://qmidiarp.sourceforge.net'),
-        Client('qtractor', 'digital audio workstation', 'https://github.com/rncbc/qtractor'),
-        Client('qseq66', 'midi sequencer', 'https://github.com/ahlstromcj/seq66'),
-        Client('radium', 'tracker', 'http://users.notam02.no/~kjetism/radium'),
-        Client('radium_compressor', 'compressor', 'http://users.notam02.no/~kjetism/radium'),
-        Client('samplv1_jack', 'sampler synthesizer', 'https://github.com/rncbc/samplv1'),
-        Client('seq192', 'midi sequencer', 'https://github.com/jean-emmanuel/seq192'),
-        Client('shuriken', 'beat slicer', 'https://rock-hopper.github.io/shuriken'),
-        Client('synthpod_jack', 'lv2 plugin container', 'https://open-music-kontrollers.ch/lv2'),
-        Client('synthv1_jack', 'substractive synthesizer', 'https://github.com/rncbc/synthv1'),
-        Client('tembro', 'virtual instrument samples', 'https://laborejo.org'),
-        Client('xtuner', 'instrument tuner', 'https://github.com/brummer10/XTuner'),
-        Client('zita-at1', 'autotuner (fork)', 'https://github.com/royvegard/zita-at1'),
-        Client('zita-rev1', 'reverb (fork)', 'https://github.com/royvegard/zita-rev1'),
+        Client("adljack", "opl3/opn2 synthesizer", "https://github.com/jpcima/adljack"),
+        Client("ams", "modular synthesizer", "http://alsamodular.sourceforge.net"),
+        Client("amsynth", "analog modelling synthesizer", "http://amsynth.github.io"),
+        Client("ardour", "digital audio workstation", "https://ardour.org"),
+        Client("ardour3", "digital audio workstation", "https://ardour.org"),
+        Client("ardour4", "digital audio workstation", "https://ardour.org"),
+        Client("ardour5", "digital audio workstation", "https://ardour.org"),
+        Client("ardour6", "digital audio workstation", "https://ardour.org"),
+        Client("ardour7", "digital audio workstation", "https://ardour.org"),
+        Client("carla-jack-multi", "plugin host multi", "https://github.com/falkTX/Carla"),
+        Client("carla-jack-single", "plugin host single", "https://github.com/falkTX/Carla"),
+        Client("carla-patchbay", "patchbay", "https://github.com/falkTX/Carla"),
+        Client("carla-rack", "plugin host rack", "https://github.com/falkTX/Carla"),
+        Client("drumkv1_jack", "drumkit sampler", "https://github.com/rncbc/drumkv1"),
+        Client("fluajho", "soundfont player", "https://laborejo.org"),
+        Client("guitarix", "virtual guitar amplifier", "https://github.com/brummer10/guitarix"),
+        Client("hydrogen", "drum machine", "https://github.com/hydrogen-music/hydrogen"),
+        Client("jack_mixer", "mixer", "https://rdio.space/jackmixer"),
+        Client("laborejo", "music notation midi sequencing", "https://laborejo.org"),
+        Client("loop192", "midi looper", "https://github.com/jean-emmanuel/loop192"),
+        Client("luppp", "live looper", "http://openavproductions.com/luppp"),
+        Client("mamba", "virtual midi keyboard", "https://github.com/brummer10/Mamba"),
+        Client("mfp", "visual composing", "https://github.com/bgribble/mfp"),
+        Client("padthv1_jack", "additive synthesizer", "https://github.com/rncbc/padthv1"),
+        Client("patroneo", "midi sequencer", "https://laborejo.org"),
+        Client("petri-foo", "sampler", "http://petri-foo.sourceforge.net"),
+        Client("qmidiarp", "midi arpeggiator", "http://qmidiarp.sourceforge.net"),
+        Client("qtractor", "digital audio workstation", "https://github.com/rncbc/qtractor"),
+        Client("qseq66", "midi sequencer", "https://github.com/ahlstromcj/seq66"),
+        Client("radium", "tracker", "http://users.notam02.no/~kjetism/radium"),
+        Client("radium_compressor", "compressor", "http://users.notam02.no/~kjetism/radium"),
+        Client("samplv1_jack", "sampler synthesizer", "https://github.com/rncbc/samplv1"),
+        Client("seq192", "midi sequencer", "https://github.com/jean-emmanuel/seq192"),
+        Client("shuriken", "beat slicer", "https://rock-hopper.github.io/shuriken"),
+        Client("synthpod_jack", "lv2 plugin container", "https://open-music-kontrollers.ch/lv2"),
+        Client("synthv1_jack", "substractive synthesizer", "https://github.com/rncbc/synthv1"),
+        Client("tembro", "virtual instrument samples", "https://laborejo.org"),
+        Client("xtuner", "instrument tuner", "https://github.com/brummer10/XTuner"),
+        Client("zita-at1", "autotuner (fork)", "https://github.com/royvegard/zita-at1"),
+        Client("zita-rev1", "reverb (fork)", "https://github.com/royvegard/zita-rev1"),
 
 
 
@@ -107,14 +106,14 @@ nsm_clients = [
 # List with clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. They're added to the list if they're installed. Normally you wouldn't edit this.
 nsm_star_clients = [
 
-        Client("non-midi-mapper", "http://non.tuxfamily.org", "non-daw midi to osc mapper"),
-        Client("non-mixer", "http://non.tuxfamily.org", "non-daw mixer"),
-        Client("non-mixer-noui", "http://non.tuxfamily.org", "non-daw mixer"),
-        Client("non-sequencer", "http://non.tuxfamily.org/", "midi sequencer"),
-        Client("non-timeline", "http://non.tuxfamily.org", "non-daw audio recorder"),
-        Client("nsm-proxy", "http://non.tuxfamily.org", "launch tools with no nsm or gui"),
-        Client("jackpatch", "https://non.tuxfamily.org", "save jack connections"),
-        Client("zynaddsubfx", "https://github.com/zynaddsubfx", "synthesizer"),  # NOTE dificult one
+        Client("non-midi-mapper", "non-daw midi to osc mapper", "http://non.tuxfamily.org"),
+        Client("non-mixer", "non-daw mixer", "http://non.tuxfamily.org"),
+        Client("non-mixer-noui", "non-daw mixer", "http://non.tuxfamily.org"),
+        Client("non-sequencer", "midi sequencer", "http://non.tuxfamily.org/"),
+        Client("non-timeline", "non-daw audio recorder", "http://non.tuxfamily.org"),
+        Client("nsm-proxy", "launch tools with no nsm or gui", "http://non.tuxfamily.org"),
+        Client("jackpatch", "save jack connections", "https://non.tuxfamily.org"),
+        Client("zynaddsubfx", "synthesizer", "https://github.com/zynaddsubfx"),
 
         ]
 
