@@ -119,7 +119,7 @@ def get_entries():
                     #client.X_NSM_Capable = X_NSM_Capable
                     client.X_NSM_Exec = X_NSM_Exec 
                     client.xdg_comment = xdg_comment
-                    #client.xdg_icon = xdg_icon
+                    client.xdg_icon = xdg_icon
                     client.xdg_name = xdg_name
                     if client in data.user_blocked_clients or client in data.blocked_clients:
                         client.blocked = True
