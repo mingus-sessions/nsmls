@@ -24,6 +24,9 @@ def validate_user_entries():
         if client.exec_name in data.user_blocked_clients:
             print("Error: you can't add and block the same client in user settings. Fix your config.", file=sys.stderr)
             sys.exit(1)
+        for __, star_client in enumerate(data.nsm_star_clients):
+            if client.exec_name == star_client.exec_name:
+                print(f"Warning: User entry {client.exec_name} also found in nsm_star_clients list. Fix your config.", file=sys.stderr)
 
 
 
@@ -32,6 +35,7 @@ def set_missing_url_info():
     for __, entry in enumerate(data.user_clients):
         for __, client in enumerate(data.nsm_clients):
             if entry.exec_name == client.exec_name:
+                print(f"INFO, {entry.exec_name}")
                 if not entry.url:
                     entry.url = client.url
                 if not entry.info:

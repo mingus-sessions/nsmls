@@ -58,6 +58,7 @@ def data_mining():
 
     # If we have a url, we add the url.
     if data.user_clients:
+        print(f"INFO data.user_cient")
         nsmls.set_missing_url_info()
 
     # We go through the xdg desktop files to find the 'NSM' entry.

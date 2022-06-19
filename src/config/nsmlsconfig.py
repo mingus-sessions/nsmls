@@ -14,6 +14,7 @@ user_clients = [
         # Client("app", "description"),
         # Client("app"),
         # Client("fluajho")
+        Client("non-sequencer"),
 
 
         ]
