@@ -34,7 +34,7 @@ def dataclass_field_to_tuple(input_list):
 def validate_config_lists(input_list):
     exec_name_tuple = tuple(dataclass_field_to_tuple(input_list))
     if sorted(set(exec_name_tuple)) != sorted(exec_name_tuple):
-        print(f"Error: duplicated entry in {input_list}. Check your config.", file=sys.stderr)
+        print(f"Error: duplicated list entry found in your config. Please fix.", file=sys.stderr)
         sys.exit(1)
 
 
