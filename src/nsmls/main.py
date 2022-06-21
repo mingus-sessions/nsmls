@@ -52,7 +52,6 @@ def nsmls_data_mining():
 
     # If we have a url, we add the url.
     if data.user_star_clients:
-        print(f"INFO data.user_cient")
         nsmls.set_missing_url_info()
 
     # We go through the xdg desktop files to find the 'NSM' entry.
@@ -74,8 +73,8 @@ def print_output(args):
     if args.d:
         pprint(sorted(all_programs))
     if args.b:
-        for 
-        print(sorted(set(args.blocked + args.user_blocked)))
+        for __, client in enumerate(sorted(set(data.blocked_clients + data.user_blocked_clients))):
+            print(client)
         # pprint(args.nsm_clients)
         # pprint(args.nsm_star_clients)
         # pprint(args.user_star_clients)  # FIXME: also in nsm_clients list
