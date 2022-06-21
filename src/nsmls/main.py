@@ -70,8 +70,8 @@ def nsmls_data_mining():
         nsmls.set_missing_url_info()
 
     # We go through the xdg desktop files to find the 'NSM' entry.
-    programs = []
-    nsmls.get_entries(programs)
+    # programs = []
+    programs = nsmls.get_entries()
 
     # We add the user_star_clients and the nsm_star_clients.
     nsmls.add_installed_to_list(data.user_star_clients, programs)
