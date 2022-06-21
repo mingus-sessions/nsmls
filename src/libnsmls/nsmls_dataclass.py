@@ -18,4 +18,4 @@ class Client:
     # config_list: str = field(compare=False, default="unknown")
     nsm_star: bool = False
     blocked: bool = field(compare=False, default=False)
-    nsm: bool = field(compare=False, default=False)
+    nsmls: bool = field(compare=False, default=False)

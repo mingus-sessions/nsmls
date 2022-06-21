@@ -111,7 +111,7 @@ def nsmls_data_mining():
                         if client.exec_name in blocked_list:
                             client.blocked = True
                         else:
-                            client.nsm = True
+                            client.nsmls = True
 
    
 
@@ -122,7 +122,7 @@ def nsmls_data_mining():
 
     def make_star_clients(star_clients):
         for __, client in enumerate(star_clients):
-            yield data.Client(exec_name=client, nsm_star=True, nsm=True)  # what if on blocking?
+            yield data.Client(exec_name=client, nsm_star=True, nsmls=True)  # what if on blocking?
 
 
     star_objects = list(make_star_clients(star_clients))
@@ -133,7 +133,7 @@ def nsmls_data_mining():
             for __, client in enumerate(data.nsm_clients):
                 if star.exec_name == client.exec_name:
                     client.nsm_star = True
-                    client.nsm = True
+                    client.nsmls = True
                     star_objects.pop(x)
                     #print(f"POP {star_exec_name}")
 
@@ -167,7 +167,7 @@ def print_output(args):
             print(client)
     else:
         for __, client in enumerate(args.nsm_clients):
-            if client.installed and client.nsm and not client.blocked:
+            if client.installed and client.nsmls and not client.blocked:
                 print(client.exec_name)
 
 
@@ -180,14 +180,14 @@ def main():
     blocked_clients, star_clients = nsmls_data_mining()
     parser.set_defaults(
             # programs=programs, 
-            nsm_clients=data.nsm_clients,
+            nsm_clients=sorted(data.nsm_clients),
             # user_star_clients=data.user_star_clients,
             #nsm_clients=data.nsm_clients,
             #nsm_star_clients=nsm_star_list,
             #user_blocked = sorted(set(data.user_blocked_clients)),
             #blocked = sorted(set(data.blocked_clients)),
-            blocked=blocked_clients,
-            stars=star_clients,
+            blocked=sorted(blocked_clients),
+            stars=sorted(star_clients),
 
             )
 
