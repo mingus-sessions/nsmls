@@ -112,7 +112,6 @@ nsm_star_clients = (
         "nsm-proxy",
         "jackpatch",
         "zynaddsubfx",
-        "zynaddsubfx",
 
         )
 

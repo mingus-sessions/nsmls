@@ -150,7 +150,7 @@ def print_output(args):
             print(client)
     else:
         for __, client in enumerate(sorted(args.programs)):
-            if client.installed and client.nsm:
+            if client.installed and client.nsm and not client.blocked:
                 print(client.exec_name)
 
 
