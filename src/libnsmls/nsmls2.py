@@ -111,8 +111,8 @@ def check_if_known(X_NSM_Exec):
 def get_entries():
     result = []
     known = False
-    for __, path in enumerate(data.xdg_paths):
-        for file in path.glob('**/*'):
+    for __, xdg_desktop_path in enumerate(data.xdg_paths):
+        for file in xdg_desktop_path.glob('**/*'):
             if file.is_file() and file.suffix == ".desktop":
                 desktop_file = xdg.DesktopEntry.DesktopEntry(file)
                 X_NSM_Exec = desktop_file.get('X_NSM_Exec')

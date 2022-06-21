@@ -1,10 +1,10 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 #@dataclass(slots=True, order=True)
 @dataclass(slots=True, order=True)
 class Client:
     exec_name: str = ""
-    info: str = ""
+    info: str = field(compare=False, default="")
     url: str = ""
     installed: bool = False
     path: str = ""
