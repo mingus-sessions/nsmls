@@ -35,10 +35,10 @@ import src.libnsmls.nsmls2 as nsmls
 
 def nsmls_data_mining():
     nsmls.validate_user_entries()
-
     nsmls.validate_config_lists(data.nsm_clients, list_name="nsm_clients")
     nsmls.validate_config_lists(data.nsm_star_clients, list_name="nsm_star_clients")
     nsmls.validate_config_lists(data.user_star_clients, list_name="user_star_clients")
+    nsmls.search_duplicates_in_star_lists()
 
     # We set the origin.
     nsmls.set_config_list(data.nsm_clients, config_list="nsm_clients")

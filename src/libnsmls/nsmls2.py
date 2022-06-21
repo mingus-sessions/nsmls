@@ -26,6 +26,14 @@ def validate_user_entries():
             sys.exit(1)
 
 
+def search_duplicates_in_star_lists():
+    for __, user_star_client in enumerate(data.user_star_clients):
+        for __, star_client in enumerate(data.nsm_star_clients):
+            if user_star_client == star_client:
+                print("Error: User star client, already in the 'nsm_star_clients' list. Please fix.", file=sys.stderr)
+                sys.exit(1)
+
+
 # FIXME: there's probably a better method, when working with dataclasses.
 def dataclass_field_to_tuple(input_list):
     for __, client in enumerate(input_list):
@@ -38,6 +46,8 @@ def validate_config_lists(input_list, *, list_name=""):
     if sorted(set(exec_name_tuple)) != sorted(exec_name_tuple):
         print(f"Error: duplicated entry found in list {list_name}. Please fix your config.", file=sys.stderr)
         sys.exit(1)
+
+
 
 
 
