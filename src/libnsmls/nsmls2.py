@@ -72,11 +72,11 @@ def set_missing_url_info_star(star_list):
 
 # NOTE: should be done after converting tuple to dataclas nsm star clients!
 def check_if_client_on_user_list(nsm_star_list):
-    for item, nsm_client in enumerate(data.nsm_clients):
-        for __, client in enumerate(nsm_star_list):
-            if nsm_client.exec_name == client.exec_name:
+    for __, star_client in enumerate(nsm_star_list):
+        for item, client in enumerate(data.nsm_clients):
+            if star_client.exec_name == client.exec_name:
                 data.nsm_clients.pop(item)
-                #print(f"POP {nsm_star.exec_name}")
+                print(f"POP {star_client.exec_name} {item}")
 
 
 

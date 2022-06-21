@@ -143,10 +143,10 @@ def print_output(args):
     if args.b:
         for __, client in enumerate(sorted(set(data.blocked_clients + data.user_blocked_clients))):
             print(client)
-    else:
-        for __, client in enumerate(sorted(args.programs)):
-            if client.installed and client.nsm:
-                print(client.exec_name)
+    #else:
+    #    for __, client in enumerate(sorted(args.programs)):
+    #        if client.installed and client.nsm:
+    #            print(client.exec_name)
 
 
             
