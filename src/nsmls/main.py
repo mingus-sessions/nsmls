@@ -42,12 +42,14 @@ def nsmls_data_mining():
     nsmls.star_not_in_blocked()
 
     def make_clients():
-        for __, client in enumerate(data.nsm_star_clients):
+        for __, client in enumerate(set(data.nsm_star_clients)):
             #print(client)
             yield data.Client(exec_name=client)
         
 
     nsm_star_list = list(make_clients())
+
+    #print(nsm_star_list)
 
 
 
@@ -95,19 +97,36 @@ def nsmls_data_mining():
     if nsm_star_list:
         nsmls.set_missing_url_info(nsm_star_list)
 
+    # Ok, all data is set. Time to remove duplicates:
+
+    # if a nsm_client is on user_list, we don't have to add.
+    # if a nsm_client is on star_list, we don't have to add.
+    # 
+
+
+
 
     nsmls.check_if_client_on_user_list(nsm_star_list)  # We remove the nsm_star_client if it's already on the user_star list.
-    nsmls.check_if_client_on_user_list(data.nsm_clients)  # We remove the nsm_star_client if it's already on the user_star list.
+    nsmls.check_if_client_on_user_list(data.user_star_clients)  # We remove the nsm_star_client if it's already on the user_star list.
 
-    programs = data.user_star_clients + data.nsm_clients + nsm_star_list
+    programs = nsm_star_list + data.user_star_clients + data.nsm_clients # + nsm_star_list
     #programs = data.user_star_clients  # We add a other label to the list. 
     #programs += nsm_star_list  # We add the nsm_star_clients to the user_star_clients.
+
+
+    pprint(sorted(programs))
+
+
+
+    print("+++++++++++++++++")
 
 
 
     # Now let's search for the NSM entry in the desktop files.
 
     nsmls.get_entries(programs)
+
+    #pprint(sorted(programs))
 
 
     # Now add the ones which are not on the list yet.

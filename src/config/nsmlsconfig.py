@@ -15,7 +15,7 @@ user_star_clients = [
         # Client("app", "description"),
         # Client("app"),
         # Client("fluajho")
-        Client("non-sequencer"),
+        Client("ams"),
 
 
         ]
@@ -26,7 +26,7 @@ user_blocked_clients = (
 
         # "example",
         # "example1",
-        "fluajho",
+        "non-sequencer",
 
          )
 

@@ -72,10 +72,11 @@ def set_missing_url_info_star(star_list):
 
 # NOTE: should be done after converting tuple to dataclas nsm star clients!
 def check_if_client_on_user_list(nsm_star_list):
-    for star_item, nsm_star in enumerate(nsm_star_list):
-        for __, user_star in enumerate(data.user_star_clients):
-            if nsm_star.exec_name == user_star.exec_name:
-                nsm_star_list.pop(star_item)
+    for item, nsm_client in enumerate(data.nsm_clients):
+        for __, client in enumerate(nsm_star_list):
+            if nsm_client.exec_name == client.exec_name:
+                data.nsm_clients.pop(item)
+                #print(f"POP {nsm_star.exec_name}")
 
 
 
@@ -120,6 +121,7 @@ def get_entries(programs):
                 # X_NSM_Capable = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Capable')  
                 # We hope we don't need a extra check. Apps should have X_NSM_Exec in their *.desktop file to be listed by this app (KISS). Grabbing for both on all apps seems slow too.
                 if X_NSM_Exec:  # or X_NSM_Capable:
+                    print(f"found: {X_NSM_Exec}")
                     xdg_comment = desktop_file.getComment()
                     xdg_icon = desktop_file.getIcon()
                     xdg_name = desktop_file.getName()
