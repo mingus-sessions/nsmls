@@ -16,6 +16,7 @@ user_star_clients = [
         # Client("app"),
         # Client("fluajho")
         Client("ams"),
+        Client("zynaddsubfx"),
 
 
         ]
@@ -110,6 +111,7 @@ nsm_star_clients = (
         "non-timeline",
         "nsm-proxy",
         "jackpatch",
+        "zynaddsubfx",
         "zynaddsubfx",
 
         )
