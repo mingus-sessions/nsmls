@@ -135,8 +135,10 @@ def nsmls_data_mining():
                     client.nsm_star = True
                     client.nsm = True
                     star_objects.pop(x)
+                    #print(f"POP {star_exec_name}")
 
-
+    
+    remove_duplicates(star_objects)
     # Now concatenate them to one list
     data.nsm_clients += star_objects
 
