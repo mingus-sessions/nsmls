@@ -19,13 +19,13 @@ import src.config.nsmlsconfig as data
 from src.libnsmls.nsmls_dataclass import Client 
 
 
-def validate_user_entries():
+def star_not_in_blocked():
     for __, client in enumerate(data.user_star_clients):
         if client.exec_name in data.user_blocked_clients:
             print("Error: you can't add and block the same client in user settings. Fix your config.", file=sys.stderr)
             sys.exit(1)
 
-
+'''
 def search_duplicates_in_star_lists():
     for __, user_star_client in enumerate(data.user_star_clients):
         for __, star_client in enumerate(data.nsm_star_clients):
@@ -33,6 +33,7 @@ def search_duplicates_in_star_lists():
                 print("Error: User star client, already in the 'nsm_star_clients' list. Please fix.", file=sys.stderr)
                 sys.exit(1)
 
+'''
 
 # FIXME: there's probably a better method, when working with dataclasses.
 def dataclass_field_to_tuple(input_list):
@@ -49,33 +50,23 @@ def validate_config_lists(input_list, *, list_name=""):
 
 
 
-
-
 # FIXME: code
-def set_missing_url_info():
-    for __, entry in enumerate(data.user_star_clients):
-        for __, client in enumerate(data.nsm_clients):
-            if entry.exec_name == client.exec_name:
+def set_missing_url_info(star_list):
+    for __, star_client in enumerate(star_list):
+        for __, nsm_client in enumerate(data.nsm_clients):
+            if star_client.exec_name == nsm_client.exec_name:
                 if not entry.url:
                     entry.url = client.url
                 if not entry.info:
                     entry.info = client.info
                 break
-    for __, client in enumerate(data.nsm_star_clients):
-        if entry.exec_name == client.exec_name:
-            if not entry.url:
-                entry.url = client.url
-            if not entry.info:
-                entry.info = client.info
-            break
-
 
 
 
 # We add the applications from the nsm_list, which are installed.
 def add_installed_to_list(input_list, programs):
     for __, client in enumerate(input_list):
-        if client.installed and client.exec_name not in data.user_blocked_clients:
+        if client.installed and client.exec_name not in data.user_blocked_clients and client.exec_name not in :
             programs.append(client)
 
 

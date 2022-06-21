@@ -34,16 +34,39 @@ import src.libnsmls.nsmls2 as nsmls
 
 
 def nsmls_data_mining():
-    nsmls.validate_user_entries()
+    # Validate.
+
+    # user star can't be in user  blocked
+    # user star can't have duplicates 
+    # 
+    nsmls.star_not_in_blocked()
+
     nsmls.validate_config_lists(data.nsm_clients, list_name="nsm_clients")
-    nsmls.validate_config_lists(data.nsm_star_clients, list_name="nsm_star_clients")
     nsmls.validate_config_lists(data.user_star_clients, list_name="user_star_clients")
-    #nsmls.search_duplicates_in_star_lists()
+
+    # filter star list, check if in nsm_clients, add info_url,
+    # then check if in user list, rm from list
+
+    # then we're only have to deal with user_list and nsm_clients.
+
+
+    # Check if user star client is on nsm_clients, add info_url.
+    
+    # Search via xdg, add found clients to list, if not already in user_star_list, 
+    # otherwise just add data.
+
+    # If found and unknown, add to the list
+
 
     # We set the origin.
     nsmls.set_config_list(data.nsm_clients, config_list="nsm_clients")
     nsmls.set_config_list(data.nsm_star_clients, config_list="nsm_star")
     nsmls.set_config_list(data.user_star_clients, config_list="nsm_user_star")  # Needs the last
+
+
+    #nsmls.validate_config_lists(data.nsm_star_clients, list_name="nsm_star_clients")
+    #nsmls.search_duplicates_in_star_lists()
+
 
     # We set the path (and check if installed or not).
     nsmls.get_path(data.user_star_clients)
@@ -52,7 +75,10 @@ def nsmls_data_mining():
 
     # If we have a url, we add the url.
     if data.user_star_clients:
-        nsmls.set_missing_url_info()
+        nsmls.set_missing_url_info(data.user_star_clients)
+    if data.nsm_star_clients:
+        nsmls.set_missing_url_info(data.nsm_star_clients)
+
 
 
     programs = []
