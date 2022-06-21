@@ -54,6 +54,10 @@ def print_output(args):
 
 def nsmls_data_mining():
     nsmls.validate_user_entries()
+    nsmls.validate_config_lists(data.nsm_clients)
+    nsmls.validate_config_lists(data.nsm_star_clients)
+    nsmls.validate_config_lists(data.user_star_clients)
+
     # We set the origin.
     nsmls.set_config_list(data.nsm_clients, config_list="nsm_clients")
     nsmls.set_config_list(data.nsm_star_clients, config_list="nsm_star")
@@ -72,6 +76,8 @@ def nsmls_data_mining():
     # We go through the xdg desktop files to find the 'NSM' entry.
     # programs = []
     programs = nsmls.get_entries()
+
+    set(programs)
 
     # We add the user_star_clients and the nsm_star_clients.
     nsmls.add_installed_to_list(data.user_star_clients, programs)

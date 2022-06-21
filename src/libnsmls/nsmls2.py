@@ -26,6 +26,18 @@ def validate_user_entries():
             sys.exit(1)
 
 
+def dataclass_field_to_tuple(input_list):
+    for __, client in enumerate(input_list):
+        yield client.exec_name
+
+
+def validate_config_lists(input_list):
+    exec_name_tuple = tuple(dataclass_field_to_tuple(input_list))
+    if sorted(set(exec_name_tuple)) != sorted(exec_name_tuple):
+        print(f"Error: duplicated entry in {input_list}. Check your config.", file=sys.stderr)
+        sys.exit(1)
+
+
 
 # FIXME: code
 def set_missing_url_info():
