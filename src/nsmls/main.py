@@ -1,8 +1,10 @@
 #!/usr/bin/env python
+from shutil import which
 
 import argparse
 import sys
 from pprint import pprint
+import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 
 '''
 pseudo:
@@ -67,13 +69,13 @@ def nsmls_data_mining():
     # Set the star clients:
     def set_star_status(input_list):
         for __, client in enumerate(data.nsm_clients):
-            if client in input_list:
+            if client.exec_name in input_list:
                 client.nsm_star = True
 
 
     def set_blocked_status(input_list):
         for __, client in enumerate(data.nsm_clients):
-            if client in input_list:
+            if client.exec_name in input_list:
                 client.blocked = True
 
 
@@ -113,14 +115,14 @@ def nsmls_data_mining():
 
    
 
-    set_star_status(star_list)
-    set_blocked_status(blocked_list)
+    set_star_status(star_clients)
+    set_blocked_status(blocked_clients)
     
-    nsmls.get_entries()
+    get_entries(blocked_clients)
 
     def make_star_clients(star_clients):
         for __, client in enumerate(star_clients):
-            yield data.Client(exec_name=client, client.nsm_star=True, client.nsm=True)  # what if on blocking?
+            yield data.Client(exec_name=client, nsm_star=True, nsm=True)  # what if on blocking?
 
 
     star_objects = list(make_star_clients(star_clients))
@@ -138,6 +140,18 @@ def nsmls_data_mining():
     # Now concatenate them to one list
     data.nsm_clients += star_objects
 
+    def get_path():
+        for __, client in enumerate(data.nsm_clients):
+            path = which(client.exec_name)
+            if path:
+                client.path = path
+                client.installed = True
+
+
+    get_path()
+
+    return blocked_clients, star_clients
+
 
 
 
@@ -145,12 +159,12 @@ def print_output(args):
     #for __, client in enumerate(args.nsm_star_clients):
     #    print(f'Client("{client.exec_name}", "{client.url}", "{client.info}"),')
     if args.d:
-        pprint(sorted(args.programs))
+        pprint(sorted(args.nsm_clients))
     if args.b:
-        for __, client in enumerate(sorted(set(data.blocked_clients + data.user_blocked_clients))):
+        for __, client in enumerate(args.blocked_clients):
             print(client)
     else:
-        for __, client in enumerate(sorted(args.programs)):
+        for __, client in enumerate(args.nsm_clients):
             if client.installed and client.nsm and not client.blocked:
                 print(client.exec_name)
 
@@ -161,14 +175,17 @@ def print_output(args):
 def main():
 
     parser = argparse.ArgumentParser()
-    programs = nsmls_data_mining()
+    blocked_clients, star_clients = nsmls_data_mining()
     parser.set_defaults(
-            programs=programs, 
+            # programs=programs, 
+            nsm_clients=data.nsm_clients,
             # user_star_clients=data.user_star_clients,
             #nsm_clients=data.nsm_clients,
             #nsm_star_clients=nsm_star_list,
             #user_blocked = sorted(set(data.user_blocked_clients)),
             #blocked = sorted(set(data.blocked_clients)),
+            blocked=blocked_clients,
+            stars=star_clients,
 
             )
 
