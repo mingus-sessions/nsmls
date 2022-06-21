@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-#@dataclass(slots=True)
-@dataclass()
+#@dataclass(slots=True, order=True)
+@dataclass(slots=True, order=True)
 class Client:
     exec_name: str = ""
     info: str = ""

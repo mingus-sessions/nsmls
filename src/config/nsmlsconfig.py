@@ -7,7 +7,8 @@ from src.libnsmls.nsmls_dataclass import Client
 # USER CONFIG 
 
 
-# Custom (black)star entries for own apps or apps which don't have a good xdg *.desktop file (tell the developer). This overrides entries in the global blocked_clients list.
+# Custom (black)star entries for own apps or apps which don't have a good xdg *.desktop file (tell the developer). 
+# This overrides entries in the global blocked_clients list.
 user_star_clients = [
     
         # Client("app", "description", "https://github.com/"),
@@ -35,7 +36,7 @@ user_blocked_clients = (
 
 
 
-# List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and copy the Client to your user_star_clients list.
+# List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and copy the Client to your user_star_clients list in meantime.
 # Normally a user shouldn't edit this (other then copying a entry).
 
 nsm_clients = [

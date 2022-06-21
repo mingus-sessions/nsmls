@@ -28,12 +28,20 @@ import src.config.nsmlsconfig as data
 import src.libnsmls.nsmls2 as nsmls
 
 
+# indent=1, width=80, depth=None, stream=None, *, compact=False, sort_dicts=True, underscore_numbers=False)
+
+# NOTE: duplication... compare dataclasses?
+
+
 def print_output(args):
     #for __, client in enumerate(args.nsm_star_clients):
     #    print(f'Client("{client.exec_name}", "{client.url}", "{client.info}"),')
-    pprint(args.nsm_clients)
-    pprint(args.nsm_star_clients)
-    pprint(args.user_star_clients)  # FIXME: also in nsm_clients list
+    if args.d:
+        all_programs = args.nsm_clients + args.nsm_star_clients + args.user_star_clients
+        pprint(sorted(all_programs))
+        # pprint(args.nsm_clients)
+        # pprint(args.nsm_star_clients)
+        # pprint(args.user_star_clients)  # FIXME: also in nsm_clients list
     '''
     match args:
         case args.d:
@@ -44,7 +52,7 @@ def print_output(args):
     '''
             
 
-def data_mining():
+def nsmls_data_mining():
     nsmls.validate_user_entries()
     # We set the origin.
     nsmls.set_config_list(data.nsm_clients, config_list="nsm_clients")
@@ -74,7 +82,7 @@ def data_mining():
 def main():
 
     parser = argparse.ArgumentParser()
-    programs = data_mining()
+    programs = nsmls_data_mining()
     parser.set_defaults(
             programs=programs, 
             user_star_clients=data.user_star_clients,
