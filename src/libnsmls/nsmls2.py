@@ -26,11 +26,13 @@ def validate_user_entries():
             sys.exit(1)
 
 
+# FIXME: there's probably a better method, when working with dataclasses.
 def dataclass_field_to_tuple(input_list):
     for __, client in enumerate(input_list):
         yield client.exec_name
 
 
+# FIXME: it doesn't tells us which list and which entry.
 def validate_config_lists(input_list):
     exec_name_tuple = tuple(dataclass_field_to_tuple(input_list))
     if sorted(set(exec_name_tuple)) != sorted(exec_name_tuple):
