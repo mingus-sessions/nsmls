@@ -41,104 +41,104 @@ def nsmls_data_mining():
     # 
     nsmls.star_not_in_blocked()
 
-    def make_clients():
-        for __, client in enumerate(set(data.nsm_star_clients)):
-            #print(client)
-            yield data.Client(exec_name=client)
-        
-
-    nsm_star_list = list(make_clients())
-
-    #print(nsm_star_list)
+    user_blocked_clients_set = set(data.user_blocked_clients)
+    blocked_clients_set = set(data.blocked_clients)
 
 
-
-    nsmls.validate_config_lists(data.nsm_clients, list_name="nsm_clients")
-    nsmls.validate_config_lists(data.user_star_clients, list_name="user_star_clients")
-    nsmls.validate_config_lists(nsm_star_list, list_name="nsm_star_clients")
-
-
-    # filter star list, check if in nsm_clients, add info_url,
-    # then check if in user list, rm from list
-
-    # then we're only have to deal with user_list and nsm_clients.
+    def filter_blocked(blocked_clients): 
+        for __, client in enumerate(blocked_clients):
+            if client not in data.user_star_clients:
+                yield client
 
 
-    # Check if user star client is on nsm_clients, add info_url.
+    blocked_clients = list(filter_blocked(blocked_clients_set))
     
-    # Search via xdg, add found clients to list, if not already in user_star_list, 
-    # otherwise just add data.
-
-    # If found and unknown, add to the list
-
-    # Convert tuples to dataclasses:
 
 
+    blocked_clients += user_blocked_clients_set
+    star_clients = set(data.user_star_clients + data.nsm_star_clients)
 
 
-    # We set the origin.
-    nsmls.set_config_status(data.nsm_clients, config_list="nsm_clients")
-    nsmls.set_config_status(data.user_star_clients, config_list="nsm_user_star")  # Needs the last
-
-    nsmls.set_config_status(nsm_star_list, config_list="nsm_star")
-
-    #nsmls.validate_config_lists(data.nsm_star_clients, list_name="nsm_star_clients")
-    #nsmls.search_duplicates_in_star_lists()
+    # we know nsm_clients
+    # we know found clients
+    # we know star clients
 
 
-    # We set the path (and check if installed or not).
-    nsmls.get_path(data.user_star_clients)
-    nsmls.get_path(data.nsm_clients)
-    nsmls.get_path(nsm_star_list)
-
-    # If we have a url, we add the url.
-    if data.user_star_clients:
-        nsmls.set_missing_url_info(data.user_star_clients)
-    if nsm_star_list:
-        nsmls.set_missing_url_info(nsm_star_list)
-
-    # Ok, all data is set. Time to remove duplicates:
-
-    # if a nsm_client is on user_list, we don't have to add.
-    # if a nsm_client is on star_list, we don't have to add.
-    # 
+    # Set the star clients:
+    def set_star_status(input_list):
+        for __, client in enumerate(data.nsm_clients):
+            if client in input_list:
+                client.nsm_star = True
 
 
+    def set_blocked_status(input_list):
+        for __, client in enumerate(data.nsm_clients):
+            if client in input_list:
+                client.blocked = True
 
 
-    nsmls.check_if_client_on_user_list(nsm_star_list)  # We remove the nsm_star_client if it's already on the user_star list.
-    nsmls.check_if_client_on_user_list(data.user_star_clients)  # We remove the nsm_star_client if it's already on the user_star list. #FIXME
-
-    # CHeck if user_star is on blocked, if so rm blocked.
-
-    # Check if star_client is on user_star
-    nsmls.search_duplicates_in_star_lists(nsm_star_list)
+    def check_if_on_nsm_clients_list(X_NSM_Exec):
+        for __, client in enumerate(data.nsm_clients):
+            if X_NSM_Exec == client.exec_name:
+                return client 
+        return None
 
 
-    programs = nsm_star_list + data.user_star_clients + data.nsm_clients # + nsm_star_list
-    #programs = data.user_star_clients  # We add a other label to the list. 
-    #programs += nsm_star_list  # We add the nsm_star_clients to the user_star_clients.
+    def get_entries(blocked_list):
+        for __, xdg_desktop_path in enumerate(data.xdg_paths):
+            for file in xdg_desktop_path.glob('**/*'):
+                if file.is_file() and file.suffix == ".desktop":
+                    desktop_file = xdg.DesktopEntry.DesktopEntry(file)
+                    X_NSM_Exec = desktop_file.get('X-NSM-Exec')
+                    # X_NSM_Capable = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Capable')  
+                    # We hope we don't need a extra check. Apps should have X_NSM_Exec in their *.desktop file to be listed by this app (KISS). Grabbing for both on all apps seems slow too.
+                    if X_NSM_Exec:  # or X_NSM_Capable:
+                        xdg_comment = desktop_file.getComment()
+                        xdg_icon = desktop_file.getIcon()
+                        xdg_name = desktop_file.getName()
+                        client = check_if_on_nsm_clients_list(X_NSM_Exec)
+                        if not client:
+                            client = data.Client(exec_name=X_NSM_Exec)
+                            data.nsm_clients.append(client)
+                        client.xdg_nsm_confirmed = True
+                        #client.X_NSM_Capable = X_NSM_Capable
+                        client.X_NSM_Exec = X_NSM_Exec 
+                        client.xdg_comment = xdg_comment
+                        client.xdg_icon = xdg_icon
+                        client.xdg_name = xdg_name
+                        if client.exec_name in blocked_list:
+                            client.blocked = True
+                        else:
+                            client.nsm = True
+
+   
+
+    set_star_status(star_list)
+    set_blocked_status(blocked_list)
+    
+    nsmls.get_entries()
+
+    def make_star_clients(star_clients):
+        for __, client in enumerate(star_clients):
+            yield data.Client(exec_name=client, client.nsm_star=True, client.nsm=True)  # what if on blocking?
 
 
-    #pprint(sorted(programs))
+    star_objects = list(make_star_clients(star_clients))
 
 
-
-    #print("+++++++++++++++++")
-
-
-
-    # Now let's search for the NSM entry in the desktop files.
-
-    nsmls.get_entries(programs)
-
-    #pprint(sorted(programs))
+    def remove_duplicates(star_objects):
+        for x, star in enumerate(star_objects):
+            for __, client in enumerate(data.nsm_clients):
+                if star.exec_name == client.exec_name:
+                    client.nsm_star = True
+                    client.nsm = True
+                    star_objects.pop(x)
 
 
-    # Now add the ones which are not on the list yet.
+    # Now concatenate them to one list
+    data.nsm_clients += star_objects
 
 
-    return programs
 
 
 def print_output(args):

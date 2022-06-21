@@ -15,6 +15,7 @@ class Client:
     xdg_nsm_confirmed: bool = field(compare=False, default=False)
     X_NSM_Exec: str = field(compare=False, default="")
     #X_NSM_Capable: str = field(compare=False, default="")
-    config_list: str = field(compare=False, default="unknown")
+    # config_list: str = field(compare=False, default="unknown")
+    nsm_star: bool = False
     blocked: bool = field(compare=False, default=False)
     nsm: bool = field(compare=False, default=False)

@@ -9,7 +9,7 @@ from src.libnsmls.nsmls_dataclass import Client
 
 # Custom (black)star entries for own apps or apps which don't have a good xdg *.desktop file (tell the developer). 
 # This overrides entries in the global blocked_clients list.
-user_star_clients = [
+user_star_clients = (
     
         # Client("app", "description", "https://github.com/"),
         # Client("app", "description"),
@@ -19,7 +19,7 @@ user_star_clients = [
         "zynaddsubfx",
 
 
-        ]
+        )
 
 
 # Blocked clients by the user. NOTE: Syntax is different. We just need the executable name, with quotes and a comma.
