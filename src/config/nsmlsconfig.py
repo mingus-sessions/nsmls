@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bjin/env python
 
 from pathlib import Path
 from src.libnsmls.nsmls_dataclass import Client
@@ -34,6 +34,44 @@ user_blocked_clients = (
 # END USER CONFIG
 
 
+# List with (black)star clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. They're added to the list if they're installed. This list is short for the reason that in a ideal world, 'all' NSM clients would have a good *.desktop file with a NSM entryt . Normally you wouldn't edit this.
+nsm_star_clients = (
+
+        "non-midi-mapper"
+        "non-mixer"
+        "non-mixer-noui"
+        "non-sequencer"
+        "non-timeline"
+        "nsm-proxy"
+        "jackpatch"
+        "zynaddsubfx"
+
+        )
+
+
+
+# Normally you wouldn't edit this list, unless you know what you're doing.
+blocked_clients = (
+
+        "nsmd",
+        "non-daw", 
+        "carla", 
+        # "adljack", 
+        # We block tools which are designed to use in raysession.
+        "ray_control",
+        "ray-jack_checker_daemon",
+        "ray-pulse2jack",
+        "ray-daemon",
+        "ray-jack_config_script",
+        "raysession",
+        "ray_git",
+        "ray-proxy",
+        "ray-jackpatch",
+        # We block tools which are designed to use in Agordejo. 
+        "agordejo.bin",
+        "agordejo", 
+        "nsm-data",          
+        )
 
 
 # List with clients which are known to have NSM support and should have a proper *.desktop file. If not, report it to the developer and copy the Client to your user_star_clients list in meantime.
@@ -85,15 +123,6 @@ nsm_clients = [
         Client("xtuner", "instrument tuner", "https://github.com/brummer10/XTuner"),
         Client("zita-at1", "autotuner (fork)", "https://github.com/royvegard/zita-at1"),
         Client("zita-rev1", "reverb (fork)", "https://github.com/royvegard/zita-rev1"),
-
-
-
-        ]
-
-
-# List with (black)star clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. They're added to the list if they're installed. This list is short for the reason that in a ideal world, 'all' NSM clients would have a good *.desktop file with a NSM entryt . Normally you wouldn't edit this.
-nsm_star_clients = [
-
         Client("non-midi-mapper", "non-daw midi to osc mapper", "http://non.tuxfamily.org"),
         Client("non-mixer", "non-daw mixer", "http://non.tuxfamily.org"),
         Client("non-mixer-noui", "non-daw mixer", "http://non.tuxfamily.org"),
@@ -103,32 +132,14 @@ nsm_star_clients = [
         Client("jackpatch", "save jack connections", "https://non.tuxfamily.org"),
         Client("zynaddsubfx", "synthesizer", "https://github.com/zynaddsubfx"),
 
+
+
+
+
         ]
 
 
 
-# Normally you wouldn't edit this list, unless you know what you're doing.
-blocked_clients = (
-
-        "nsmd",
-        "non-daw", 
-        "carla", 
-        # "adljack", 
-        # We block tools which are designed to use in raysession.
-        "ray_control",
-        "ray-jack_checker_daemon",
-        "ray-pulse2jack",
-        "ray-daemon",
-        "ray-jack_config_script",
-        "raysession",
-        "ray_git",
-        "ray-proxy",
-        "ray-jackpatch",
-        # We block tools which are designed to use in Agordejo. 
-        "agordejo.bin",
-        "agordejo", 
-        "nsm-data",          
-        )
 
 
 # Normally you wouldn't edit this list, unless you know what you're doing.
