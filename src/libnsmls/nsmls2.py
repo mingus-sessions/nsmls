@@ -76,7 +76,7 @@ def check_if_client_on_user_list(nsm_star_list):
         for item, client in enumerate(data.nsm_clients):
             if star_client.exec_name == client.exec_name:
                 data.nsm_clients.pop(item)
-                print(f"POP {star_client.exec_name} {item}")
+                #print(f"POP {star_client.exec_name} {item}")
 
 
 
