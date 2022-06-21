@@ -129,13 +129,15 @@ def nsmls_data_mining():
 
 
     def remove_duplicates(star_objects):
-        for x, star in enumerate(star_objects):
-            for __, client in enumerate(data.nsm_clients):
-                if star.exec_name == client.exec_name:
+        for __, client in enumerate(data.nsm_clients):
+            for x, star in enumerate(star_objects):
+                if client.exec_name == star.exec_name:
                     client.nsm_star = True
                     client.nsmls = True
                     star_objects.pop(x)
                     #print(f"POP {star_exec_name}")
+
+
 
     
     remove_duplicates(star_objects)

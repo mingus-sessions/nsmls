@@ -17,6 +17,7 @@ user_star_clients = (
         # Client("fluajho")
         "ams",
         "zynaddsubfx",
+        "zynaddsubfx",
 
 
         )
