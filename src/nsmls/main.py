@@ -107,12 +107,13 @@ def nsmls_data_mining():
 
 
     nsmls.check_if_client_on_user_list(nsm_star_list)  # We remove the nsm_star_client if it's already on the user_star list.
-    nsmls.check_if_client_on_user_list(data.user_star_clients)  # We remove the nsm_star_client if it's already on the user_star list.
+    nsmls.check_if_client_on_user_list(data.user_star_clients)  # We remove the nsm_star_client if it's already on the user_star list. #FIXME
+
+    # CHeck if user_star is on blocked, if so rm blocked.
 
     # Check if star_client is on user_star
     nsmls.search_duplicates_in_star_lists(nsm_star_list)
 
-    nsmls.check_if_client_on_user_list(data.user_star_clients)
 
     programs = nsm_star_list + data.user_star_clients + data.nsm_clients # + nsm_star_list
     #programs = data.user_star_clients  # We add a other label to the list. 

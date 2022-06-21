@@ -15,8 +15,8 @@ user_star_clients = [
         # Client("app", "description"),
         # Client("app"),
         # Client("fluajho")
-        Client("ams"),
-        Client("zynaddsubfx"),
+        "ams",
+        "zynaddsubfx",
 
 
         ]
@@ -138,6 +138,7 @@ blocked_clients = (
         "agordejo.bin",
         "agordejo", 
         "nsm-data",          
+        "zynaddsubfx",
         )
 
 
