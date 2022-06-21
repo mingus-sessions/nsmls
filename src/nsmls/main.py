@@ -54,15 +54,21 @@ def nsmls_data_mining():
     if data.user_star_clients:
         nsmls.set_missing_url_info()
 
-    # We go through the xdg desktop files to find the 'NSM' entry.
-    # programs = []
-    programs = nsmls.get_entries()
 
-    set(programs)
-
-    # We add the user_star_clients and the nsm_star_clients.
+    programs = []
+    # NOTE: nsm_clients are only added when found, or are on the star lists in the config file.
     nsmls.add_installed_to_list(data.user_star_clients, programs)
     nsmls.add_installed_to_list(data.nsm_star_clients, programs)
+
+    # We go through the xdg desktop files to find the 'NSM' entry.
+    # programs = []
+    nsmls.get_entries(programs)
+
+    # set(programs)
+
+    # We add the user_star_clients and the nsm_star_clients.
+    #nsmls.add_installed_to_list(data.user_star_clients, programs)
+    #nsmls.add_installed_to_list(data.nsm_star_clients, programs)
 
     return programs
 
@@ -75,19 +81,13 @@ def print_output(args):
     if args.b:
         for __, client in enumerate(sorted(set(data.blocked_clients + data.user_blocked_clients))):
             print(client)
-        # pprint(args.nsm_clients)
-        # pprint(args.nsm_star_clients)
-        # pprint(args.user_star_clients)  # FIXME: also in nsm_clients list
-    '''
-    match args:
-        case args.d:
-            pprint(args.programs)
-        case _:
-            for __, program in enumerate(args.programs):
-                print(program.exec_name)
-    '''
-            
+    else:
+        for __, client in enumerate(sorted(args.programs)):
+            if client.installed:
+                print(client.exec_name)
 
+
+            
 
 
 def main():

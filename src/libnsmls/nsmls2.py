@@ -122,14 +122,14 @@ def check_if_known(X_NSM_Exec):
         return client
 
 
-def get_entries():
-    result = []
+def get_entries(programs):
+    #result = []
     known = False
     for __, xdg_desktop_path in enumerate(data.xdg_paths):
         for file in xdg_desktop_path.glob('**/*'):
             if file.is_file() and file.suffix == ".desktop":
                 desktop_file = xdg.DesktopEntry.DesktopEntry(file)
-                X_NSM_Exec = desktop_file.get('X_NSM_Exec')
+                X_NSM_Exec = desktop_file.get('X-NSM-Exec')
                 # X_NSM_Capable = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Capable')  
                 # We hope we don't need a extra check. Apps should have X_NSM_Exec in their *.desktop file to be listed by this app (KISS). Grabbing for both on all apps seems slow too.
                 if X_NSM_Exec:  # or X_NSM_Capable:
@@ -150,5 +150,4 @@ def get_entries():
                     if check_for_duplicate(X_NSM_Exec): 
                         continue
                     else:
-                        result.append(client)
-    return result
+                        programs.append(client)
