@@ -37,7 +37,7 @@ def print_output(args):
     #for __, client in enumerate(args.nsm_star_clients):
     #    print(f'Client("{client.exec_name}", "{client.url}", "{client.info}"),')
     if args.d:
-        all_programs = args.nsm_clients + args.nsm_star_clients + args.user_star_clients
+        all_programs = args.nsm_clients + args.nsm_star_clients + args.user_star_clients  # FIXME: where in the code?
         pprint(sorted(all_programs))
         # pprint(args.nsm_clients)
         # pprint(args.nsm_star_clients)
@@ -70,11 +70,14 @@ def nsmls_data_mining():
         nsmls.set_missing_url_info()
 
     # We go through the xdg desktop files to find the 'NSM' entry.
-    programs = nsmls.get_entries()
+    programs = []
+    nsmls.get_entries(programs)
 
     # We add the user_star_clients and the nsm_star_clients.
     nsmls.add_installed_to_list(data.user_star_clients, programs)
     nsmls.add_installed_to_list(data.nsm_star_clients, programs)
+
+
 
     return programs
 
