@@ -81,10 +81,12 @@ def check_if_client_on_user_list(nsm_star_list):
 
 
 
-def set_config_list(input_list, config_list):
+def set_config_status(input_list, config_list):
     for __, client in enumerate(input_list):
         if client.exec_name in data.user_blocked_clients or client.exec_name in data.blocked_clients:
             client.blocked = True
+        if "star" in config_list:
+            client.nsm = True
         client.config_list = config_list
         # client.known = True
 
@@ -121,7 +123,6 @@ def get_entries(programs):
                 # X_NSM_Capable = xdg.DesktopEntry.DesktopEntry(file).get('X-NSM-Capable')  
                 # We hope we don't need a extra check. Apps should have X_NSM_Exec in their *.desktop file to be listed by this app (KISS). Grabbing for both on all apps seems slow too.
                 if X_NSM_Exec:  # or X_NSM_Capable:
-                    print(f"found: {X_NSM_Exec}")
                     xdg_comment = desktop_file.getComment()
                     xdg_icon = desktop_file.getIcon()
                     xdg_name = desktop_file.getName()
@@ -137,4 +138,6 @@ def get_entries(programs):
                     client.xdg_name = xdg_name
                     if client in data.user_blocked_clients or client in data.blocked_clients:
                         client.blocked = True
+                    else:
+                        client.nsm = True
  

@@ -77,10 +77,10 @@ def nsmls_data_mining():
 
 
     # We set the origin.
-    nsmls.set_config_list(data.nsm_clients, config_list="nsm_clients")
-    nsmls.set_config_list(data.user_star_clients, config_list="nsm_user_star")  # Needs the last
+    nsmls.set_config_status(data.nsm_clients, config_list="nsm_clients")
+    nsmls.set_config_status(data.user_star_clients, config_list="nsm_user_star")  # Needs the last
 
-    nsmls.set_config_list(nsm_star_list, config_list="nsm_star")
+    nsmls.set_config_status(nsm_star_list, config_list="nsm_star")
 
     #nsmls.validate_config_lists(data.nsm_star_clients, list_name="nsm_star_clients")
     #nsmls.search_duplicates_in_star_lists()
@@ -114,11 +114,11 @@ def nsmls_data_mining():
     #programs += nsm_star_list  # We add the nsm_star_clients to the user_star_clients.
 
 
-    pprint(sorted(programs))
+    #pprint(sorted(programs))
 
 
 
-    print("+++++++++++++++++")
+    #print("+++++++++++++++++")
 
 
 
@@ -143,10 +143,10 @@ def print_output(args):
     if args.b:
         for __, client in enumerate(sorted(set(data.blocked_clients + data.user_blocked_clients))):
             print(client)
-    #else:
-    #    for __, client in enumerate(sorted(args.programs)):
-    #        if client.installed:
-    #            print(client.exec_name)
+    else:
+        for __, client in enumerate(sorted(args.programs)):
+            if client.installed and client.nsm:
+                print(client.exec_name)
 
 
             
