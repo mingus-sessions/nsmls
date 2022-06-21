@@ -59,9 +59,9 @@ def nsmls_data_mining():
 
 
     # We set the origin.
-    nsmls.set_config_list(data.nsm_clients, config_list="nsm_clients")
-    nsmls.set_config_list(data.nsm_star_clients, config_list="nsm_star")
-    nsmls.set_config_list(data.user_star_clients, config_list="nsm_user_star")  # Needs the last
+    #nsmls.set_config_list(data.nsm_clients, config_list="nsm_clients")
+    #nsmls.set_config_list(data.nsm_star_clients, config_list="nsm_star")
+    #nsmls.set_config_list(data.user_star_clients, config_list="nsm_user_star")  # Needs the last
 
 
     #nsmls.validate_config_lists(data.nsm_star_clients, list_name="nsm_star_clients")
@@ -69,9 +69,9 @@ def nsmls_data_mining():
 
 
     # We set the path (and check if installed or not).
-    nsmls.get_path(data.user_star_clients)
-    nsmls.get_path(data.nsm_clients)
-    nsmls.get_path(data.nsm_star_clients)
+    #nsmls.get_path(data.user_star_clients)
+    #nsmls.get_path(data.nsm_clients)
+    #nsmls.get_path(data.nsm_star_clients)
 
     # If we have a url, we add the url.
     if data.user_star_clients:
@@ -80,7 +80,7 @@ def nsmls_data_mining():
         nsmls.set_missing_url_info(data.nsm_star_clients)
 
 
-    check_if_star_client_on_user_list()  # We remove the nsm_star_client if it's already on the user_star list.
+    nsmls.check_if_star_client_on_user_list()  # We remove the nsm_star_client if it's already on the user_star list.
 
 
     programs = data.user_star_clients  # We add a other label to the list. 

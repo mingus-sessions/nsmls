@@ -49,37 +49,40 @@ def validate_config_lists(input_list, *, list_name=""):
         sys.exit(1)
 
 
-
 # FIXME: code
-def set_missing_url_info(star_list):
+def set_missing_url_info_user_star(star_list):
     for __, star_client in enumerate(star_list):
         for __, nsm_client in enumerate(data.nsm_clients):
-            if star_client.exec_name == nsm_client.exec_name:
-                if not entry.url:
-                    entry.url = client.url
-                if not entry.info:
-                    entry.info = client.info
+            if star_client == nsm_client.exec_name:
+                if not star_client.url:
+                    star_client.url = nsm_client.url
+                if not star_client.info:
+                    star_client.info = nsm_client.info
                 break
+
+
+def set_missing_url_info_star(star_list):
+    for __, nsm_client in enumerate(data.nsm_clients):
+        for __, star_client in enumerate(star_list):
+            if nsm_client.exec_name == star_client:
+                client = nsm_client
+            
+        
+
 
 
 def check_if_star_client_on_user_list():
     for star_item, nsm_star in enumerate(data.nsm_star_clients):
         for __, user_star in enumerate(data.user_star_clients):
-            if nsm_star.exec_name == user_star.exec_name:
+            if nsm_star == user_star.exec_name:
                 data.nsm_star_clients.pop(star_item)
 
-
-# We add the applications from the nsm_list, which are installed.
-def add_installed_to_list(input_list, programs):
-    for __, client in enumerate(input_list):
-        if client.installed and client.exec_name not in data.user_blocked_clients and client.exec_name not in :
-            programs.append(client)
 
 
 
 def set_config_list(input_list, config_list):
     for __, client in enumerate(input_list):
-        if client.exec_name in data.user_blocked_clients or client in data.blocked_clients:
+        if client.exec_name in data.user_blocked_clients or client.exec_name in data.blocked_clients:
             client.blocked = True
         client.config_list = config_list
         # client.known = True
@@ -101,45 +104,14 @@ def is_already_added_check(X_NSM_Exec, program_list):
 
 
 
-# FIXME: code.
-def check_for_duplicate(X_NSM_Exec):
-    for __, client in enumerate(data.user_star_clients):
-        if X_NSM_Exec == client.exec_name:
-            return True 
-    for __, client in enumerate(data.nsm_star_clients):
-        if X_NSM_Exec == client.exec_name:
-            return True 
-
-
-def check_this_list(X_NSM_Exec, input_list):
-    for __, client in enumerate(input_list):
-        if X_NSM_Exec == client.exec_name:
-            #print(f"known {X_NSM_Exec}")
-            return client
-
-
 def check_if_on_nsm_clients_list(X_NSM_Exec):
     for __, client in enumerate(data.nsm_clients):
         if X_NSM_Exec == client.exec_name:
             return client
 
 
-# FIXME: code.
-def check_if_known(X_NSM_Exec):
-    client = check_this_list(X_NSM_Exec, data.user_star_clients)
-    if client:
-        return client
-    client = check_this_list(X_NSM_Exec, data.nsm_clients)
-    if client:
-        return client
-    client = check_this_list(X_NSM_Exec, data.nsm_star_clients)
-    if client:
-        return client
-
 
 def get_entries(programs):
-    #result = []
-    known = False
     for __, xdg_desktop_path in enumerate(data.xdg_paths):
         for file in xdg_desktop_path.glob('**/*'):
             if file.is_file() and file.suffix == ".desktop":
@@ -151,7 +123,7 @@ def get_entries(programs):
                     xdg_comment = desktop_file.getComment()
                     xdg_icon = desktop_file.getIcon()
                     xdg_name = desktop_file.getName()
-                    if is_already_added_check(X_NSM_Exec, program_list):
+                    if is_already_added_check(X_NSM_Exec, programs):
                         pass
                     else:
                         client = check_if_on_nsm_clients_list(X_NSM_Exec)
