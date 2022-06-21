@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+from pprint import pprint
 
 from dataclasses import dataclass, field
 
@@ -23,37 +24,17 @@ class Client:
     xdg_icon: str = ""
 
 
+my_tuple = ("non-sequencer", "non-daw")
 
-x = Client("non-sequencer", "info" )
-y = Client("non-sequencer", "xinfo" )
+def make_Clients(my_tuple):
+    for __, client in enumerate(my_tuple):
+        yield Client(exec_name=client)
+    
 
+my_dc_list = list(make_Clients(my_tuple))
 
-
-if x == y:
-    print("Equal")
-
-
-my_list = (x, y) 
-#my_list.append(x)
-#my_list.append(y)
+pprint(my_dc_list)
 
 
-def make_list(my_list):
-    for __, entry in enumerate(my_list):
-        yield entry.exec_name
-
-# newlist = [x for x in my_list if "a" in x]
-# newlist = [x for x in fruits if "a" in x]
-# tuple(getattr(obj, field.name) for field in dataclasses.fields(obj))
-
-list0 = list(make_list(my_list))
-
-if sorted(set(list0)) != sorted(list0):
-    print("Set error")
 
 
-#set(my_list)
-
-print(sorted(set(list0)))
-print("")
-print(sorted(list0))

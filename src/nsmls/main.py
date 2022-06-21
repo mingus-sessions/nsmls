@@ -41,8 +41,20 @@ def nsmls_data_mining():
     # 
     nsmls.star_not_in_blocked()
 
+    def make_clients():
+        for __, client in enumerate(data.nsm_star_clients):
+            #print(client)
+            yield data.Client(exec_name=client)
+        
+
+    nsm_star_list = list(make_clients())
+
+
+
     nsmls.validate_config_lists(data.nsm_clients, list_name="nsm_clients")
     nsmls.validate_config_lists(data.user_star_clients, list_name="user_star_clients")
+    nsmls.validate_config_lists(nsm_star_list, list_name="nsm_star_clients")
+
 
     # filter star list, check if in nsm_clients, add info_url,
     # then check if in user list, rm from list
@@ -57,45 +69,49 @@ def nsmls_data_mining():
 
     # If found and unknown, add to the list
 
+    # Convert tuples to dataclasses:
+
+
+
 
     # We set the origin.
-    #nsmls.set_config_list(data.nsm_clients, config_list="nsm_clients")
-    #nsmls.set_config_list(data.nsm_star_clients, config_list="nsm_star")
-    #nsmls.set_config_list(data.user_star_clients, config_list="nsm_user_star")  # Needs the last
+    nsmls.set_config_list(data.nsm_clients, config_list="nsm_clients")
+    nsmls.set_config_list(data.user_star_clients, config_list="nsm_user_star")  # Needs the last
 
+    nsmls.set_config_list(nsm_star_list, config_list="nsm_star")
 
     #nsmls.validate_config_lists(data.nsm_star_clients, list_name="nsm_star_clients")
     #nsmls.search_duplicates_in_star_lists()
 
 
     # We set the path (and check if installed or not).
-    #nsmls.get_path(data.user_star_clients)
-    #nsmls.get_path(data.nsm_clients)
-    #nsmls.get_path(data.nsm_star_clients)
+    nsmls.get_path(data.user_star_clients)
+    nsmls.get_path(data.nsm_clients)
+    nsmls.get_path(nsm_star_list)
 
     # If we have a url, we add the url.
     if data.user_star_clients:
         nsmls.set_missing_url_info(data.user_star_clients)
-    if data.nsm_star_clients:
-        nsmls.set_missing_url_info(data.nsm_star_clients)
+    if nsm_star_list:
+        nsmls.set_missing_url_info(nsm_star_list)
 
 
-    nsmls.check_if_star_client_on_user_list()  # We remove the nsm_star_client if it's already on the user_star list.
+    nsmls.check_if_client_on_user_list(nsm_star_list)  # We remove the nsm_star_client if it's already on the user_star list.
+    nsmls.check_if_client_on_user_list(data.nsm_clients)  # We remove the nsm_star_client if it's already on the user_star list.
 
+    programs = data.user_star_clients + data.nsm_clients + nsm_star_list
+    #programs = data.user_star_clients  # We add a other label to the list. 
+    #programs += nsm_star_list  # We add the nsm_star_clients to the user_star_clients.
 
-    programs = data.user_star_clients  # We add a other label to the list. 
-    programs += data.nsm_star_clients  # We add the nsm_star_clients to the user_star_clients.
 
 
     # Now let's search for the NSM entry in the desktop files.
 
     nsmls.get_entries(programs)
 
-    # set(programs)
 
-    # We add the user_star_clients and the nsm_star_clients.
-    #nsmls.add_installed_to_list(data.user_star_clients, programs)
-    #nsmls.add_installed_to_list(data.nsm_star_clients, programs)
+    # Now add the ones which are not on the list yet.
+
 
     return programs
 
@@ -104,14 +120,14 @@ def print_output(args):
     #for __, client in enumerate(args.nsm_star_clients):
     #    print(f'Client("{client.exec_name}", "{client.url}", "{client.info}"),')
     if args.d:
-        pprint(sorted(all_programs))
+        pprint(sorted(args.programs))
     if args.b:
         for __, client in enumerate(sorted(set(data.blocked_clients + data.user_blocked_clients))):
             print(client)
-    else:
-        for __, client in enumerate(sorted(args.programs)):
-            if client.installed:
-                print(client.exec_name)
+    #else:
+    #    for __, client in enumerate(sorted(args.programs)):
+    #        if client.installed:
+    #            print(client.exec_name)
 
 
             
@@ -123,9 +139,9 @@ def main():
     programs = nsmls_data_mining()
     parser.set_defaults(
             programs=programs, 
-            user_star_clients=data.user_star_clients,
-            nsm_clients=data.nsm_clients,
-            nsm_star_clients=data.nsm_star_clients,
+            # user_star_clients=data.user_star_clients,
+            #nsm_clients=data.nsm_clients,
+            #nsm_star_clients=nsm_star_list,
             #user_blocked = sorted(set(data.user_blocked_clients)),
             #blocked = sorted(set(data.blocked_clients)),
 

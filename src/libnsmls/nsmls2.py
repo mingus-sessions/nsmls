@@ -50,10 +50,10 @@ def validate_config_lists(input_list, *, list_name=""):
 
 
 # FIXME: code
-def set_missing_url_info_user_star(star_list):
+def set_missing_url_info(star_list):
     for __, star_client in enumerate(star_list):
         for __, nsm_client in enumerate(data.nsm_clients):
-            if star_client == nsm_client.exec_name:
+            if star_client.exec_name == nsm_client.exec_name:
                 if not star_client.url:
                     star_client.url = nsm_client.url
                 if not star_client.info:
@@ -70,12 +70,12 @@ def set_missing_url_info_star(star_list):
         
 
 
-
-def check_if_star_client_on_user_list():
-    for star_item, nsm_star in enumerate(data.nsm_star_clients):
+# NOTE: should be done after converting tuple to dataclas nsm star clients!
+def check_if_client_on_user_list(nsm_star_list):
+    for star_item, nsm_star in enumerate(nsm_star_list):
         for __, user_star in enumerate(data.user_star_clients):
-            if nsm_star == user_star.exec_name:
-                data.nsm_star_clients.pop(star_item)
+            if nsm_star.exec_name == user_star.exec_name:
+                nsm_star_list.pop(star_item)
 
 
 
@@ -99,8 +99,8 @@ def get_path(input_list):
 def is_already_added_check(X_NSM_Exec, program_list):
     for __, client in enumerate(program_list):
         if X_NSM_Exec == client.exec_name:
-            return True
-    return False
+            return client
+    return None
 
 
 
@@ -123,12 +123,9 @@ def get_entries(programs):
                     xdg_comment = desktop_file.getComment()
                     xdg_icon = desktop_file.getIcon()
                     xdg_name = desktop_file.getName()
-                    if is_already_added_check(X_NSM_Exec, programs):
-                        pass
-                    else:
-                        client = check_if_on_nsm_clients_list(X_NSM_Exec)
-                        if not client:
-                            client = Client(exec_name=X_NSM_Exec)
+                    client = is_already_added_check(X_NSM_Exec, programs)
+                    if not client:
+                        client = Client(exec_name=X_NSM_Exec)
                         programs.append(client)
                     client.xdg_nsm_confirmed = True 
                     #client.X_NSM_Capable = X_NSM_Capable

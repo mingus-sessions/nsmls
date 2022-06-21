@@ -104,14 +104,13 @@ nsm_clients = [
 # List with (black)star clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. They're added to the list if they're installed. This list is short for the reason that in a ideal world, 'all' NSM clients would have a good *.desktop file with a NSM entryt . Normally you wouldn't edit this.
 nsm_star_clients = (
 
-        Client("non-midi-mapper", "non-daw midi to osc mapper", "http://non.tuxfamily.org"),
-        Client("non-mixer", "non-daw mixer", "http://non.tuxfamily.org"),
-        Client("non-mixer-noui", "non-daw mixer", "http://non.tuxfamily.org"),
-        Client("non-sequencer", "midi sequencer", "http://non.tuxfamily.org/"),
-        Client("non-timeline", "non-daw audio recorder", "http://non.tuxfamily.org"),
-        Client("nsm-proxy", "launch tools with no nsm or gui", "http://non.tuxfamily.org"),
-        Client("jackpatch", "save jack connections", "https://non.tuxfamily.org"),
-        Client("zynaddsubfx", "synthesizer", "https://github.com/zynaddsubfx"),
+        "non-midi-mapper",
+        "non-mixer",
+        "non-sequencer",
+        "non-timeline",
+        "nsm-proxy",
+        "jackpatch",
+        "zynaddsubfx",
 
         )
 
