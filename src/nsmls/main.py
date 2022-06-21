@@ -33,30 +33,12 @@ import src.libnsmls.nsmls2 as nsmls
 # NOTE: duplication... compare dataclasses?
 
 
-def print_output(args):
-    #for __, client in enumerate(args.nsm_star_clients):
-    #    print(f'Client("{client.exec_name}", "{client.url}", "{client.info}"),')
-    if args.d:
-        all_programs = args.nsm_clients + args.nsm_star_clients + args.user_star_clients  # FIXME: where in the code?
-        pprint(sorted(all_programs))
-        # pprint(args.nsm_clients)
-        # pprint(args.nsm_star_clients)
-        # pprint(args.user_star_clients)  # FIXME: also in nsm_clients list
-    '''
-    match args:
-        case args.d:
-            pprint(args.programs)
-        case _:
-            for __, program in enumerate(args.programs):
-                print(program.exec_name)
-    '''
-            
-
 def nsmls_data_mining():
     nsmls.validate_user_entries()
-    nsmls.validate_config_lists(data.nsm_clients)
-    nsmls.validate_config_lists(data.nsm_star_clients)
-    nsmls.validate_config_lists(data.user_star_clients)
+
+    nsmls.validate_config_lists(data.nsm_clients, list_name="nsm_clients")
+    nsmls.validate_config_lists(data.nsm_star_clients, list_name="nsm_star_clients")
+    nsmls.validate_config_lists(data.user_star_clients, list_name="user_star_clients")
 
     # We set the origin.
     nsmls.set_config_list(data.nsm_clients, config_list="nsm_clients")
@@ -83,9 +65,30 @@ def nsmls_data_mining():
     nsmls.add_installed_to_list(data.user_star_clients, programs)
     nsmls.add_installed_to_list(data.nsm_star_clients, programs)
 
-
-
     return programs
+
+
+def print_output(args):
+    #for __, client in enumerate(args.nsm_star_clients):
+    #    print(f'Client("{client.exec_name}", "{client.url}", "{client.info}"),')
+    if args.d:
+        pprint(sorted(all_programs))
+    if args.b:
+        for 
+        print(sorted(set(args.blocked + args.user_blocked)))
+        # pprint(args.nsm_clients)
+        # pprint(args.nsm_star_clients)
+        # pprint(args.user_star_clients)  # FIXME: also in nsm_clients list
+    '''
+    match args:
+        case args.d:
+            pprint(args.programs)
+        case _:
+            for __, program in enumerate(args.programs):
+                print(program.exec_name)
+    '''
+            
+
 
 
 def main():
@@ -97,9 +100,14 @@ def main():
             user_star_clients=data.user_star_clients,
             nsm_clients=data.nsm_clients,
             nsm_star_clients=data.nsm_star_clients,
+            #user_blocked = sorted(set(data.user_blocked_clients)),
+            #blocked = sorted(set(data.blocked_clients)),
+
             )
 
     parser.add_argument("-d", help="dump all info",
+                    action="store_true")
+    parser.add_argument("-b", help="show blocked",
                     action="store_true")
     parser.set_defaults(func=print_output)
     args = parser.parse_args()
