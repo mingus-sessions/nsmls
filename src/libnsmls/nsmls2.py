@@ -62,6 +62,12 @@ def set_missing_url_info(star_list):
                 break
 
 
+def check_if_star_client_on_user_list():
+    for star_item, nsm_star in enumerate(data.nsm_star_clients):
+        for __, user_star in enumerate(data.user_star_clients):
+            if nsm_star.exec_name == user_star.exec_name:
+                data.nsm_star_clients.pop(star_item)
+
 
 # We add the applications from the nsm_list, which are installed.
 def add_installed_to_list(input_list, programs):
@@ -69,12 +75,6 @@ def add_installed_to_list(input_list, programs):
         if client.installed and client.exec_name not in data.user_blocked_clients and client.exec_name not in :
             programs.append(client)
 
-
-def set_info(client, xdg_comment):
-    if xdg_comment:
-        client.info = xdg_comment
-    else:
-        client.info = "" 
 
 
 def set_config_list(input_list, config_list):
@@ -93,6 +93,14 @@ def get_path(input_list):
             entry.installed = True
 
 
+def is_already_added_check(X_NSM_Exec, program_list):
+    for __, client in enumerate(program_list):
+        if X_NSM_Exec == client.exec_name:
+            return True
+    return False
+
+
+
 # FIXME: code.
 def check_for_duplicate(X_NSM_Exec):
     for __, client in enumerate(data.user_star_clients):
@@ -109,7 +117,13 @@ def check_this_list(X_NSM_Exec, input_list):
             #print(f"known {X_NSM_Exec}")
             return client
 
-    
+
+def check_if_on_nsm_clients_list(X_NSM_Exec):
+    for __, client in enumerate(data.nsm_clients):
+        if X_NSM_Exec == client.exec_name:
+            return client
+
+
 # FIXME: code.
 def check_if_known(X_NSM_Exec):
     client = check_this_list(X_NSM_Exec, data.user_star_clients)
@@ -137,9 +151,13 @@ def get_entries(programs):
                     xdg_comment = desktop_file.getComment()
                     xdg_icon = desktop_file.getIcon()
                     xdg_name = desktop_file.getName()
-                    client = check_if_known(X_NSM_Exec)
-                    if not client:
-                        client = Client(exec_name=X_NSM_Exec)
+                    if is_already_added_check(X_NSM_Exec, program_list):
+                        pass
+                    else:
+                        client = check_if_on_nsm_clients_list(X_NSM_Exec)
+                        if not client:
+                            client = Client(exec_name=X_NSM_Exec)
+                        programs.append(client)
                     client.xdg_nsm_confirmed = True 
                     #client.X_NSM_Capable = X_NSM_Capable
                     client.X_NSM_Exec = X_NSM_Exec 
@@ -148,7 +166,4 @@ def get_entries(programs):
                     client.xdg_name = xdg_name
                     if client in data.user_blocked_clients or client in data.blocked_clients:
                         client.blocked = True
-                    if check_for_duplicate(X_NSM_Exec): 
-                        continue
-                    else:
-                        programs.append(client)
+ 

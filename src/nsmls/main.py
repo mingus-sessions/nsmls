@@ -80,14 +80,15 @@ def nsmls_data_mining():
         nsmls.set_missing_url_info(data.nsm_star_clients)
 
 
+    check_if_star_client_on_user_list()  # We remove the nsm_star_client if it's already on the user_star list.
 
-    programs = []
-    # NOTE: nsm_clients are only added when found, or are on the star lists in the config file.
-    nsmls.add_installed_to_list(data.user_star_clients, programs)
-    nsmls.add_installed_to_list(data.nsm_star_clients, programs)
 
-    # We go through the xdg desktop files to find the 'NSM' entry.
-    # programs = []
+    programs = data.user_star_clients  # We add a other label to the list. 
+    programs += data.nsm_star_clients  # We add the nsm_star_clients to the user_star_clients.
+
+
+    # Now let's search for the NSM entry in the desktop files.
+
     nsmls.get_entries(programs)
 
     # set(programs)
