@@ -170,11 +170,19 @@ def nsmls_data_mining():
     data.nsm_clients += star_objects
 
 
+    # We've gathered all our data. Let's set the star and blocked status for the Client objects in nsm_clients list.
 
     set_star_status(star_clients)
     set_blocked_status(blocked_clients)
+
+    # Now check which clients are actually installed. 
     get_path()
+
+
+    # Now we know the star, blocked and installed status. We also gathered the desktop files with a NSM entry. Let's set the nsmls (display) status.
     set_nsmls_status()
+
+    # Last thing, sort the data.
     sorted(data.nsm_clients)
     
 
