@@ -131,7 +131,7 @@ def nsmls_data_mining():
 
     # Remove duplicates from star_clients and concatenate star_clients and user_star_clients.
 
-    star_clients = list(set(data.user_star_clients + data.nsm_star_clients))
+    star_clients = data.user_star_clients + data.nsm_star_clients
 
     # Check if star_client is on nsm_clients list, set the client to star and rm from star list.
 
@@ -139,7 +139,7 @@ def nsmls_data_mining():
 
     # Convert star tuples to Client dataclass objects.
 
-    star_objects = list(make_star_clients(star_clients))
+    star_objects = list(make_star_clients(set(star_clients)))
 
     # Search for NSM clients in the desktop files.
 

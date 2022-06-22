@@ -9,20 +9,21 @@ from src.libnsmls.nsmls_dataclass import Client
 
 # Custom (black)star entries for own apps or apps which don't have a good xdg *.desktop file (tell the developer). 
 # This overrides entries in the global blocked_clients list.
-user_star_clients = (
+user_star_clients = [
     
-        # "ams",
+         "ams",
 
 
-        )
+        ]
 
 
 # Blocked clients by the user. NOTE: Syntax is different. We just need the executable name, with quotes and a comma.
-user_blocked_clients = (
+user_blocked_clients = [
 
         # "example",
+        "non-sequencer",
 
-         )
+         ]
 
 
 # END USER CONFIG
@@ -96,7 +97,7 @@ nsm_clients = [
 
 
 # List with (black)star clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. They're added to the list if they're installed. This list is short for the reason that in a ideal world, 'all' NSM clients would have a good *.desktop file with a NSM entryt . Normally you wouldn't edit this.
-nsm_star_clients = (
+nsm_star_clients = [
 
         "non-midi-mapper",
         "non-mixer",
@@ -105,13 +106,15 @@ nsm_star_clients = (
         "nsm-proxy",
         "zynaddsubfx",
         "jackpatch",
+        
 
-        )
+        ]
 
 
 
 # Normally you wouldn't edit this list, unless you know what you're doing.
-blocked_clients = (
+blocked_clients = [
+
 
         # We block tools which are designed to use in Agordejo. 
         "agordejo.bin",
@@ -129,7 +132,7 @@ blocked_clients = (
         "ray-proxy",
         "ray-jackpatch",
 
-        )
+        ]
 
 
 # Normally you wouldn't edit this list, unless you know what you're doing.
