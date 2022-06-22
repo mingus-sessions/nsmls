@@ -140,7 +140,7 @@ xdg_paths = (
 
         Path("/usr/share/applications"),
         Path("/usr/local/share/applications"),
-        Path(Path.home(), ".local/share/applications"),
+        Path(Path.home(), ".local/share/applications"), # $XDG_DATA_HOME/applications/
 
         )
 
