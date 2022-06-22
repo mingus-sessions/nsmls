@@ -112,8 +112,8 @@ nsm_star_clients = (
         "non-sequencer",
         "non-timeline",
         "nsm-proxy",
-        "jackpatch",
         "zynaddsubfx",
+        "jackpatch",
 
         )
 
@@ -141,7 +141,6 @@ blocked_clients = (
         "agordejo.bin",
         "agordejo", 
         "nsm-data",          
-        "zynaddsubfx",
 
         )
 
