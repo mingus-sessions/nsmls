@@ -122,7 +122,6 @@ nsm_star_clients = (
 # Normally you wouldn't edit this list, unless you know what you're doing.
 blocked_clients = (
 
-        "jackpatch"
         "nsmd",
         "non-daw", 
         "carla", 
