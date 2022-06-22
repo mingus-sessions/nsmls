@@ -174,7 +174,7 @@ def nsmls_data_mining():
     set_nsmls_status()
 
     # Last thing, sort the data.
-    sorted(data.nsm_clients)
+    data.nsm_clients = sorted(data.nsm_clients)
     
 
 
