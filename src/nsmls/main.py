@@ -96,17 +96,14 @@ def nsmls_data_mining():
                     # We hope we don't need a extra check. Apps should have X_NSM_Exec in their *.desktop file to be listed by this app (KISS). Grabbing for both on all apps seems slow too.
                     if X_NSM_Exec:  # or X_NSM_Capable:
                         xdg_comment = desktop_file.getComment()
-                        xdg_icon = desktop_file.getIcon()
                         xdg_name = desktop_file.getName()
                         client = check_if_on_nsm_clients_list(X_NSM_Exec)
                         if not client:
                             client = data.Client(exec_name=X_NSM_Exec)
                             data.nsm_clients.append(client)
-                        client.xdg_nsm_confirmed = True
                         #client.X_NSM_Capable = X_NSM_Capable
                         client.X_NSM_Exec = X_NSM_Exec 
                         client.xdg_comment = xdg_comment
-                        client.xdg_icon = xdg_icon
                         client.xdg_name = xdg_name
                         if client.exec_name in blocked_list:
                             client.blocked = True
