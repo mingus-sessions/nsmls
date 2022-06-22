@@ -133,6 +133,8 @@ def nsmls_data_mining():
 
     star_clients = list(set(data.user_star_clients + data.nsm_star_clients))
 
+    # Check if star_client is on nsm_clients list, set the client to star and rm from star list.
+
     remove_duplicates(star_clients)
 
     # Convert star tuples to Client dataclass objects.
