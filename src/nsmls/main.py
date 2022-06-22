@@ -122,7 +122,7 @@ def nsmls_data_mining():
 
     # VALIDATE
     nsmls.star_not_in_blocked(data.user_star_clients, data.user_blocked_clients)
-    nsmls.star_not_in_blocked(data.star_clients, data.blocked_clients)
+    nsmls.star_not_in_blocked(data.nsm_star_clients, data.blocked_clients)
 
     # Handle the blocked related data.
 

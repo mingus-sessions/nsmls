@@ -22,7 +22,7 @@ from src.libnsmls.nsmls_dataclass import Client
 def star_not_in_blocked(list1, list2):
     for __, client in enumerate(list1):  # data.user_star_clients):
         if client in list2:  # data.user_blocked_clients:
-            print("Error: you can't add and block the same client in user settings. Fix your config.", file=sys.stderr)
+            print("Error: you can't add and block the same client in either the user or general settings. Fix your config.", file=sys.stderr)
             sys.exit(1)
 
 
