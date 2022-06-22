@@ -11,13 +11,7 @@ from src.libnsmls.nsmls_dataclass import Client
 # This overrides entries in the global blocked_clients list.
 user_star_clients = (
     
-        # Client("app", "description", "https://github.com/"),
-        # Client("app", "description"),
-        # Client("app"),
-        # Client("fluajho")
-        "ams",
-        "zynaddsubfx",
-        "zynaddsubfx",
+        # "ams",
 
 
         )
@@ -27,9 +21,6 @@ user_star_clients = (
 user_blocked_clients = (
 
         # "example",
-        # "example1",
-        #"non-sequencer",
-        # "jackpatch",
 
          )
 
