@@ -109,23 +109,14 @@ def nsmls_data_mining():
 
     # Handle the blocked related data.
 
-    # Remove duplicates from user_blocked_clients.
-
-    #user_blocked_clients_set = set(data.user_blocked_clients)
-
-    # Remove duplicates from blocked_clients.
-
-    #blocked_clients_set = set(data.blocked_clients)
-
     # Unblock clients that are in user_star_list.
 
     blocked_clients = list(filter_blocked(data.blocked_clients))
 
     # Concatenate user_blocked_clients and blocked_clients.
 
-    blocked_clients += data.user_blocked_clients
+    blocked_clients = set(blocked_clients + data.user_blocked_clients)
 
-    blocked_clients = set(blocked_clients)
 
     # Handle the stars.
 
