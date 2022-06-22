@@ -118,7 +118,7 @@ blocked_clients = (
         "agordejo", 
         "nsm-data",          
 
-        # We block tools which are designed to use in raysession.
+        # We block tools which are designed to use in RaySession.
         "ray_control",
         "ray-jack_checker_daemon",
         "ray-pulse2jack",
