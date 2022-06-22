@@ -184,7 +184,7 @@ def print_output(args):
     #for __, client in enumerate(args.nsm_star_clients):
     #    print(f'Client("{client.exec_name}", "{client.url}", "{client.info}"),')
     if args.d:
-        pprint(sorted(args.nsm_clients))
+        pprint(args.nsm_clients)
     if args.b:
         for __, client in enumerate(args.blocked_clients):
             print(client)
