@@ -140,6 +140,7 @@ blocked_clients = (
         "agordejo", 
         "nsm-data",          
         "zynaddsubfx",
+
         )
 
 

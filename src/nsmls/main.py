@@ -56,7 +56,7 @@ def set_blocked_status(input_list):
 
 def set_nsmls_status():
     for __, client in enumerate(data.nsm_clients):
-        if (client.star or client.X_NSM_Exec) and client.blocked and client.installed:
+        if (client.nsm_star or client.X_NSM_Exec) and client.blocked and client.installed:
             client.nsmls = True
 
 
@@ -98,6 +98,7 @@ def remove_duplicates(star_clients):
     for __, client in enumerate(data.nsm_clients):
         for x, star in enumerate(star_clients):
             if client.exec_name == star:
+                client.nsm_star = True
                 star_clients.pop(x)
                 #print(f"POP {star_exec_name}")
 
@@ -149,7 +150,7 @@ def nsmls_data_mining():
     # Remove duplicates from star_clients and concatenate star_clients and user_star_clients.
 
 
-    star_clients = set(data.user_star_clients + data.nsm_star_clients)
+    star_clients = list(set(data.user_star_clients + data.nsm_star_clients))
 
 
     remove_duplicates(star_clients) # do we need to have them as Client object yet? Probably note
@@ -203,14 +204,14 @@ def main():
     nsmls_data_mining()
     parser.set_defaults(
             # programs=programs, 
-            nsm_clients=sorted(data.nsm_clients),
+            nsm_clients=data.nsm_clients,
             # user_star_clients=data.user_star_clients,
             #nsm_clients=data.nsm_clients,
             #nsm_star_clients=nsm_star_list,
             #user_blocked = sorted(set(data.user_blocked_clients)),
             #blocked = sorted(set(data.blocked_clients)),
-            blocked=sorted(blocked_clients),
-            stars=sorted(star_clients),
+            #blocked=sorted(blocked_clients),
+            #stars=sorted(star_clients),
 
             )
 
