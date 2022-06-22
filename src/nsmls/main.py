@@ -51,7 +51,7 @@ def check_if_on_nsm_clients_list(X_NSM_Exec):
 
 def get_entries(blocked_list):
     for __, xdg_desktop_path in enumerate(data.xdg_paths):
-        for file in xdg_desktop_path.glob('**/*'):
+        for file in xdg_desktop_path.rglob('*'):
             if file.is_file() and file.suffix == ".desktop":
                 desktop_file = xdg.DesktopEntry.DesktopEntry(file)
                 X_NSM_Exec = desktop_file.get('X-NSM-Exec')
