@@ -49,7 +49,7 @@ def check_if_on_nsm_clients_list(X_NSM_Exec):
     return None
 
 
-def get_entries(blocked_list):
+def search_for_nsm_clients(blocked_list):
     for __, xdg_desktop_path in enumerate(data.xdg_paths):
         for file in xdg_desktop_path.rglob('*'):
             if file.is_file() and file.suffix == ".desktop":
@@ -139,7 +139,7 @@ def nsmls_data_mining():
 
     # Search for NSM clients in the desktop files.
 
-    get_entries(blocked_clients)
+    search_for_nsm_clients(blocked_clients)
 
     # Add the star clients to nsm_clients list.
     data.nsm_clients += star_objects
