@@ -54,6 +54,12 @@ def set_blocked_status(input_list):
             client.blocked = True
 
 
+def set_nsmls_status():
+    for __, client in enumerate(data.nsm_clients):
+        if (client.star or client.X_NSM_Exec) and client.blocked and client.installed:
+            client.nsmls = True
+
+
 def check_if_on_nsm_clients_list(X_NSM_Exec):
     for __, client in enumerate(data.nsm_clients):
         if X_NSM_Exec == client.exec_name:
@@ -80,10 +86,7 @@ def get_entries(blocked_list):
                     client.X_NSM_Exec = X_NSM_Exec 
                     client.xdg_comment = xdg_comment
                     client.xdg_name = xdg_name
-                    if client.exec_name in blocked_list:
-                        client.blocked = True
-                    else:
-                        client.nsmls = True
+
 
 
 def make_star_clients(star_clients):
@@ -91,13 +94,11 @@ def make_star_clients(star_clients):
         yield data.Client(exec_name=client, nsm_star=True, nsmls=True)  # what if on blocking?
 
 
-def remove_duplicates(star_objects):
+def remove_duplicates(star_clients):
     for __, client in enumerate(data.nsm_clients):
-        for x, star in enumerate(star_objects):
-            if client.exec_name == star.exec_name:
-                client.nsm_star = True
-                client.nsmls = True
-                star_objects.pop(x)
+        for x, star in enumerate(star_clients):
+            if client.exec_name == star:
+                star_clients.pop(x)
                 #print(f"POP {star_exec_name}")
 
 
@@ -150,6 +151,9 @@ def nsmls_data_mining():
 
     star_clients = set(data.user_star_clients + data.nsm_star_clients)
 
+
+    remove_duplicates(star_clients) # do we need to have them as Client object yet? Probably note
+
     # Convert star tuples to Client dataclass objects.
 
     star_objects = list(make_star_clients(star_clients))
@@ -161,26 +165,17 @@ def nsmls_data_mining():
     get_entries(blocked_clients)
 
 
-
-    remove_duplicates(star_objects) # do we need to have them as Client object yet? Probably note
+    # Add the star clients to nsm_clients list.
+    data.nsm_clients += star_objects
 
 
 
     set_star_status(star_clients)
     set_blocked_status(blocked_clients)
-    
-
-
-
-
-    
-    # Now concatenate them to one list
-    data.nsm_clients += star_objects
-
-
     get_path()
-
-    return blocked_clients, star_clients
+    set_nsmls_status()
+    sorted(data.nsm_clients)
+    
 
 
 
@@ -205,7 +200,7 @@ def print_output(args):
 def main():
 
     parser = argparse.ArgumentParser()
-    blocked_clients, star_clients = nsmls_data_mining()
+    nsmls_data_mining()
     parser.set_defaults(
             # programs=programs, 
             nsm_clients=sorted(data.nsm_clients),
