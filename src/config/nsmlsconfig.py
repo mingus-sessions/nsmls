@@ -28,7 +28,8 @@ user_blocked_clients = (
 
         # "example",
         # "example1",
-        "non-sequencer",
+        #"non-sequencer",
+        # "jackpatch",
 
          )
 
@@ -121,6 +122,7 @@ nsm_star_clients = (
 # Normally you wouldn't edit this list, unless you know what you're doing.
 blocked_clients = (
 
+        "jackpatch"
         "nsmd",
         "non-daw", 
         "carla", 
