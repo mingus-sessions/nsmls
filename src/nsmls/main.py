@@ -103,7 +103,7 @@ def remove_duplicates(star_clients):
 
 
 
-def get_path():
+def get_paths():
     for __, client in enumerate(data.nsm_clients):
         path = which(client.exec_name)
         if path:
@@ -121,6 +121,7 @@ def nsmls_data_mining():
     # 
 
     # VALIDATE
+
     nsmls.star_not_in_blocked(data.user_star_clients, data.user_blocked_clients)
     nsmls.star_not_in_blocked(data.nsm_star_clients, data.blocked_clients)
 
@@ -134,24 +135,19 @@ def nsmls_data_mining():
 
     blocked_clients_set = set(data.blocked_clients)
 
-
     # Unblock clients that are in user_star_list.
 
     blocked_clients = list(filter_blocked(blocked_clients_set))
-
 
     # Concatenate user_blocked_clients and blocked_clients.
 
     blocked_clients += user_blocked_clients_set
 
-
     # Handle the stars.
 
     # Remove duplicates from star_clients and concatenate star_clients and user_star_clients.
 
-
     star_clients = list(set(data.user_star_clients + data.nsm_star_clients))
-
 
     remove_duplicates(star_clients)
 
@@ -159,16 +155,12 @@ def nsmls_data_mining():
 
     star_objects = list(make_star_clients(star_clients))
 
-
     # Search for NSM clients in the desktop files.
 
-   
     get_entries(blocked_clients)
-
 
     # Add the star clients to nsm_clients list.
     data.nsm_clients += star_objects
-
 
     # We've gathered all our data. Let's set the star and blocked status for the Client objects in nsm_clients list.
 
@@ -176,8 +168,7 @@ def nsmls_data_mining():
     set_blocked_status(blocked_clients)
 
     # Now check which clients are actually installed. 
-    get_path()
-
+    get_paths()
 
     # Now we know the star, blocked and installed status. We also gathered the desktop files with a NSM entry. Let's set the nsmls (display) status.
     set_nsmls_status()
