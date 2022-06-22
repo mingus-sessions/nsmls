@@ -97,10 +97,10 @@ def make_star_clients(star_clients):
 def remove_duplicates(star_clients):
     for __, client in enumerate(data.nsm_clients):
         for x, star in enumerate(star_clients):
-            if client.exec_name == star:
+            if client.exec_name == star:  # The client becomes the star client. Incl url and info.
                 client.nsm_star = True
                 star_clients.pop(x)
-                #print(f"POP {star_exec_name}")
+
 
 
 def get_path():
