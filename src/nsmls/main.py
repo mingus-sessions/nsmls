@@ -19,7 +19,7 @@ import src.libnsmls.nsmls2 as nsmls
 
 def filter_blocked(blocked_clients): 
     for __, client in enumerate(blocked_clients):
-        if client not in data.user_star_clients:
+        if client not in data.user_nsm_nsm_star_objects:
             yield client
 
 
@@ -71,17 +71,17 @@ def search_for_nsm_clients(blocked_list):
 
 
 
-def make_star_clients(star_clients):
-    for __, client in enumerate(star_clients):
+def make_nsm_nsm_star_objects(nsm_nsm_star_objects):
+    for __, client in enumerate(nsm_nsm_star_objects):
         yield data.Client(exec_name=client, nsm_star=True)
 
 
-def remove_duplicates(star_clients):
+def remove_duplicates(nsm_nsm_star_objects):
     for __, client in enumerate(data.nsm_clients):
-        for x, star in enumerate(star_clients):
+        for x, star in enumerate(nsm_nsm_star_objects):
             if client.exec_name == star:  # The client becomes the star client. Incl url and info.
                 client.nsm_star = True
-                star_clients.pop(x)
+                nsm_nsm_star_objects.pop(x)
 
 
 
@@ -104,8 +104,8 @@ def nsmls_data_mining():
 
     # VALIDATE
 
-    nsmls.star_not_in_blocked(data.user_star_clients, data.user_blocked_clients)
-    nsmls.star_not_in_blocked(data.nsm_star_clients, data.blocked_clients)
+    nsmls.star_not_in_blocked(data.user_nsm_nsm_star_objects, data.user_blocked_clients)
+    nsmls.star_not_in_blocked(data.nsm_nsm_nsm_star_objects, data.blocked_clients)
 
     # Handle the blocked related data.
 
@@ -127,26 +127,26 @@ def nsmls_data_mining():
 
     # Handle the stars.
 
-    # Remove duplicates from star_clients and concatenate star_clients and user_star_clients.
+    # Remove duplicates from nsm_nsm_star_objects and concatenate nsm_nsm_star_objects and user_nsm_nsm_star_objects.
 
-    star_clients = list(set(data.user_star_clients + data.nsm_star_clients))
+    nsm_nsm_star_objects = list(set(data.user_nsm_nsm_star_objects + data.nsm_nsm_nsm_star_objects))
 
-    remove_duplicates(star_clients)
+    remove_duplicates(nsm_nsm_star_objects)
 
     # Convert star tuples to Client dataclass objects.
 
-    star_objects = list(make_star_clients(star_clients))
+    nsm_star_objects = list(make_nsm_nsm_star_objects(nsm_nsm_star_objects))
 
     # Search for NSM clients in the desktop files.
 
     search_for_nsm_clients(blocked_clients)
 
     # Add the star clients to nsm_clients list.
-    data.nsm_clients += star_objects
+    data.nsm_clients += nsm_star_objects
 
     # We've gathered all our data. Let's set the star and blocked status for the Client objects in nsm_clients list.
 
-    set_star_status(star_clients)
+    set_star_status(nsm_nsm_star_objects)
     set_blocked_status(blocked_clients)
 
     # Now check which clients are actually installed. 
@@ -163,7 +163,7 @@ def nsmls_data_mining():
 
 
 def print_output(args):
-    #for __, client in enumerate(args.nsm_star_clients):
+    #for __, client in enumerate(args.nsm_nsm_nsm_star_objects):
     #    print(f'Client("{client.exec_name}", "{client.url}", "{client.info}"),')
     if args.d:
         pprint(args.nsm_clients)
@@ -186,13 +186,13 @@ def main():
     parser.set_defaults(
             # programs=programs, 
             nsm_clients=data.nsm_clients,
-            # user_star_clients=data.user_star_clients,
+            # user_nsm_nsm_star_objects=data.user_nsm_nsm_star_objects,
             #nsm_clients=data.nsm_clients,
-            #nsm_star_clients=nsm_star_list,
+            #nsm_nsm_nsm_star_objects=nsm_star_list,
             #user_blocked = sorted(set(data.user_blocked_clients)),
             #blocked = sorted(set(data.blocked_clients)),
             #blocked=sorted(blocked_clients),
-            #stars=sorted(star_clients),
+            #stars=sorted(nsm_nsm_star_objects),
 
             )
 
