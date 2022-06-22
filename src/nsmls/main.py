@@ -91,7 +91,7 @@ def get_entries(blocked_list):
 
 def make_star_clients(star_clients):
     for __, client in enumerate(star_clients):
-        yield data.Client(exec_name=client, nsm_star=True, nsmls=True)  # what if on blocking?
+        yield data.Client(exec_name=client, nsm_star=True)
 
 
 def remove_duplicates(star_clients):
@@ -153,7 +153,7 @@ def nsmls_data_mining():
     star_clients = list(set(data.user_star_clients + data.nsm_star_clients))
 
 
-    remove_duplicates(star_clients) # do we need to have them as Client object yet? Probably note
+    remove_duplicates(star_clients)
 
     # Convert star tuples to Client dataclass objects.
 
