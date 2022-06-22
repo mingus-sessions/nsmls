@@ -113,10 +113,11 @@ nsm_star_clients = (
 # Normally you wouldn't edit this list, unless you know what you're doing.
 blocked_clients = (
 
-        "nsmd",
-        "non-daw", 
-        "carla", 
-        # "adljack", 
+        # We block tools which are designed to use in Agordejo. 
+        "agordejo.bin",
+        "agordejo", 
+        "nsm-data",          
+
         # We block tools which are designed to use in raysession.
         "ray_control",
         "ray-jack_checker_daemon",
@@ -127,10 +128,6 @@ blocked_clients = (
         "ray_git",
         "ray-proxy",
         "ray-jackpatch",
-        # We block tools which are designed to use in Agordejo. 
-        "agordejo.bin",
-        "agordejo", 
-        "nsm-data",          
 
         )
 
