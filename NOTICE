@@ -2,7 +2,15 @@
 
 NOTICE:
 
-When you distribute this software, write a description for it, add a manpage etc
-., please make sure NSM stands for Non-Session-Manager https://non.tuxfamily.org
-in the contect of session managers for Linux audio.
+When distributing this software, and proving a description, manpage, 
+documentation etc. for it, please let 'NSM' stand for the 
+original Non-Session-Manager (NSM) <https://non.tuxfamily.org</> 
+in the context of session managers for Linux audio. 
 
+All though the GPL license seems to put no restrictions for using 
+the same name and/ or the widely used abbreviation, most Linux 
+distributions do require clear renaming when forking, to prevend 
+community wide confusion about different versions of software available. 
+Moreover, it's considered to be 'good practice' to do so when forking a 
+project and thereby preventing to harm the interests of the original 
+author. 
