@@ -46,7 +46,6 @@ def check_if_on_nsm_clients_list(X_NSM_Exec):
     for __, client in enumerate(data.nsm_clients):
         if X_NSM_Exec == client.exec_name:
             return client 
-    return None
 
 
 def search_for_nsm_clients():
