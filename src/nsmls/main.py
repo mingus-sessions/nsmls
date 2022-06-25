@@ -38,7 +38,7 @@ def set_blocked_status(input_list):
 
 def set_nsmls_status():
     for __, client in enumerate(data.nsm_clients):
-        if (client.nsm_star or client.X_NSM_Exec) and not client.blocked and client.installed:
+        if (client.nsm_star or client.X_NSM_Exec) and client.installed and not client.blocked:
             client.nsmls = True
 
 
