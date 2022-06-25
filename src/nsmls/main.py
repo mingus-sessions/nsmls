@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Copyright 2022, D. H., The Netherlands.
+Copyright 2022, D. Hart, The Netherlands.
 
 This file is part of nsmls.
 
@@ -19,6 +19,7 @@ License along with this library; if not, write to the
 Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
 Boston, MA  02110-1301, USA.
 """
+
 
 import argparse
 from pprint import pprint
