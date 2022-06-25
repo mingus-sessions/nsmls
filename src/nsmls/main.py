@@ -53,7 +53,9 @@ def print_output(args):
 # https://www.instructables.com/Printing-Colored-Text-in-Python-Without-Any-Module/
 # https://ozzmaker.com/add-colour-to-text-in-python/
             
-
+#print(f"{'First Name: ' + 'Jim':<25} Last Name: {'Clark'}")
+#print(f"{'Age: ' + '42':<25} Website: {'DelftStack.com'}")
+# https://www.delftstack.com/howto/python/python-print-column-alignment/
 
 def main():
 
