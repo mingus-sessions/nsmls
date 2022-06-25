@@ -119,13 +119,8 @@ def get_paths():
 
 
 def nsmls_data_mining():
+
     # Validate.
-
-    # user star can't be in user  blocked
-    # user star can't have duplicates 
-    # 
-
-    # VALIDATE
 
     star_not_in_blocked(data.user_star_clients, data.user_blocked_clients)
     star_not_in_blocked(data.nsm_star_clients, data.blocked_clients)
