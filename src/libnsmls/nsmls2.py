@@ -21,13 +21,11 @@ Boston, MA  02110-1301, USA.
 """
 
 
-
 from shutil import which
 from pathlib import Path
 import os
 import sys
 import xdg.DesktopEntry 
-
 
 
 # NOTE: xdg specifications only have url for LINK entry it seems": https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#recognized-keys
@@ -121,45 +119,34 @@ def get_paths():
 def nsmls_data_mining():
 
     # Validate.
-
     star_not_in_blocked(data.user_star_clients, data.user_blocked_clients)
     star_not_in_blocked(data.nsm_star_clients, data.blocked_clients)
 
     # Handle the blocked related data.
 
     # Unblock clients that are in user_star_list.
-
     blocked_clients = list(filter_blocked(data.blocked_clients))
 
     # Concatenate user_blocked_clients and blocked_clients.
-
     blocked_clients = set(blocked_clients + data.user_blocked_clients)
 
-
     # Handle the stars.
-
     # Remove duplicates from star_clients and concatenate star_clients and user_star_clients.
-
     star_clients = data.user_star_clients + data.nsm_star_clients
 
     # Check if star_client is on nsm_clients list, set the client to star and rm from star list.
-
     remove_duplicates(star_clients)
 
     # Convert star tuples to Client dataclass objects.
-
     star_objects = list(make_star_clients(set(star_clients)))
 
     # Search for NSM clients in the desktop files.
-
     search_for_nsm_clients()
 
     # Add the star clients to nsm_clients list.
     data.nsm_clients = sorted(data.nsm_clients + star_objects)
 
-
     # We've gathered all our data. Let's set the star and blocked status for the Client objects in nsm_clients list.
-
     set_star_status(star_clients)
     set_blocked_status(blocked_clients)
 
@@ -168,5 +155,3 @@ def nsmls_data_mining():
 
     # Now we know the star, blocked and installed status. We also gathered the desktop files with a NSM entry. Let's set the nsmls (display) status.
     set_nsmls_status()
-
-
