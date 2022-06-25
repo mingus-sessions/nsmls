@@ -13,7 +13,7 @@ http://non.tuxfamily.org/session-manager/doc/MANUAL.html#n:1.2.
 
 For Debian based distributions like Debian, Ubuntu and Linux Mint, this should be done in ~/.xsessionrc.
 
-Example settings:
+Example settings for .xinitrc / .xsessionsrc:
 
 export NSM_PORT=18440
 export NSM_URL=osc.udp://HOSTNAME:18440/
