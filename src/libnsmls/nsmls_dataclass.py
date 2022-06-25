@@ -10,12 +10,7 @@ class Client:
     path: str = field(compare=False, default="")
     xdg_name: str = field(compare=False, default="")
     xdg_comment: str = field(compare=False, default="")
-    # xdg_version: str = field(compare=False, default="")
-    #xdg_icon: str = field(compare=False, default="")
-    #xdg_nsm_confirmed: bool = field(compare=False, default=False)
     X_NSM_Exec: str = field(compare=False, default="")
-    #X_NSM_Capable: str = field(compare=False, default="")
-    # config_list: str = field(compare=False, default="unknown")
-    nsm_star: bool = False
+    nsm_star: bool = field(compare=False, default=False)
     blocked: bool = field(compare=False, default=False)
     nsmls: bool = field(compare=False, default=False)
