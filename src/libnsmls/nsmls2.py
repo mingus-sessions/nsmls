@@ -38,10 +38,6 @@ from src.libnsmls.nsmls_dataclass import Client
 import src.libnsmls.nsmls2 as nsmls
 
 
-# indent=1, width=80, depth=None, stream=None, *, compact=False, sort_dicts=True, underscore_numbers=False)
-
-# NOTE: duplication... compare dataclasses?
-
 def star_not_in_blocked(list1, list2):
     for __, client in enumerate(list1):  # data.user_star_clients):
         if client in list2:  # data.user_blocked_clients:
