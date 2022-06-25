@@ -26,30 +26,15 @@ from shutil import which
 from pathlib import Path
 import os
 import sys
-import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
-#import xdg.IconTheme #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
+import xdg.DesktopEntry 
 
 
-# NOTE: the default file MUST not have a entry xdg_commented out, other then in user_star_clients.
+
 # NOTE: xdg specifications only have url for LINK entry it seems": https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#recognized-keys
-
-# TODO: check for multiple items
-# TODO: check if installed, for all of them.
 
 
 import src.config.nsmlsconfig as data 
 from src.libnsmls.nsmls_dataclass import Client 
-
-
-
-from shutil import which
-
-import sys
-import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
-
-
-
-import src.config.nsmlsconfig as data 
 import src.libnsmls.nsmls2 as nsmls
 
 
