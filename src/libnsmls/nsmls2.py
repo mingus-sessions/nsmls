@@ -45,7 +45,6 @@ from src.libnsmls.nsmls_dataclass import Client
 from shutil import which
 
 import sys
-from pprint import pprint
 import xdg.DesktopEntry #pyxdg  https://www.freedesktop.org/wiki/Software/pyxdg/
 
 
