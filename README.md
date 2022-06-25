@@ -11,7 +11,7 @@ It's possible to launch NSM applications from your Desktop Manager's launch menu
 
 http://non.tuxfamily.org/session-manager/doc/MANUAL.html#n:1.2.
 
-For Debian based distributions like Debian, Ubuntu and Linux Mint, this should be done in ~/.xsessionrc. See the data folder for examples.
+For Debian based distributions like Debian, Ubuntu and Linux Mint, this should be done in ~/.xsessionrc.
 
 Example settings:
 
