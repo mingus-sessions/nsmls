@@ -19,6 +19,9 @@ export NSM_PORT=18440
 export NSM_URL=osc.udp://HOSTNAME:18440/
 export NSM_DIR=~/NSM\ Sessions
 
+For Wayland alternatives see:
+https://wiki.gnome.org/Initiatives/Wayland/SessionStart
+
 
 See further:
 https://wiki.debian.org/Xsession
