@@ -46,9 +46,12 @@ def print_output(args):
     else:
         for __, client in enumerate(args.nsm_clients):
             if client.installed and client.nsmls and not client.blocked:
-                print(client.exec_name)
+                print(f"\033[1;32m{client.exec_name}\033[m")
 
 
+# ENDC = '\033[m'
+# https://www.instructables.com/Printing-Colored-Text-in-Python-Without-Any-Module/
+# https://ozzmaker.com/add-colour-to-text-in-python/
             
 
 
