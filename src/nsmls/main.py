@@ -120,14 +120,6 @@ def print_output(args):
                 print(f"{client.exec_name}")
 
 
-# ENDC = '\033[m'
-# https://www.instructables.com/Printing-Colored-Text-in-Python-Without-Any-Module/
-# https://ozzmaker.com/add-colour-to-text-in-python/
-            
-#print(f"{'First Name: ' + 'Jim':<25} Last Name: {'Clark'}")
-#print(f"{'Age: ' + '42':<25} Website: {'DelftStack.com'}")
-# https://www.delftstack.com/howto/python/python-print-column-alignment/
-
 def main():
 
     parser = argparse.ArgumentParser()
@@ -145,41 +137,12 @@ def main():
                     action="store_true")
     parser.add_argument("-p", help="show clients which are found in PATH (installed)",
                     action="store_true")
-    #parser.add_argument("-u", help="show NSM unconfirmed",
-    #                action="store_true")
     parser.set_defaults(func=print_output)
     args = parser.parse_args()
-    #if args.echo:
-    #    print("xtest")
-    # parser.set_defaults(port=NSM_PORT)
-    '''
-    subparsers = parser.add_subparsers(dest='task', help='sub-command help')
-    parser_new = subparsers.add_parser('new', help='new session')
-    parser_new.add_argument('session', help='Specify a name for the new session.')
-    parser_new.set_defaults(func=liblo_server_send)
-    parser_duplicate = subparsers.add_parser('duplicate', help='duplicate session')
-    parser_duplicate.add_argument('session', help='Specify a name for the new session.')
-    parser_duplicate.set_defaults(func=liblo_server_send)
-    '''
-
     
-
     args.func(args)
 
-
-    #print(f"programs {data.nsm_clients}")
-
-    #print(f"programs {programs}")
-    #print("##########################################")
-
-
-    # We print the output.
-    #for __, program in enumerate(programs):
-    #    print(f"{program.exec_name}" )
-
     sys.exit(0)
-
-
 
 
 if __name__ == "__main__":
