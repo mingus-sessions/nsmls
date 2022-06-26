@@ -78,21 +78,17 @@ def print_all_info(args):
 
 def print_installed(args):
     for client in args.nsm_clients:
-        if client.nsmls:
-            print(f"{client.exec_name}")
-            #print({client.exec_name)
-    for client in args.nsm_clients:
-        if client.installed and not client.nsmls:
+        if client.installed and client.nsmls:
+            print(client.exec_name)
+        elif client.installed:
             print(f"\033[2m{client.exec_name}\033[m")
 
 
 def print_installed_info(args):
     for client in args.nsm_clients:
-        if client.nsmls:
+        if client.installed and client.nsmls:
             print(f"{client.exec_name:<18} {client.info} {client.url}")
-            #print({client.exec_name)
-    for client in args.nsm_clients:
-        if client.installed and not client.nsmls:
+        elif client.installed:
             print(f"\033[2m{client.exec_name:<18} {client.info} \033[2m{client.url}\033[m")
 
 
