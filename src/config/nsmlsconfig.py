@@ -71,7 +71,7 @@ nsm_clients = [
         Client("synthv1_jack", "substractive synthesizer", "https://github.com/rncbc/synthv1"),
         Client("tap192", "midi-controlled virtual sampler", "https://github.com/PlagiatBros/tap192"),
         Client("tembro", "virtual instrument samples", "https://laborejo.org"),
-        # Client("vico", "midi sequencer (abandoned)", "https://laborejo.org"),
+        Client("vico", "midi sequencer (abandoned)", "https://laborejo.org"),
         Client("xtuner", "instrument tuner", "https://github.com/brummer10/XTuner"),
         Client("zita-at1", "autotuner (nsm patch)", "https://github.com/royvegard/zita-at1"),
         Client("zita-rev1", "reverb (nsm patch)", "https://github.com/royvegard/zita-rev1"),
