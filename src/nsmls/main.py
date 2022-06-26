@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Copyright 1822, D. Harts, The Netherlands.
+Copyright 2022, D. Harts, The Netherlands.
 
 This file is part of nsmls.
 
