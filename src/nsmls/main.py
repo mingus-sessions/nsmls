@@ -102,12 +102,12 @@ def print_output(args):
         pprint(args.nsm_clients)
     elif args.b:
         print_blocked(args)
-    elif args.a and args.i:
+    elif args.a:
         print_all_info(args)
     elif args.i and args.x:
         print_installed_info(args)
-    elif args.a:
-        print_all(args)
+    #elif args.a:
+    #    print_all(args)
     elif args.i:
         print_info(args)
     elif args.x:
