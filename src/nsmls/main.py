@@ -102,13 +102,13 @@ def print_output(args):
     #normal = '\033[m' 
     if args.d:
         pprint(args.nsm_clients)
-    elif args.a and args.c:
+    elif args.a and args.u:
         print_all_info(args)
-    elif args.c and args.i:
+    elif args.u and args.i:
         print_installed_info(args)
     elif args.a:
         print_all(args)
-    elif args.c:
+    elif args.u:
         print_info(args)
     elif args.b:
         print_blocked(args)
@@ -133,7 +133,7 @@ def main():
                     action="store_true")
     parser.add_argument("-d", help="dump all info",
                     action="store_true")
-    parser.add_argument("-c", help="show comment / info",
+    parser.add_argument("-u", help="show url and description",
                     action="store_true")
     parser.add_argument("-i", help="show installed",
                     action="store_true")
