@@ -135,15 +135,15 @@ def main():
     parser.set_defaults(
             nsm_clients=data.nsm_clients,
             )
-    parser.add_argument("-d", help="dump all info",
-                    action="store_true")
     parser.add_argument("-a", help="show all",
-                    action="store_true")
-    parser.add_argument("-p", help="show installed (path)",
                     action="store_true")
     parser.add_argument("-b", help="show blocked",
                     action="store_true")
+    parser.add_argument("-d", help="dump all info",
+                    action="store_true")
     parser.add_argument("-i", help="show info",
+                    action="store_true")
+    parser.add_argument("-p", help="show clients which are found in PATH (installed)",
                     action="store_true")
     #parser.add_argument("-u", help="show NSM unconfirmed",
     #                action="store_true")
