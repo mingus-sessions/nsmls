@@ -71,7 +71,8 @@ def print_all_info(args):
             #print(f"\033[9;2m{client.exec_name:<18} {client.info} \033[2m{client.url}\033[m")  # FIXME
             #print(f"\033[9;2m{client.exec_name}\033[m")
             #print("{0:18} Last Name: {1}".format(\033[9;2mclient.exec_name\033[m, 'Clark'))
-            number = 18 + (len(client.exec_name) - (18 - len(client.exec_name))) + 1
+            #number = 18 + (len(client.exec_name) - (18 - len(client.exec_name))) + 1
+            number = 27 # + len(client.exec_name)
             exec_name = f"\033[9;2m{client.exec_name}\033[m" 
             info = f"\033[9;2m{client.info} {client.url}\033[m" 
             print("%-*s %s" % ( number, exec_name, info))
