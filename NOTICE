@@ -14,3 +14,6 @@ community wide confusion about different versions of software available.
 Moreover, it's considered to be 'good practice' to do so when forking a 
 project and thereby preventing to harm the interests of the original 
 author. 
+
+Please keep this NOTICE as part of the source, like it's done with a
+Apache license NOTICE.
