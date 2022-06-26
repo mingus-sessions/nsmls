@@ -62,6 +62,7 @@ def print_output(args):
             if client.nsmls:
                 if client.info:
                     # print(f"{client.exec_name:<20} \033[2m{client.info}\033[m {client.url} ")
+                    # print(f"{client.exec_name:<20} \033[3m{client.info}\033[m\033[2m {client.url}\033[m")
                     print(f"{client.exec_name:<20} {client.info} \033[2m{client.url}\033[m")
 
                 else:
