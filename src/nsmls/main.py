@@ -31,40 +31,66 @@ import src.config.nsmlsconfig as data
 from src.libnsmls.nsmls_dataclass import Client 
 
 
+def print_all(args):
+    for client in args.nsm_clients:
+        if client.nsmls:
+            print(client.exec_name)
+    print()
+    for client in args.nsm_clients:
+        if client.installed and not client.nsmls:
+            print(f"\033[2m{client.exec_name}\033[m")
+    print()
+    for client in args.nsm_clients:
+        if not client.installed and not client.nsmls:
+            print(f"\033[2;3m{client.exec_name}\033[m")
 
-    
+
+def print_blocked(args):
+    for client in args.nsm_clients:
+        if client.blocked:
+            print(client.exec_name)
+
+
+def print_info(args):
+    for client in args.nsm_clients:
+        if client.nsmls:
+            if client.info:
+                print(f"{client.exec_name:<20} {client.info} \033[2m{client.url}\033[m")
+            else:
+                print(f"{client.exec_name:<20} {client.xdg_comment} {client.url}")
+
+
+def print_all_info(args):
+    for client in args.nsm_clients:
+        if client.nsmls:
+            print(f"{client.exec_name:<20} {client.info} {client.url}")
+            #print({client.exec_name)
+    print()
+    for client in args.nsm_clients:
+        if client.installed and not client.nsmls:
+            print(f"\033[2m{client.exec_name:<20} {client.info} \033[2m{client.url}\033[m")
+    print()
+    for client in args.nsm_clients:
+        if not client.installed and not client.nsmls:
+            print(f"\033[2;3m{client.exec_name:<20} {client.info} \033[2m{client.url}\033[m")
+
 
 
 
 def print_output(args):
+    #grey = '\033[2m'
+    #grey_italic = '\033[2;3m'
+    #normal = '\033[m' 
     if args.d:
         pprint(args.nsm_clients)
+    elif args.a and args.i:
+        print_all_info(args)
     elif args.a:
-        if args.i:
-             print("XXXXXXXXXXX")
-        for client in args.nsm_clients:
-            if client.nsmls:
-                print(client.exec_name)
-        print()
-        for client in args.nsm_clients:
-            if client.installed and not client.nsmls:
-                print(f"\033[2m{client.exec_name}\033[m")
-        print()
-        for client in args.nsm_clients:
-            if not client.installed and not client.nsmls:
-                print(f"\033[2;3m{client.exec_name}\033[m")
+        print_all(args)
     elif args.b:
-        for client in args.nsm_clients:
-            if client.blocked:
-                print(client.exec_name)
+        print_blocked(args)
     elif args.i:
-        for client in args.nsm_clients:
-            if client.nsmls:
-                if client.info:
-                    print(f"{client.exec_name:<20} {client.info} \033[2m{client.url}\033[m")
-
-                else:
-                    print(f"{client.exec_name:<20} {client.xdg_comment} {client.url}")
+        print_info(args)
     else:
         for client in args.nsm_clients:
             if client.nsmls:
