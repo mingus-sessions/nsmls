@@ -69,7 +69,11 @@ def print_all_info(args):
         elif client.installed and client.blocked:
             #print(\033[9;2mclient.exec_name\033[m\:<18{client.info} \033[2m{client.url}\033[m"  )  # FIXME
             #print(f"\033[9;2m{client.exec_name:<18} {client.info} \033[2m{client.url}\033[m")  # FIXME
-            print(f"\033[9;2m{client.exec_name}\033[m")
+            #print(f"\033[9;2m{client.exec_name}\033[m")
+            #print("{0:18} Last Name: {1}".format(\033[9;2mclient.exec_name\033[m, 'Clark'))
+            number = 18 - (len(client.exec_name) - 1)
+            #exec_name = 
+            print("\033[9;2m%-*s %s" % (18, client.exec_name, client.info))
 
     print()
     for client in args.nsm_clients:
