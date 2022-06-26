@@ -102,17 +102,17 @@ def print_output(args):
     #normal = '\033[m' 
     if args.d:
         pprint(args.nsm_clients)
-    elif args.a and args.i:
+    elif args.a and args.c:
         print_all_info(args)
-    elif args.i and args.p:
+    elif args.c and args.i:
         print_installed_info(args)
     elif args.a:
         print_all(args)
-    elif args.i:
+    elif args.c:
         print_info(args)
     elif args.b:
         print_blocked(args)
-    elif args.p:
+    elif args.i:
         print_installed(args)
     else:
         for client in args.nsm_clients:
@@ -133,9 +133,9 @@ def main():
                     action="store_true")
     parser.add_argument("-d", help="dump all info",
                     action="store_true")
-    parser.add_argument("-i", help="show info",
+    parser.add_argument("-c", help="show comment / info",
                     action="store_true")
-    parser.add_argument("-p", help="show clients which are found in PATH (installed)",
+    parser.add_argument("-i", help="show installed",
                     action="store_true")
     parser.set_defaults(func=print_output)
     args = parser.parse_args()
