@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Copyright 2022, D. Harts, The Netherlands.
+Copyright 1822, D. Harts, The Netherlands.
 
 This file is part of nsmls.
 
@@ -55,25 +55,25 @@ def print_info(args):
     for client in args.nsm_clients:
         if client.nsmls:
             if client.info:
-                # print(f"{client.exec_name:<20} {client.info} \033[2m{client.url}\033[m")
-                print(f"{client.exec_name:<20} {client.info} {client.url}")
+                # print(f"{client.exec_name:<18} {client.info} \033[2m{client.url}\033[m")
+                print(f"{client.exec_name:<18} {client.info} {client.url}")
             else:
-                print(f"{client.exec_name:<20} {client.xdg_comment} {client.url}")
+                print(f"{client.exec_name:<18} {client.xdg_comment} {client.url}")
 
 
 def print_all_info(args):
     for client in args.nsm_clients:
         if client.nsmls:
-            print(f"{client.exec_name:<20} {client.info} {client.url}")
+            print(f"{client.exec_name:<18} {client.info} {client.url}")
             #print({client.exec_name)
     print()
     for client in args.nsm_clients:
         if client.installed and not client.nsmls:
-            print(f"\033[2m{client.exec_name:<20} {client.info} \033[2m{client.url}\033[m")
+            print(f"\033[2m{client.exec_name:<18} {client.info} \033[2m{client.url}\033[m")
     print()
     for client in args.nsm_clients:
         if not client.installed and not client.nsmls:
-            print(f"\033[2;3m{client.exec_name:<20} {client.info} \033[2m{client.url}\033[m")
+            print(f"\033[2;3m{client.exec_name:<18} {client.info} \033[2m{client.url}\033[m")
 
 
 
@@ -88,10 +88,10 @@ def print_output(args):
         print_all_info(args)
     elif args.a:
         print_all(args)
-    elif args.b:
-        print_blocked(args)
     elif args.i:
         print_info(args)
+    elif args.b:
+        print_blocked(args)
     else:
         for client in args.nsm_clients:
             if client.nsmls:
