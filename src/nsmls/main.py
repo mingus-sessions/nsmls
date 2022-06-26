@@ -45,8 +45,13 @@ def print_output(args):
         for __, client in enumerate(args.nsm_clients):
             if client.nsmls:
                 print(client.exec_name)
+        print()
         for __, client in enumerate(args.nsm_clients):
-            if not client.nsmls:
+            if client.installed and not client.nsmls:
+                print(f"\033[2m{client.exec_name}\033[m")
+        print()
+        for __, client in enumerate(args.nsm_clients):
+            if not client.installed and not client.nsmls:
                 print(f"\033[2;3m{client.exec_name}\033[m")
     elif args.b:
         for __, client in enumerate(args.nsm_clients):
