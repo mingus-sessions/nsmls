@@ -41,9 +41,17 @@ def print_output(args):
     #    print(f'Client("{client.exec_name}", "{client.url}", "{client.info}"),')
     if args.d:
         pprint(args.nsm_clients)
-    if args.b:
-        for __, client in enumerate(args.blocked_clients):
-            print(client)
+    elif args.a:
+        for __, client in enumerate(args.nsm_clients):
+            if client.nsmls:
+                print(client.exec_name)
+        for __, client in enumerate(args.nsm_clients):
+            if not client.nsmls:
+                print(f"\033[2;3m{client.exec_name}\033[m")
+    elif args.b:
+        for __, client in enumerate(args.nsm_clients):
+            if client.blocked:
+                print(client.exec_name)
     else:
         for __, client in enumerate(args.nsm_clients):
             if client.nsmls:
@@ -63,19 +71,11 @@ def main():
     parser = argparse.ArgumentParser()
     nsmls.nsmls_data_mining()
     parser.set_defaults(
-            # programs=programs, 
             nsm_clients=data.nsm_clients,
-            # user_star_clients=data.user_star_clients,
-            #nsm_clients=data.nsm_clients,
-            #nsm_star_clients=nsm_star_list,
-            #user_blocked = sorted(set(data.user_blocked_clients)),
-            #blocked = sorted(set(data.blocked_clients)),
-            #blocked=sorted(blocked_clients),
-            #stars=sorted(star_clients),
-
             )
-
     parser.add_argument("-d", help="dump all info",
+                    action="store_true")
+    parser.add_argument("-a", help="show all",
                     action="store_true")
     parser.add_argument("-b", help="show blocked",
                     action="store_true")
