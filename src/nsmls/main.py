@@ -46,7 +46,7 @@ def print_output(args):
             print(client)
     else:
         for __, client in enumerate(args.nsm_clients):
-            if client.installed and client.nsmls and not client.blocked:
+            if client.nsmls:
                 print(f"\033[2;3m{client.exec_name}\033[m")
 
 
