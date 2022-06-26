@@ -55,7 +55,8 @@ def print_info(args):
     for client in args.nsm_clients:
         if client.nsmls:
             if client.info:
-                print(f"{client.exec_name:<20} {client.info} \033[2m{client.url}\033[m")
+                # print(f"{client.exec_name:<20} {client.info} \033[2m{client.url}\033[m")
+                print(f"{client.exec_name:<20} {client.info} {client.url}")
             else:
                 print(f"{client.exec_name:<20} {client.xdg_comment} {client.url}")
 
