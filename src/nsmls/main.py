@@ -37,8 +37,6 @@ from src.libnsmls.nsmls_dataclass import Client
 
 
 def print_output(args):
-    #for __, client in enumerate(args.nsm_star_clients):
-    #    print(f'Client("{client.exec_name}", "{client.url}", "{client.info}"),')
     if args.d:
         pprint(args.nsm_clients)
     elif args.a:
@@ -61,16 +59,10 @@ def print_output(args):
         for __, client in enumerate(args.nsm_clients):
             if client.nsmls:
                 if client.info:
-                    # print(f"{client.exec_name:<20} \033[2m{client.info}\033[m {client.url} ")
-                    # print(f"{client.exec_name:<20} \033[3m{client.info}\033[m\033[2m {client.url}\033[m")
                     print(f"{client.exec_name:<20} {client.info} \033[2m{client.url}\033[m")
 
                 else:
                     print(f"{client.exec_name:<20} {client.xdg_comment} {client.url}")
-    # elif args.u:
-    #    for __, client in enumerate(args.nsm_clients):
-    #        if client.installed and not client.nsmls and not client.blocked:
-    #            print(f"\033[2m{client.exec_name}\033[m")
     else:
         for __, client in enumerate(args.nsm_clients):
             if client.nsmls:
