@@ -79,7 +79,9 @@ def print_installed(args):
         elif client.installed and not client.blocked:
             print(f"\033[2m{client.exec_name}\033[m")
         elif client.installed and client.blocked:
-            print(f"\033[4;2m{client.exec_name}\033[m")
+            print(f"\033[9;2m{client.exec_name}\033[m")
+            #print(f"\033[2mx {client.exec_name}\033[m")
+
 
 
 def print_installed_info(args):
