@@ -64,8 +64,13 @@ def print_all_info(args):
         if client.nsmls:
             print(f"{client.exec_name:<18} {client.info} {client.url}")
             #print({client.exec_name)
-        elif client.installed:
+        elif client.installed and not client.blocked:
             print(f"\033[2m{client.exec_name:<18} {client.info} \033[2m{client.url}\033[m")
+        elif client.installed and client.blocked:
+            print(f"\033[2;3m{client.exec_name:<18} {client.info} \033[2m{client.url}\033[m")
+            #print(\033[9;2mclient.exec_name\033[m\:<18{client.info} \033[2m{client.url}\033[m"  )  # FIXME
+            #print(f"\033[2m{[client.exec_name]:<18} {client.info} \033[2m{client.url}\033[m")
+
     print()
     for client in args.nsm_clients:
         if not client.installed and not client.nsmls and not client.blocked:
