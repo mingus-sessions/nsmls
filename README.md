@@ -27,4 +27,4 @@ See further:
 https://wiki.debian.org/Xsession
 https://wiki.archlinux.org/title/Xinit
 
-License: GPL version 2.0 (see also NOTICE).
+License: GPLv2 
