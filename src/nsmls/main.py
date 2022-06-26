@@ -57,10 +57,18 @@ def print_output(args):
         for __, client in enumerate(args.nsm_clients):
             if client.blocked:
                 print(client.exec_name)
+    elif args.i:
+        for __, client in enumerate(args.nsm_clients):
+            if client.nsmls:
+                if client.info:
+                    print(f"{client.exec_name:<20} {client.url} {client.info}")
+                else:
+                    print(f"{client.exec_name:<20} {client.xdg_comment} {client.url}")
+
     else:
         for __, client in enumerate(args.nsm_clients):
             if client.nsmls:
-                print(f"\033[2;3m{client.exec_name}\033[m")
+                print(f"{client.exec_name}")
 
 
 # ENDC = '\033[m'
@@ -84,6 +92,9 @@ def main():
                     action="store_true")
     parser.add_argument("-b", help="show blocked",
                     action="store_true")
+    parser.add_argument("-i", help="show info",
+                    action="store_true")
+
     parser.set_defaults(func=print_output)
     args = parser.parse_args()
     #if args.echo:
