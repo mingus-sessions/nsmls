@@ -41,6 +41,7 @@ nsm_clients = [
         Client("ams", "modular synthesizer", "http://alsamodular.sourceforge.net"),
         Client("amsynth", "analog modelling synthesizer", "http://amsynth.github.io"),
         Client("ardour6", "digital audio workstation", "https://ardour.org"),
+        Client("ardour7", "digital audio workstation", "https://ardour.org"),
         Client("carla-jack-multi", "plugin host multi", "https://github.com/falkTX/Carla"),
         Client("carla-jack-single", "plugin host single", "https://github.com/falkTX/Carla"),
         Client("carla-patchbay", "patchbay", "https://github.com/falkTX/Carla"),
