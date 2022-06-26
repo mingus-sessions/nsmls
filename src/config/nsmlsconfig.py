@@ -74,7 +74,7 @@ nsm_clients = [
         Client("tembro", "virtual instrument samples", "https://laborejo.org"),
         Client("vico", "midi sequencer (obsolete)", "https://laborejo.org"),
         Client("xtuner", "instrument tuner", "https://github.com/brummer10/XTuner"),
-        Client("zita-at1", "autotuner (nsm patch)", "https://github.com/royvegard/zita-at1"),
+        Client("zita-at1", "autotune (nsm patch)", "https://github.com/royvegard/zita-at1"),
         Client("zita-rev1", "reverb (nsm patch)", "https://github.com/royvegard/zita-rev1"),
         Client("non-midi-mapper", "non-daw midi to osc mapper", "http://non.tuxfamily.org"),
         Client("non-mixer", "non-daw mixer", "http://non.tuxfamily.org"),
