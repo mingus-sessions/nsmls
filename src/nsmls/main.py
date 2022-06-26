@@ -86,6 +86,15 @@ def print_installed(args):
             print(f"\033[2m{client.exec_name}\033[m")
 
 
+def print_installed_info(args):
+    for client in args.nsm_clients:
+        if client.nsmls:
+            print(f"{client.exec_name:<18} {client.info} {client.url}")
+            #print({client.exec_name)
+    for client in args.nsm_clients:
+        if client.installed and not client.nsmls:
+            print(f"\033[2m{client.exec_name:<18} {client.info} \033[2m{client.url}\033[m")
+
 
 def print_output(args):
     #grey = '\033[2m'
@@ -95,6 +104,8 @@ def print_output(args):
         pprint(args.nsm_clients)
     elif args.a and args.i:
         print_all_info(args)
+    elif args.i and args.p:
+        print_installed_info(args)
     elif args.a:
         print_all(args)
     elif args.i:
