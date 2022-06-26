@@ -133,9 +133,9 @@ def main():
                     action="store_true")
     parser.add_argument("-d", help="dump all info",
                     action="store_true")
-    parser.add_argument("-i", help="show url and description",
+    parser.add_argument("-i", help="show info",
                     action="store_true")
-    parser.add_argument("-x", help="show installed / executable",
+    parser.add_argument("-x", help="show installed (executable)",
                     action="store_true")
     parser.set_defaults(func=print_output)
     args = parser.parse_args()
