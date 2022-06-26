@@ -40,23 +40,25 @@ def print_output(args):
     if args.d:
         pprint(args.nsm_clients)
     elif args.a:
-        for __, client in enumerate(args.nsm_clients):
+        if args.i:
+             print("XXXXXXXXXXX")
+        for client in args.nsm_clients:
             if client.nsmls:
                 print(client.exec_name)
         print()
-        for __, client in enumerate(args.nsm_clients):
+        for client in args.nsm_clients:
             if client.installed and not client.nsmls:
                 print(f"\033[2m{client.exec_name}\033[m")
         print()
-        for __, client in enumerate(args.nsm_clients):
+        for client in args.nsm_clients:
             if not client.installed and not client.nsmls:
                 print(f"\033[2;3m{client.exec_name}\033[m")
     elif args.b:
-        for __, client in enumerate(args.nsm_clients):
+        for client in args.nsm_clients:
             if client.blocked:
                 print(client.exec_name)
     elif args.i:
-        for __, client in enumerate(args.nsm_clients):
+        for client in args.nsm_clients:
             if client.nsmls:
                 if client.info:
                     print(f"{client.exec_name:<20} {client.info} \033[2m{client.url}\033[m")
@@ -64,7 +66,7 @@ def print_output(args):
                 else:
                     print(f"{client.exec_name:<20} {client.xdg_comment} {client.url}")
     else:
-        for __, client in enumerate(args.nsm_clients):
+        for client in args.nsm_clients:
             if client.nsmls:
                 print(f"{client.exec_name}")
 
