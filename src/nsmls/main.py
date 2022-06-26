@@ -61,7 +61,9 @@ def print_output(args):
         for __, client in enumerate(args.nsm_clients):
             if client.nsmls:
                 if client.info:
-                    print(f"{client.exec_name:<20} {client.info} {client.url} ")
+                    # print(f"{client.exec_name:<20} \033[2m{client.info}\033[m {client.url} ")
+                    print(f"{client.exec_name:<20} {client.info} \033[2m{client.url}\033[m")
+
                 else:
                     print(f"{client.exec_name:<20} {client.xdg_comment} {client.url}")
     # elif args.u:
