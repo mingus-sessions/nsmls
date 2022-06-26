@@ -80,7 +80,7 @@ nsm_clients = [
         Client("non-mixer-noui", "non-daw mixer", "http://non.tuxfamily.org"),
         Client("non-sequencer", "midi sequencer", "http://non.tuxfamily.org/"),
         Client("non-timeline", "non-daw audio recorder", "http://non.tuxfamily.org"),
-        Client("nsm-proxy", "launch tools with no nsm or gui", "http://non.tuxfamily.org"),
+        Client("nsm-proxy", "launch tools without nsm or gui", "http://non.tuxfamily.org"),
         Client("jackpatch", "save jack connections", "https://non.tuxfamily.org"),
         Client("zynaddsubfx", "synthesizer", "https://github.com/zynaddsubfx"),
 

@@ -61,10 +61,13 @@ def print_output(args):
         for __, client in enumerate(args.nsm_clients):
             if client.nsmls:
                 if client.info:
-                    print(f"{client.exec_name:<20} {client.url} {client.info}")
+                    print(f"{client.exec_name:<20} {client.info} {client.url} ")
                 else:
                     print(f"{client.exec_name:<20} {client.xdg_comment} {client.url}")
-
+    elif args.u:
+        for __, client in enumerate(args.nsm_clients):
+            if client.installed and not client.nsmls and not client.blocked:
+                print(f"\033[2m{client.exec_name}\033[m")
     else:
         for __, client in enumerate(args.nsm_clients):
             if client.nsmls:
@@ -94,7 +97,8 @@ def main():
                     action="store_true")
     parser.add_argument("-i", help="show info",
                     action="store_true")
-
+    parser.add_argument("-u", help="show NSM unconfirmed",
+                    action="store_true")
     parser.set_defaults(func=print_output)
     args = parser.parse_args()
     #if args.echo:
