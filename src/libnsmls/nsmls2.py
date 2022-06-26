@@ -44,38 +44,38 @@ def star_not_in_blocked(list1, list2):
 
 
 def filter_blocked(blocked_clients): 
-    for __, client in enumerate(blocked_clients):
+    for client in blocked_clients:
         if client not in data.user_star_clients:
             yield client
 
 
 # Set the star clients:
 def set_star_status(input_list):
-    for __, client in enumerate(data.nsm_clients):
+    for client in data.nsm_clients:
         if client.exec_name in input_list:
             client.nsm_star = True
 
 
 def set_blocked_status(input_list):
-    for __, client in enumerate(data.nsm_clients):
+    for client in data.nsm_clients:
         if client.exec_name in input_list:
             client.blocked = True
 
 
 def set_nsmls_status():
-    for __, client in enumerate(data.nsm_clients):
+    for client in data.nsm_clients:
         if (client.nsm_star or client.X_NSM_Exec) and client.installed and not client.blocked:
             client.nsmls = True
 
 
 def check_if_on_nsm_clients_list(X_NSM_Exec):
-    for __, client in enumerate(data.nsm_clients):
+    for client in data.nsm_clients:
         if X_NSM_Exec == client.exec_name:
             return client 
 
 
 def search_for_nsm_clients():
-    for __, xdg_desktop_path in enumerate(data.xdg_paths):
+    for xdg_desktop_path in data.xdg_paths:
         for file in xdg_desktop_path.rglob('*'):
             if file.is_file() and file.suffix == ".desktop":
                 desktop_file = xdg.DesktopEntry.DesktopEntry(file)
@@ -96,12 +96,12 @@ def search_for_nsm_clients():
 
 
 def make_star_clients(star_clients):
-    for __, client in enumerate(star_clients):
+    for client in star_clients:
         yield data.Client(exec_name=client, nsm_star=True)
 
 
 def remove_duplicates(star_clients):
-    for __, client in enumerate(data.nsm_clients):
+    for client in data.nsm_clients:
         for item, star in enumerate(star_clients):
             if client.exec_name == star:  # The client becomes the star client. Incl url and info.
                 client.nsm_star = True
@@ -109,7 +109,7 @@ def remove_duplicates(star_clients):
 
 
 def get_paths():
-    for __, client in enumerate(data.nsm_clients):
+    for client in data.nsm_clients:
         path = which(client.exec_name)
         if path:
             client.path = path
