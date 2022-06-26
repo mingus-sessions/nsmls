@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Copyright 2022, D. Hart, The Netherlands.
+Copyright 2022, D. Harts, The Netherlands.
 
 This file is part of nsmls.
 
@@ -47,7 +47,7 @@ def print_output(args):
     else:
         for __, client in enumerate(args.nsm_clients):
             if client.installed and client.nsmls and not client.blocked:
-                print(f"\033[2m{client.exec_name}\033[m")
+                print(f"\033[2;3m{client.exec_name}\033[m")
 
 
 # ENDC = '\033[m'
