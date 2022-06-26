@@ -102,6 +102,8 @@ def print_output(args):
     #normal = '\033[m' 
     if args.d:
         pprint(args.nsm_clients)
+    elif args.b:
+        print_blocked(args)
     elif args.a and args.u:
         print_all_info(args)
     elif args.u and args.i:
@@ -110,8 +112,6 @@ def print_output(args):
         print_all(args)
     elif args.u:
         print_info(args)
-    elif args.b:
-        print_blocked(args)
     elif args.i:
         print_installed(args)
     else:
