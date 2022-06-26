@@ -131,7 +131,7 @@ def main():
                     action="store_true")
     parser.add_argument("-b", help="show blocked",
                     action="store_true")
-    parser.add_argument("-d", help="dump all info",
+    parser.add_argument("-d", help="dump data",
                     action="store_true")
     parser.add_argument("-i", help="show info",
                     action="store_true")
