@@ -39,7 +39,7 @@ def print_all(args):
             print(f"\033[2m{client.exec_name}\033[m")
     print()
     for client in args.nsm_clients:
-        if not client.installed and not client.nsmls:
+        if not client.installed:
             print(f"\033[2;3m{client.exec_name}\033[m")
 
 
@@ -53,7 +53,6 @@ def print_info(args):
     for client in args.nsm_clients:
         if client.nsmls:
             if client.info:
-                # print(f"{client.exec_name:<18} {client.info} \033[2m{client.url}\033[m")
                 print(f"{client.exec_name:<18} {client.info} {client.url}")
             else:
                 print(f"{client.exec_name:<18} {client.xdg_comment} {client.url}")
@@ -63,7 +62,6 @@ def print_all_info(args):
     for client in args.nsm_clients:
         if client.nsmls:
             print(f"{client.exec_name:<18} {client.info} {client.url}")
-            #print({client.exec_name)
         elif client.installed and not client.blocked:
             print(f"\033[2m{client.exec_name:<18} {client.info} \033[2m{client.url}\033[m")
         elif client.installed and client.blocked:
@@ -84,8 +82,6 @@ def print_installed(args):
             print(f"\033[2m{client.exec_name}\033[m")
         elif client.installed and client.blocked:
             print(f"\033[9;2m{client.exec_name}\033[m")
-            #print(f"\033[2mx {client.exec_name}\033[m")
-
 
 
 def print_installed_info(args):
@@ -103,9 +99,6 @@ def print_nsmls(args):
 
 
 def print_output(args):
-    #grey = '\033[2m'
-    #grey_italic = '\033[2;3m'
-    #normal = '\033[m' 
     if args.d:
         pprint(args.nsm_clients)
     elif args.b:
@@ -114,8 +107,6 @@ def print_output(args):
         print_all_info(args)
     elif args.i and args.x:
         print_installed_info(args)
-    #elif args.a:
-    #    print_all(args)
     elif args.i:
         print_info(args)
     elif args.x:
