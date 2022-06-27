@@ -27,7 +27,7 @@ import sys
 
 
 import src.libnsmls.nsmls2 as nsmls 
-import src.config.nsmlsconfig as data 
+import src.config.config as data 
 from src.libnsmls.nsmls_dataclass import Client 
 
 

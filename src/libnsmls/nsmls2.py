@@ -31,7 +31,7 @@ import xdg.DesktopEntry
 # NOTE: xdg specifications only have url for LINK entry it seems": https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#recognized-keys
 
 
-import src.config.nsmlsconfig as data 
+import src.config.config as data 
 from src.libnsmls.nsmls_dataclass import Client 
 import src.libnsmls.nsmls2 as nsmls
 
