@@ -42,27 +42,31 @@ def print_info(args):
     for client in args.nsm_clients:
         if client.nsmls:
             if client.info:
-                print("%-*s %s %s" % (18, client.exec_name, client.info, client.url)) # NOTE: 27 is a bit magic, why not 18?
+                print("%-*s %s %s" % (18, client.exec_name, client.info, client.url))
             else:
-                print("%-*s %s %s" % (18, client.exec_name, client.xdg_comment, client.url)) # NOTE: 27 is a bit magic, why not 18?
+                print("%-*s %s %s" % (18, client.exec_name, client.xdg_comment, client.url))
 
 
 
 def print_all_info(args):
     for client in args.nsm_clients:
         if client.nsmls:
-            print(f"{client.exec_name:<18} {client.info} {client.url}")
+            print("%-*s %s %s" % (18, client.exec_name, client.info, client.url))
         elif client.installed and not client.blocked:
-            print(f"\033[2m{client.exec_name:<18} {client.info} {client.url}\033[m")
+            #print(f"\033[2m{client.exec_name:<18} {client.info} {client.url}\033[m")
+            print("\033[2m%-*s %s %s\033[m" % (18, client.exec_name, client.info, client.url))
         elif client.installed and client.blocked:
             #exec_name = f"\033[2;3m{client.exec_name}\033[m" 
             #info = f"\033[9;2m{client.info} {client.url}\033[m" 
             #print("%-*s %s" % (27, exec_name, info)) # NOTE: 27 is a bit magic, why not 18?
-            print(f"\033[2;3m{client.exec_name:<18} {client.info} {client.url}\033[m")
+            #print(f"\033[2;3m{client.exec_name:<18} {client.info} {client.url}\033[m")
+            print("\033[2;3m%-*s %s %s\033[m" % (18, client.exec_name, client.info, client.url))
     print()
     for client in args.nsm_clients:
         if not client.installed and not client.nsmls and not client.blocked:
-            print(f"\033[2m{client.exec_name:<18} {client.info} {client.url}\033[m")
+            #print(f"\033[2m{client.exec_name:<18} {client.info} {client.url}\033[m")
+            print("\033[2m%-*s %s %s\033[m" % (18, client.exec_name, client.info, client.url))
+
 
 
 def print_installed(args):
