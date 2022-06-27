@@ -107,6 +107,7 @@ def print_output(args):
     else:
         print_nsmls(args)
 
+
 def main():
 
     parser = argparse.ArgumentParser()
