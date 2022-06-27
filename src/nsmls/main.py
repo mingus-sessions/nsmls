@@ -31,17 +31,6 @@ import src.config.nsmlsconfig as data
 from src.libnsmls.nsmls_dataclass import Client 
 
 
-def print_all(args):
-    for client in args.nsm_clients:
-        if client.nsmls:
-            print(client.exec_name)
-        elif client.installed:
-            print(f"\033[2m{client.exec_name}\033[m")
-    print()
-    for client in args.nsm_clients:
-        if not client.installed:
-            print(f"\033[2;3m{client.exec_name}\033[m")
-
 
 def print_blocked(args):
     for client in args.nsm_clients:
