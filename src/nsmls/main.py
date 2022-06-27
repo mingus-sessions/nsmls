@@ -42,9 +42,10 @@ def print_info(args):
     for client in args.nsm_clients:
         if client.nsmls:
             if client.info:
-                print(f"{client.exec_name:<18} {client.info} {client.url}")
+                print("%-*s %s %s" % (18, client.exec_name, client.info, client.url)) # NOTE: 27 is a bit magic, why not 18?
             else:
-                print(f"{client.exec_name:<18} {client.xdg_comment} {client.url}")
+                print("%-*s %s %s" % (18, client.exec_name, client.xdg_comment, client.url)) # NOTE: 27 is a bit magic, why not 18?
+
 
 
 def print_all_info(args):
