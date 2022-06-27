@@ -1,6 +1,8 @@
 A vanilla download of nsmls will contain a file called config.def.py, a template you can use to create your own config.py file. 
 To start customising nsmls, simply copy config.def.py into config.py before you run make.
 
+# NOTE the dwm makefile only copies config.def.h to config.h if config.h is missing.
+
 
 (cp config.def.py config.py)
 
