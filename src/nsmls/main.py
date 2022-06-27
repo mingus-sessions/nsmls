@@ -43,8 +43,8 @@ def print_info(args):
         if client.nsmls:
             if client.info:
                 print("%-*s %s %s" % (18, client.exec_name, client.info, client.url))
-            else:
-                print("%-*s %s %s" % (18, client.exec_name, client.xdg_comment, client.url))
+            #else:
+            #    print("%-*s %s %s" % (18, client.exec_name, client.xdg_comment, client.url))
 
 
 def print_all_info(args):
