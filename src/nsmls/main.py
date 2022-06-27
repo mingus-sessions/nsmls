@@ -31,6 +31,8 @@ import src.config.config as data
 from src.libnsmls.nsmls_dataclass import Client 
 
 
+# NOTE: just print, seems to be better then using f-strings here. Now the spacing number can be set using a variable. 
+
 
 def print_blocked(args):
     for client in args.nsm_clients:
