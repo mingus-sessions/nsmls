@@ -35,7 +35,7 @@ Note that many patches make changes config.def.py instead of config.py. Either m
 Then record the changes as commits
 
 # tell git to add the changes in the given file(s) to be recorded
-git add some_file.ext
+git add some_file
 # git will ask you to provide a message describing your changes,
 # while showing a diff of what's being commited.
 git commit -v
@@ -57,7 +57,7 @@ The --preserve-merges option ensures that you don't have to resolve conflicts wh
 
 In case there are merge conflicts anyway, resolve them (possibly with the help of git mergetool), then record them as resolved and let the rebase continue
 
-git add resolved_file.ext
+git add resolved_file
 git rebase --continue
 
 If you want to give up, you can always abort the rebase
