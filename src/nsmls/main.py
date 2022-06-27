@@ -84,7 +84,6 @@ def print_installed_info(args):
             print(f"\033[2;3m{client.exec_name:<18} {client.info} {client.url}\033[m")
 
 
-
 def print_nsmls(args):
     for client in args.nsm_clients:
         if client.nsmls:
