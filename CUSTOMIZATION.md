@@ -54,7 +54,8 @@ git pull
 Then rebase your customization branch on top of the main branch
 
 git checkout my_nsmls
-git rebase --preserve-merges main
+git rebase --rebase-merges main
+
 
 The --preserve-merges option ensures that you don't have to resolve conflicts which you have already resolved while performing merges again.
 
