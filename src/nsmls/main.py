@@ -108,7 +108,6 @@ def print_output(args):
 
 
 def main():
-
     parser = argparse.ArgumentParser()
     nsmls.nsmls_data_mining()
     parser.set_defaults(
