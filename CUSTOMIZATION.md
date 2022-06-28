@@ -55,6 +55,7 @@ Then record the changes as commits
 
 git add .  
 git commit -m "my commit"  
+(git push codeberg my_nsmls)
 
 
 
