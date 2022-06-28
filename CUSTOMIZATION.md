@@ -53,11 +53,8 @@ Now make your changes.
 
 Then record the changes as commits
 
-- tell git to add the changes in the given file(s) to be recorded  
-git add some_file  
+git add .  
 git commit -m "my commit"  
-- show a diff of what's being commited.  
-git commit -v  
 
 
 
