@@ -45,7 +45,9 @@ git add remote codeberg https://codeberg.org/username/custom_version.git
 
 Push your custom branch to the new remote repository:
 
-git push codeberg my_custom_branch 
+git push codeberg my_custom_branch  
+
+(Codeberg is a arbitrary chosen name).
 
 
 Now make your changes. 
