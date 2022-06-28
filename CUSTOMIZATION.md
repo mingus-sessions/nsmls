@@ -7,7 +7,7 @@ To start customising nsmls, simply copy config.def.py into config.py before you 
 
 
 
-The default Makefile distributed with nsmls will not overwrite your customised **config.py** with the contents of **config.def.py**, even if it was updated in the latest git pull. Therefore, you should always compare your customised config.py with config.def.py and make sure you include any changes to the latter in your config.py.
+The default **Makefile** distributed with nsmls will not overwrite your customised **config.py** with the contents of **config.def.py**, even if it was updated in the latest git pull. Therefore, you should always compare your customised config.py with config.def.py and make sure you include any changes to the latter in your config.py.
 
 
 
