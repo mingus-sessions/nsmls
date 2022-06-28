@@ -1,5 +1,5 @@
 #PREFIX=/usr/local
-PROGRAM=nsmls
+PROGRAM=nsmls2
 VERSION=0.0.1
 
 .PHONY: install uninstall
@@ -15,10 +15,11 @@ src/config/config.py:
 
 
 install:
-	pip install "dist/nsmls2-$(VERSION)-py3-none-any.whl"
+	pip uninstall -y "$(PROGRAM)"
+	pip install "dist/$(PROGRAM)-$(VERSION)-py3-none-any.whl"
 
 uninstall:
-	pip uninstall nsmls2
+	pip uninstall "$(PROGRAM)" 
 
 
 
