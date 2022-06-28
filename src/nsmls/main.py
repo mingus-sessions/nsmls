@@ -44,23 +44,23 @@ def print_info(args):
     for client in args.nsm_clients:
         if client.nsmls:
             if client.info:
-                print("%-*s %s %s" % (18, client.exec_name, client.info, client.url))
+                print("%-*s %s %s" % (args.space, client.exec_name, client.info, client.url))
             #else:
-            #    print("%-*s %s %s" % (18, client.exec_name, client.xdg_comment, client.url))
+            #    print("%-*s %s %s" % (args.space, client.exec_name, client.xdg_comment, client.url))
 
 
 def print_all_info(args):
     for client in args.nsm_clients:
         if client.nsmls:
-            print("%-*s %s %s" % (18, client.exec_name, client.info, client.url))
+            print("%-*s %s %s" % (args.space, client.exec_name, client.info, client.url))
         elif client.installed and not client.blocked:
-            print("\033[2m%-*s %s %s\033[m" % (18, client.exec_name, client.info, client.url))
+            print("\033[2m%-*s %s %s\033[m" % (args.space, client.exec_name, client.info, client.url))
         elif client.installed and client.blocked:
-            print("\033[2;3m%-*s %s %s\033[m" % (18, client.exec_name, client.info, client.url))
+            print("\033[2;3m%-*s %s %s\033[m" % (args.space, client.exec_name, client.info, client.url))
     print()
     for client in args.nsm_clients:
         if not client.installed and not client.nsmls and not client.blocked:
-            print("\033[2m%-*s %s %s\033[m" % (18, client.exec_name, client.info, client.url))
+            print("\033[2m%-*s %s %s\033[m" % (args.space, client.exec_name, client.info, client.url))
 
 
 def print_installed(args):
@@ -68,19 +68,19 @@ def print_installed(args):
         if client.nsmls:
             print(client.exec_name)
         elif client.installed and not client.blocked:
-            print("\033[2m%-*s\033[m" % (18, client.exec_name))
+            print("\033[2m%-*s\033[m" % (args.space, client.exec_name))
         elif client.installed and client.blocked:
-            print("\033[2;3m%-*s\033[m" % (18, client.exec_name))
+            print("\033[2;3m%-*s\033[m" % (args.space, client.exec_name))
 
 
 def print_installed_info(args):
     for client in args.nsm_clients:
         if client.nsmls:
-            print("%-*s %s %s" % (18, client.exec_name, client.info, client.url))
+            print("%-*s %s %s" % (args.space, client.exec_name, client.info, client.url))
         elif client.installed and not client.blocked:
-            print("\033[2m%-*s %s %s\033[m" % (18, client.exec_name, client.info, client.url))
+            print("\033[2m%-*s %s %s\033[m" % (args.space, client.exec_name, client.info, client.url))
         elif client.installed and client.blocked:
-            print("\033[2;3m%-*s %s %s\033[m" % (18, client.exec_name, client.info, client.url))
+            print("\033[2;3m%-*s %s %s\033[m" % (args.space, client.exec_name, client.info, client.url))
 
 
 def print_nsmls(args):
@@ -111,6 +111,7 @@ def main():
     nsmls.nsmls_data_mining()
     parser.set_defaults(
             nsm_clients=data.nsm_clients,
+            space=18,
             )
     parser.add_argument("-a", help="show all",
                     action="store_true")
