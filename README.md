@@ -25,6 +25,8 @@ No support for .xinitrc / .xsessionrc / wayland related problems.
 
 No support for git related problems, unless the documentation of nsmls could be improved.  
 
+No support for pip related problems, unless the problem is in the setup files.
+
 Please sent a patch if you think a NSM client should be added to the nsm_clients list.  
 
 The nsm_star_clients list is short for a reason. Missing NSM keys in desktop files should be fixed by upstream developers, in meantime users should edit their custom config.def.py file.
