@@ -12,14 +12,16 @@ nsmls -i
 See nsmls -h for other options.  
 
 Applications that have NSM support, should provide a xdg *.desktop file with the NSM keys[1] in it to be detected by nsmls. Nsmls checks for the X-NSM-Exec key. 
-You can include your specific user settings in src/config/config.def.py. See CUSTOMIZATION.md for instructions about the config.def.py/ config.py files.  
+You can include your specific user settings in src/config/config.def.py. See CUSTOMIZATION.md for instructions about the src/config/config.def.py file and the 'suckless setup'.  
 
 **Support**
 
 
 The project is a personal project, which is released because it might be useful for others. License is GPLv2, feel free to maintain your own version. See the NOTICE file in that case. Contribute if possible.
 
-No support, feel free to report your issue though. Your issue is probably my issue as well. Users should help users.
+In general, don't expect support. Feel free to report your issue though. Your issue is probably my issue as well and ideally there will be no bugs. 
+
+Users should help users. 
 
 No support for .xinitrc / .xsessionrc / wayland related problems.  
 
@@ -29,7 +31,7 @@ No support for pip related problems, unless the problem is in the setup files.
 
 Please sent a patch if you think a NSM client should be added to the nsm_clients list.  
 
-The nsm_star_clients list is short for a reason. Missing NSM keys in desktop files should be fixed by upstream developers, in meantime users should edit their custom config.def.py file.
+The nsm_star_clients list in src/config/config.def.py is short for a reason. Missing NSM keys in desktop files should be fixed by upstream developers, in meantime users should edit their custom config.def.py file.
 
 To keep things simple, tools that are designed specifically for other GUIs are blocked by default. Users can enable them in their own config if they prefer.  
 
