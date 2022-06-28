@@ -15,18 +15,6 @@ Applications that have NSM support, should provide a xdg *.desktop file with the
 You can include your specific user settings in src/config/config.py. See CUSTOMIZATION.md for instructions about the src/config/config.def.py and the src/config/config.py file and the 'suckless setup'.  
 
 
-**Installation**  
-make  
-make install  
-
-
-**Requirements**  
-python >= 3.10  (Ubuntu >= 22.04)  
-setuptools >=42  
-pip (https://pypi.org/project/pip/)  
-pyxdg  (https://pypi.org/project/pyxdg/)  
-
-
 **Support**
 
 
@@ -47,6 +35,22 @@ Please sent a patch if you think a NSM client should be added to the nsm_clients
 The nsm_star_clients list in src/config/config.def.py is short for a reason. Missing NSM keys in desktop files should be fixed by upstream developers, in meantime users should edit their custom src/config/config.py file.
 
 To keep things simple, tools that are designed specifically for other GUIs are blocked by default. Users can enable them in their own src/config/config.py if they prefer.  
+
+**Installation**  
+
+make  
+make install  
+
+
+**Requirements**  
+
+python >= 3.10  (Ubuntu >= 22.04)  
+setuptools >=42  
+pip (https://pypi.org/project/pip/)  
+pyxdg  (https://pypi.org/project/pyxdg/)  
+
+
+
 
 **Launch from menu**
 
