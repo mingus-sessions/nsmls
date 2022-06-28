@@ -1,9 +1,11 @@
 **The suckless way**
 
+Tools following the suckless philosophy are customized through editing its source code, this should make the tools fast and secure - it does not process any input data which isn't known at 'compile time'.
+
 **Config**
 
-A vanilla download will contain a folder src/config with a file called config.def.py, a template you can use to create your own config.py file. 
-To start customising, simply copy config.def.py into config.py in the same src/config folder, before you run make. 
+A vanilla download will contains a file src/config/config.def.py, a template you can use to create your own src/config/config.py file. 
+To start customising, simply copy src/config/config.def.py into src/config/config.py before you run make. 
 
 
 
@@ -110,7 +112,7 @@ Then install it the normal way using the makefile.
 
 
 Sources:  
-https://suckless.org/  
+http://suckless.org/philosophy/
 http://dwm.suckless.org/customisation/  
 http://dwm.suckless.org/customisation/patches_in_git/  
 
