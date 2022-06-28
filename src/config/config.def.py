@@ -108,7 +108,6 @@ nsm_star_clients = [
 # Normally you wouldn't edit this list, unless you know what you're doing.
 blocked_clients = [
 
-
         # We block tools which are designed to use in Agordejo. 
         "agordejo.bin",
         "agordejo", 
