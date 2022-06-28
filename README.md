@@ -59,6 +59,7 @@ X-NSM-Exec=drumkv1_jack
 X-NSM-Capable=true  
 
 [2] http://non.tuxfamily.org/session-manager/doc/MANUAL.html#n:1.2.  
+
 [3] See further:  
 https://wiki.debian.org/Xsession  
 https://wiki.archlinux.org/title/Xinit  
