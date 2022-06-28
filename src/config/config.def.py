@@ -32,7 +32,7 @@ user_blocked_clients = [
 
 
 # List with clients which are known to have NSM support. They'll be listed if they have a xdg *.desktop file with a 'X-NSM-Exec' key.
-# Normally a user should only edit this when a custom client in user_star_clients needs a description and a url.
+# Normally a user should only add a item to the list, when a custom client in user_star_clients needs a description and a url.
 
 nsm_clients = [
         
