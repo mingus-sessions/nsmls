@@ -11,6 +11,8 @@ nsmls -i
 
 See nsmls -h for other options.  
 
+Developers that have NSM support in their application, should provide a xdg *.desktop file with the key 'X-NSM_Exec' in it, to be detected by nsmls. Please ask them to include it. You can include your specif user settings in src/config/config.def.py.  
+
 See CUSTOMIZATION.md for customizing nsmls.  
 
 Note that it's possible to launch NSM applications from your Desktop Manager's launch menu, like dmenu. This way you can use nsmls to list supported applications and then just launch them from your application launcher.
