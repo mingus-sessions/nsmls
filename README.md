@@ -21,6 +21,7 @@ make install
 
 
 **Requirements**  
+Linux only  
 python >= 3.10  (Ubuntu >= 22.04)  
 setuptools >=42  
 pip (https://pypi.org/project/pip/)  
