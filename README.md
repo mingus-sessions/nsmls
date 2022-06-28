@@ -44,7 +44,7 @@ No support for pip related problems, unless the problem is in the setup files.
 
 Please sent a patch if you think a NSM client should be added to the nsm_clients list in src/config/config.def.py.  
 
-The nsm_star_clients list in src/config/config.def.py is short for a reason. Missing NSM keys in desktop files should be fixed by upstream developers, in meantime users should edit their custom config.py file.
+The nsm_star_clients list in src/config/config.def.py is short for a reason. Missing NSM keys in desktop files should be fixed by upstream developers, in meantime users should edit their custom src/config/config.py file.
 
 To keep things simple, tools that are designed specifically for other GUIs are blocked by default. Users can enable them in their own src/config/config.py if they prefer.  
 
