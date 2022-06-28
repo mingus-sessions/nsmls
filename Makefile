@@ -12,10 +12,10 @@ clean:
 	# remove config.py?
 
 install:
-	pip install nsmls
+	pip install "dist/nsmls2-$(VERSION)-py3-none-any.whl"
 
 uninstall:
-	pip uninstall nsmls
+	pip uninstall nsmls2
 
 
 
