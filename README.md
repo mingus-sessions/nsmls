@@ -34,16 +34,15 @@ https://wiki.gnome.org/Initiatives/Wayland/SessionStart
 
 **Support**
 
-* Development is done by someone who is more a poweruser then a developer.
-* The project is a personal project, which is released because it might be useful for others. License is GPLv2, feel free to maintain your own version. See the NOTICE file in that case.
-* Send your patches, so at least other users can find and apply them.
-* No support, feel free to report your issue though. Better, send me your proposed fix.
-* No support for .xinitrc / .xsessionrc / wayland related problems.
-* No support for git related problems, unless the documentation of nsmls is not correct.
-* Please sent a patch if you think a NSM client should be added to the nsm_clients list.
-* The nsm_star_clients list is short for a reason. Missing NSM keys in desktop files should be fixed by upstream developers, in meantime users should edit their custom config.def.py file.
-* To keep things simple, nsmls focuses on applications specifically designed for NSM (Non-Session-Manager) and the Non-Session-Manager GUI. Tools that are designed specifically for other GUIs
-are blocked by default. Users can enable them in their own config if they prefer.
+Development is done by someone who is more a poweruser then a developer.  
+The project is a personal project, which is released because it might be useful for others. License is GPLv2, feel free to maintain your own version. See the NOTICE file in that case.  
+Send your patches, so at least other users can find and apply them.  
+No support, feel free to report your issue though. Better, send me your proposed fix.  
+No support for .xinitrc / .xsessionrc / wayland related problems.  
+No support for git related problems, unless the documentation of nsmls is not correct.  
+Please sent a patch if you think a NSM client should be added to the nsm_clients list.  
+The nsm_star_clients list is short for a reason. Missing NSM keys in desktop files should be fixed by upstream developers, in meantime users should edit their custom config.def.py file.
+To keep things simple, nsmls focuses on applications specifically designed for NSM (Non-Session-Manager) and the Non-Session-Manager GUI. Tools that are designed specifically for other GUIs are blocked by default. Users can enable them in their own config if they prefer.  
 
 
 See further:  
