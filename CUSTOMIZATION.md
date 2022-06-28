@@ -41,7 +41,7 @@ Make a new repository on codeberg or github.
 
 Add the repository as remote (https or ssh):
 
-git add remote codeberg https://codeberg.org/username/custom_version.git
+git add remote codeberg https://codeberg.org/username/appname_custom.git
 
 Push your custom branch to the new remote repository:
 
