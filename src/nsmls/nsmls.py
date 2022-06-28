@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Copyright 2022, D. Harts, The Netherlands.
+Copyright 2022, D. H., The Netherlands.
 
 This file is part of nsmls.
 
@@ -26,9 +26,9 @@ from pprint import pprint
 import sys
 
 
-import libnsmls.nsmls2 as nsmls 
-import config.config as data 
 from libnsmls.nsmls_dataclass import Client 
+import libnsmls.functions as nsmlsfunc 
+import config.config as data 
 
 
 # NOTE: just print, seems to be better then using f-strings here. Now the spacing number can be set using a variable. 
@@ -90,6 +90,7 @@ def print_nsmls(args):
 
 
 def print_output(args):
+    print(args.res)
     if args.d:
         pprint(args.nsm_clients)
     elif args.b:
@@ -108,10 +109,11 @@ def print_output(args):
 
 def main():
     parser = argparse.ArgumentParser()
-    nsmls.nsmls_data_mining()
+    nsmlsfunc.nsmls_data_mining()
+    #longest = libnsmls.get_longest()
     parser.set_defaults(
             nsm_clients=data.nsm_clients,
-            space=18,
+            #space= longest + 2,
             )
     parser.add_argument("-a", help="show all",
                     action="store_true")
