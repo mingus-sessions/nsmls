@@ -2,7 +2,7 @@ DRAFT! License NOT OFFICIAL!!!
 
 
 
-nsmls lists applications with Non-Session-Manager (NSM) support.  
+nsmls lists applications which have NSM (Non-Session-Manager) support.  
 
 Usage:  
 
