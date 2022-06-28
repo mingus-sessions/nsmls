@@ -36,7 +36,7 @@ git checkout my_nsmls
 
 It's recommended to backup your custom branch of nsmls. This can be done by adding a remote branch.
 
-For example:
+For example:  
 Make a new repository on codeberg or github.
 
 Add the repository as remote (https or ssh):
@@ -55,9 +55,8 @@ Then record the changes as commits
 
 - tell git to add the changes in the given file(s) to be recorded  
 git add some_file  
-- git will ask you to provide a message describing your changes,  
-git commit -m "my commit"
-- while showing a diff of what's being commited.  
+git commit -m "my commit"  
+- show a diff of what's being commited.  
 git commit -v  
 
 
@@ -87,7 +86,10 @@ If you want to give up, you can always abort the rebase
 git rebase --abort  
 
 
-**Using pip install -e**
+
+
+***Using pip install -e***
+
 
 Note that in Python one can test a installation using: 
 
@@ -106,7 +108,8 @@ If you've the nsmls configuration the way you like, unstall it using: pip uninst
 Then install it the normal way using the makefile.
 
 
-Sources:
-http://dwm.suckless.org/customisation/
-http://dwm.suckless.org/customisation/patches_in_git/
+
+Sources:  
+http://dwm.suckless.org/customisation/  
+http://dwm.suckless.org/customisation/patches_in_git/  
 
