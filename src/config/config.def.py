@@ -89,7 +89,9 @@ nsm_clients = [
         ]
 
 
-# List with (black)star clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. They're added to the list if they're installed. This list is short for the reason that in a ideal world, 'all' NSM clients would have a good *.desktop file with a NSM entryt . Normally you wouldn't edit this.
+# List with (black)star clients that do have nsm support with 99% certainty, but don't have a (proper) desktop file and/ or are not maintained actively at the moment. 
+# They're added to the list if they're installed. This list should be short. 
+
 nsm_star_clients = [
 
         "non-midi-mapper",
@@ -136,14 +138,3 @@ xdg_paths = (
         Path(Path.home(), ".local/share/applications"), # $XDG_DATA_HOME/applications/
 
         )
-
-
-
-
-# DEVELOPER NOTE: for BASH a list in the following format would be easier to parse:
-# zynaddsubfx https://github.com/zynaddsubfx synthesizer
-# with space as delimiter, which is default in BASH.
-
-
-
-  
