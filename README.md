@@ -49,12 +49,11 @@ export NSM_PORT=18440
 export NSM_URL=osc.udp://HOSTNAME:18440/  
 export NSM_DIR=~/NSM\ Sessions  
 
-[3]
 
-
-License: GPLv2  
-
-
+See further:  
+https://wiki.debian.org/Xsession  
+https://wiki.archlinux.org/title/Xinit  
+https://wiki.gnome.org/Initiatives/Wayland/SessionStart  
 
 [1] Example:  
 X-NSM-Exec=drumkv1_jack  
@@ -62,7 +61,4 @@ X-NSM-Capable=true
 
 [2] http://non.tuxfamily.org/session-manager/doc/MANUAL.html#n:1.2.  
 
-[3] See further:  
-https://wiki.debian.org/Xsession  
-https://wiki.archlinux.org/title/Xinit  
-https://wiki.gnome.org/Initiatives/Wayland/SessionStart  
+
