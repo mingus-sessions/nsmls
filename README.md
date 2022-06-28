@@ -11,7 +11,10 @@ nsmls -i
 
 See nsmls -h for other options.  
 
-Developers that have NSM support in their application, should provide a xdg *.desktop file with the key 'X-NSM-Exec' in it, to be detected by nsmls. Please ask them to include it. A example of a desktop file (drumkv1) is included. You can include your specific user settings in src/config/config.def.py.  
+Developers that have NSM support in their application, should provide a xdg *.desktop file with the following keys in it:
+X-NSM-Exec=executable_name  
+X-NSM-Capable=true  
+Nsmls checks the X-NSM-Exec key, if it's missing, the application won't be detected by nsmls. You can include your specific user settings in src/config/config.def.py.  
 
 See CUSTOMIZATION.md for customizing nsmls.  
 
