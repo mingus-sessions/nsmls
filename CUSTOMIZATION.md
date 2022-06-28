@@ -34,7 +34,7 @@ git checkout my_custom_branch
 
 **Custom version in git**
 
-You could to push your custom branch to your own repository. This can be done by adding a remote branch.
+You could push your custom branch to your own (online) repository. This can be done by adding a remote branch.
 
 For example:  
 Make a new repository on codeberg or github.
