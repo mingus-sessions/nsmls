@@ -15,16 +15,16 @@ Applications that have NSM support, should provide a xdg *.desktop file with the
 You can include your specific user settings in src/config/config.def.py. See CUSTOMIZATION.md for instructions about the src/config/config.def.py file and the 'suckless setup'.  
 
 
+**Installation**  
+make  
+make install  
+
+
 **Requirements**  
 python >= 3.10  (Ubuntu >= 22.04)  
 setuptools >=42  
 pip (https://pypi.org/project/pip/)  
 pyxdg  (https://pypi.org/project/pyxdg/)  
-
-
-**Installation**
-make  
-make install  
 
 
 **Support**
