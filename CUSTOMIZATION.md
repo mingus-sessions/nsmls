@@ -10,7 +10,7 @@ To start customising nsmls, simply copy config.def.py into config.py before you 
 The default Makefile distributed with nsmls will not overwrite your customised config.py with the contents of config.def.py, even if it was updated in the latest git pull. Therefore, you should always compare your customised config.py with config.def.py and make sure you include any changes to the latter in your config.py.
 
 
-http://dwm.suckless.org/customisation/
+Copied from: http://dwm.suckless.org/customisation/
 
 
 Customizations can be managed directly in git.
@@ -59,7 +59,7 @@ git checkout my_nsmls
 git rebase --rebase-merges main
 
 
-The --preserve-merges option ensures that you don't have to resolve conflicts which you have already resolved while performing merges again.
+The --rebase-merges option ensures that you don't have to resolve conflicts which you have already resolved while performing merges again.
 
 In case there are merge conflicts anyway, resolve them (possibly with the help of git mergetool), then record them as resolved and let the rebase continue
 
@@ -70,5 +70,6 @@ If you want to give up, you can always abort the rebase
 
 git rebase --abort
 
-http://dwm.suckless.org/customisation/patches_in_git/
+
+Copied from: http://dwm.suckless.org/customisation/patches_in_git/
 
