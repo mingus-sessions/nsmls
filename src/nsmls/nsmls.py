@@ -90,7 +90,6 @@ def print_nsmls(args):
 
 
 def print_output(args):
-    print(args.res)
     if args.d:
         pprint(args.nsm_clients)
     elif args.b:
@@ -110,10 +109,10 @@ def print_output(args):
 def main():
     parser = argparse.ArgumentParser()
     nsmlsfunc.nsmls_data_mining()
-    #longest = libnsmls.get_longest()
+    longest = nsmlsfunc.get_longest()
     parser.set_defaults(
             nsm_clients=data.nsm_clients,
-            #space= longest + 2,
+            space= longest + 2,
             )
     parser.add_argument("-a", help="show all",
                     action="store_true")
