@@ -43,7 +43,7 @@ No support, feel free to report your issue though. Better, send me your proposed
 
 No support for .xinitrc / .xsessionrc / wayland related problems.  
 
-No support for git related problems, unless the documentation of nsmls is not correct.  
+No support for git related problems, unless the documentation of nsmls could be improved.  
 
 Please sent a patch if you think a NSM client should be added to the nsm_clients list.  
 
