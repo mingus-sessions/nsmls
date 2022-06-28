@@ -17,7 +17,7 @@ You can include your specific user settings in src/config/config.def.py. See CUS
 **Support**
 
 
-The project is started as a personal project, which at then end is released because it might be useful for others. License is GPLv2, feel free to maintain your own version. See the NOTICE file in that case. Contribute if possible.
+The project is started as a personal project, which at the end is released because it might be useful for others. License is GPLv2, feel free to maintain your own version. See the NOTICE file in that case. Contribute if possible.
 
 In general, don't expect support. Feel free to report your issue though. Your issue is probably my issue as well and bugs are not good. Don't expect new features.
 
