@@ -34,11 +34,10 @@ https://wiki.gnome.org/Initiatives/Wayland/SessionStart
 
 **Support**
 
-Development is done by someone who is more a poweruser then a developer. 
 
 The project is a personal project, which is released because it might be useful for others. License is GPLv2, feel free to maintain your own version. See the NOTICE file in that case.  
 
-Send your patches, so at least other users can find and apply them.  
+Send your patches and improvements, so at least other users can find and apply them (the suckless way).
 
 No support, feel free to report your issue though. Better, send me your proposed fix.  
 
