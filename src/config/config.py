@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from pathlib import Path
-from src.libnsmls.nsmls_dataclass import Client
+from libnsmls.nsmls_dataclass import Client
 
   
 # USER CONFIG 
