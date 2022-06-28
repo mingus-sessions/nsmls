@@ -27,7 +27,7 @@ import sys
 
 
 from libnsmls.nsmls_dataclass import Client 
-import libnsmls.functions as nsmlsfunc 
+import libnsmls.nsmls_functions as nsmlsfunc 
 import config.config as data 
 
 
