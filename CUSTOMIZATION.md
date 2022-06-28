@@ -47,6 +47,8 @@ or when you're in the nsmls folder containing the setup.py file:
 
 pip install -e .
 
+(Yes, that's a dot.)
+
 When you now change something in your nsmls configuration, it will automatically applied to your installed version.
 
 If you've the nsmls configuration the way you like, unstall it using: pip uninstall nsmls
