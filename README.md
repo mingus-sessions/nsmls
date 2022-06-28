@@ -11,9 +11,8 @@ nsmls -i
 
 See nsmls -h for other options.  
 
-Developers that have NSM support in their application, should provide a xdg *.desktop file with the following keys in it:  
-X-NSM-Exec=executable_name  
-X-NSM-Capable=true  
+Developers that have NSM support in their application, should provide a xdg *.desktop file with the NSM keys in it to be detected by nsmls. 
+
 Nsmls checks the X-NSM-Exec key, if it's missing, the application won't be detected by nsmls. You can include your specific user settings in src/config/config.def.py.  
 
 See CUSTOMIZATION.md for customizing nsmls.  
@@ -42,5 +41,9 @@ https://wiki.archlinux.org/title/Xinit
 
 License: GPLv2  
 
+[1]  
+Example:  
+X-NSM-Exec=drumkv1_jack 
+X-NSM-Capable=true  
 
-[1] http://non.tuxfamily.org/session-manager/doc/MANUAL.html#n:1.2.  
+[2] http://non.tuxfamily.org/session-manager/doc/MANUAL.html#n:1.2.  
