@@ -50,7 +50,7 @@ Please sent a patch if you think a NSM client should be added to the nsm_clients
 
 The nsm_star_clients list is short for a reason. Missing NSM keys in desktop files should be fixed by upstream developers, in meantime users should edit their custom config.def.py file.
 
-To keep things simple, nsmls focuses on applications specifically designed for NSM (Non-Session-Manager) and the Non-Session-Manager GUI. Tools that are designed specifically for other GUIs are blocked by default. Users can enable them in their own config if they prefer.  
+To keep things simple, tools that are designed specifically for other GUIs are blocked by default. Users can enable them in their own config if they prefer.  
 
 
 See further:  
