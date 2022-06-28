@@ -1,10 +1,6 @@
 A vanilla download of nsmls will contain a file called config.def.py, a template you can use to create your own config.py file. 
 To start customising nsmls, simply copy config.def.py into config.py before you run make.
 
-# NOTE the dwm makefile only copies config.def.h to config.h if config.h is missing.
-
-
-(cp config.def.py config.py)
 
 
 The default Makefile distributed with nsmls will not overwrite your customised config.py with the contents of config.def.py, even if it was updated in the latest git pull. Therefore, you should always compare your customised config.py with config.def.py and make sure you include any changes to the latter in your config.py.
@@ -19,7 +15,7 @@ The concept
 
 By recording changes and applied patches as commits in a special branch they can be rebased on top of the main branch when required.
 
-git clone .....nsmls url
+git clone nsmls url
 
 Recording customizations
 
@@ -33,7 +29,6 @@ git checkout my_nsmls
 
 Now make your changes. 
 
-(skip part about the patches).
 
 Then record the changes as commits
 
@@ -42,6 +37,21 @@ git add some_file
 # git will ask you to provide a message describing your changes,
 # while showing a diff of what's being commited.
 git commit -v
+
+
+Note that in Python one can test a installation using: 
+
+pip install -e /path/to/local/nsmls/repo
+
+or when you're in the nsmls folder containing the setup.py file:
+
+pip install -e .
+
+When you now change something in your nsmls configuration, it will automatically applied to your installed version.
+
+If you've the nsmls configuration the way you like, unstall it using: pip uninstall nsmls
+
+Then install it the normal way using the makefile.
 
 
 Updating customizations after new release
