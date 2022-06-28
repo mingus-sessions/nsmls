@@ -32,7 +32,7 @@ It's recommended to backup your custom branch of nsmls. This can be done by addi
 For example:
 Make a new repository on codeberg or github.
 
-Add the repository as remote:
+Add the repository as remote (https or ssh):
 
 git add remote codeberg https://codeberg.org/username/nsmls_custom.git
 
