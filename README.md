@@ -37,9 +37,9 @@ export NSM_DIR=~/NSM\ Sessions
 
 The project is a personal project, which is released because it might be useful for others. License is GPLv2, feel free to maintain your own version. See the NOTICE file in that case.  
 
-Send your patches and improvements, so at least other users can find and apply them (the suckless way).
+Send your patches and improvements, so at least other users can find and apply them (the suckless way). (Take note of the Unix / KISS / Suckless ideas).
 
-No support, feel free to report your issue though. Better, send me your proposed fix.  
+No support, feel free to report your issue though. Your issue is probably my issue as well. 
 
 No support for .xinitrc / .xsessionrc / wayland related problems.  
 
