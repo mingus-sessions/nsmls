@@ -14,24 +14,6 @@ See nsmls -h for other options.
 Applications that have NSM support, should provide a xdg *.desktop file with the NSM keys[1] in it to be detected by nsmls. Nsmls checks for the X-NSM-Exec key. 
 You can include your specific user settings in src/config/config.def.py. See CUSTOMIZATION.md for instructions about the config.def.py/ config.py files.  
 
-**Launch from menu**
-
-Note that it's possible to launch NSM applications from your Desktop Manager's launch menu, like dmenu. This way you can use nsmls to list supported applications and then just launch them from your application launcher.
-
-
-"*If the NSM URL is included in the environment (by either using a fixed port number or starting nsmd early in the initialization process [like in your .xinitrc] extracting the URL from its output) then any NSM capable client will join the current session when started, even if started from outside the Non Session Manager interface (for example, by your Desktop Environment's program launch menu).*"[2]  
-
-
-For Debian based distributions like Ubuntu, this should be done in ~/.xsessionrc. 
-
-Example settings for .xinitrc / .xsessionsrc:  
-
-export NSM_PORT=18440  
-export NSM_URL=osc.udp://HOSTNAME:18440/  
-export NSM_DIR=~/NSM\ Sessions  
-
-[3]
-
 **Support**
 
 
@@ -51,8 +33,28 @@ The nsm_star_clients list is short for a reason. Missing NSM keys in desktop fil
 
 To keep things simple, tools that are designed specifically for other GUIs are blocked by default. Users can enable them in their own config if they prefer.  
 
+**Launch from menu**
+
+Note that it's possible to launch NSM applications from your Desktop Manager's launch menu, like dmenu. This way you can use nsmls to list supported applications and then just launch them from your application launcher.
+
+
+"*If the NSM URL is included in the environment (by either using a fixed port number or starting nsmd early in the initialization process [like in your .xinitrc] extracting the URL from its output) then any NSM capable client will join the current session when started, even if started from outside the Non Session Manager interface (for example, by your Desktop Environment's program launch menu).*"[2]  
+
+
+For Debian based distributions like Ubuntu, this should be done in ~/.xsessionrc. 
+
+Example settings for .xinitrc / .xsessionsrc:  
+
+export NSM_PORT=18440  
+export NSM_URL=osc.udp://HOSTNAME:18440/  
+export NSM_DIR=~/NSM\ Sessions  
+
+[3]
+
 
 License: GPLv2  
+
+
 
 [1] Example:  
 X-NSM-Exec=drumkv1_jack  
