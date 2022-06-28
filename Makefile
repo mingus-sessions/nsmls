@@ -1,11 +1,15 @@
 #PREFIX=/usr/local
 PROGRAM=nsmls
 VERSION=0.0.1
+CONFIG=src/config
 
 .PHONY: clean install uninstall
 
+
+"$(CONFIG)/config.py":
+	cp "$(CONFIG)/config.def.py" "$(CONFIG)/config.py"
+
 all:
-	# copy config.def.h to config.py if config.py not available
 	python -m build
 
 clean:
