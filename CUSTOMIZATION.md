@@ -31,11 +31,9 @@ Now switch to the new branch. This will do nothing at the moment as the branches
 
 git checkout my_nsmls
 
-Now make your changes. If you want to apply one of the contributed patches you can use the git apply command
+Now make your changes. 
 
-git apply some_patch.diff
-
-Note that many patches make changes config.def.py instead of config.py. Either move those changes also to config.py, or add rm config.py to the clean target in the Makefile.
+(skip part about the patches).
 
 Then record the changes as commits
 
