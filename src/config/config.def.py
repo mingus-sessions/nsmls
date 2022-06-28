@@ -85,7 +85,6 @@ nsm_clients = [
         Client("zita-rev1", "reverb (nsm patch)", "https://github.com/royvegard/zita-rev1"),
         Client("zynaddsubfx", "synthesizer", "https://github.com/zynaddsubfx"),
 
-
         ]
 
 
@@ -101,7 +100,6 @@ nsm_star_clients = [
         "nsm-proxy",
         "zynaddsubfx",
         "jackpatch",
-        
 
         ]
 
