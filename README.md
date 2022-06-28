@@ -39,7 +39,7 @@ The project is a personal project, which is released because it might be useful 
 
 Send your patches and improvements, so at least other users can find and apply them (the suckless way). Note that new features are unlikely to be implemented. 
 
-No support, feel free to report your issue though. Your issue is probably my issue as well. 
+No support, feel free to report your issue though. Your issue is probably my issue as well. Users should help users.
 
 No support for .xinitrc / .xsessionrc / wayland related problems.  
 
