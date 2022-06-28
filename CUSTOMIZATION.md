@@ -1,6 +1,6 @@
 **The suckless way**
 
-Tools following the suckless philosophy are customized through editing its source code, this should make the tools fast and secure - it does not process any input data which isn't known at 'compile time'.
+Tools following the suckless philosophy are customized through editing its source code, this should make the tools fast and secure - it does not process any input data which isn't known at 'compile time'.  
 
 **Config**
 
@@ -112,7 +112,7 @@ Then install it the normal way using the makefile.
 
 
 Sources:  
-http://suckless.org/philosophy/
+http://suckless.org/philosophy/  
 http://dwm.suckless.org/customisation/  
 http://dwm.suckless.org/customisation/patches_in_git/  
 
