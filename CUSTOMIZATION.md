@@ -53,22 +53,6 @@ git add some_file
 git commit -v
 
 
-Note that in Python one can test a installation using: 
-
-pip install -e /path/to/local/nsmls/repo
-
-or when you're in the nsmls folder containing the setup.py file:
-
-pip install -e .
-
-(Yes, that's a dot.)
-
-When you now change something in your nsmls configuration, it will automatically applied to your installed version.
-
-If you've the nsmls configuration the way you like, unstall it using: pip uninstall nsmls
-
-Then install it the normal way using the makefile.
-
 
 Updating customizations after new release
 
@@ -96,4 +80,23 @@ git rebase --abort
 
 
 Copied from: http://dwm.suckless.org/customisation/patches_in_git/
+
+
+Note that in Python one can test a installation using: 
+
+pip install -e /path/to/local/nsmls/repo
+
+or when you're in the nsmls folder containing the setup.py file:
+
+pip install -e .
+
+(Yes, that's a dot.)
+
+When you now change something in your nsmls configuration, it will automatically applied to your installed version.
+
+If you've the nsmls configuration the way you like, unstall it using: pip uninstall nsmls
+
+Then install it the normal way using the makefile.
+
+
 
