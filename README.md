@@ -52,10 +52,6 @@ The nsm_star_clients list is short for a reason. Missing NSM keys in desktop fil
 To keep things simple, tools that are designed specifically for other GUIs are blocked by default. Users can enable them in their own config if they prefer.  
 
 
-See further:  
-https://wiki.debian.org/Xsession  
-https://wiki.archlinux.org/title/Xinit  
-
 License: GPLv2  
 
 [1] Example:  
@@ -63,7 +59,7 @@ X-NSM-Exec=drumkv1_jack
 X-NSM-Capable=true  
 
 [2] http://non.tuxfamily.org/session-manager/doc/MANUAL.html#n:1.2.  
-[3] For Wayland alternatives see:  
+[3] See further:  
+https://wiki.debian.org/Xsession  
+https://wiki.archlinux.org/title/Xinit  
 https://wiki.gnome.org/Initiatives/Wayland/SessionStart  
-
-
