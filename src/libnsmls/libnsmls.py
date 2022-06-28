@@ -33,7 +33,8 @@ import xdg.DesktopEntry
 
 import config.config as data 
 from libnsmls.nsmls_dataclass import Client 
-import libnsmls.nsmls2 as nsmls
+#import libnsmls.nsmls2 as nsmls
+
 
 
 def star_not_in_blocked(list1, list2):
@@ -116,8 +117,17 @@ def get_paths():
             client.installed = True
 
 
-def nsmls_data_mining():
+def get_longest():
+    long = -1
+    for client in data.nsm_clients:
+        if len(client.exec_name) > long:
+            long = len(client.exec_name)
+    return long
 
+
+
+
+def nsmls_data_mining():
     # Validate.
     star_not_in_blocked(data.user_star_clients, data.user_blocked_clients)
     star_not_in_blocked(data.nsm_star_clients, data.blocked_clients)
