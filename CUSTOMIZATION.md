@@ -51,7 +51,7 @@ git push codeberg my_nsmls
 Now make your changes. 
 
 
-Then record the changes as commits
+Then record the changes as commits (note the dot):
 
 git add .  
 git commit -m "my commit"  
