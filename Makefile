@@ -5,15 +5,15 @@ CONFIG=src/config
 
 .PHONY: clean install uninstall
 
+all: nsmls 
 
-"$(CONFIG)/config.py":
-	cp "$(CONFIG)/config.def.py" "$(CONFIG)/config.py"
 
-all:
+nsmls: src/config/config.py
 	python -m build
 
-clean:
-	# remove config.py?
+src/config/config.py:
+	cp "$(CONFIG)/config.def.py" "$(CONFIG)/config.py"
+
 
 install:
 	pip install "dist/nsmls2-$(VERSION)-py3-none-any.whl"
