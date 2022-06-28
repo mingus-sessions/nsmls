@@ -32,6 +32,19 @@ For Wayland alternatives see:
 https://wiki.gnome.org/Initiatives/Wayland/SessionStart  
 
 
+**Support**
+
+* Development is done by someone who is more a poweruser then a developer.
+* Support only for essential bugs.
+* No support for .xinitrc / .xsessionrc / wayland related problems.
+* No support for git related problems, unless the documentation of nsmls is not correct.
+
+* Please sent a patch if you think a NSM client should be added to the nsm_clients list.
+* The nsm_star_clients list is short for a reason. Missing NSM keys in desktop files should be fixed by upstream developers, in meantime users should edit their custom config.def.py file.
+* To keep things simple, nsmls focuses on applications specifically designed for NSM (Non-Session-Manager) and the Non-Session-Manager GUI. Tools that are part of other GUIs
+are blocked by default. Users can enable them in their own config if they prefer.
+
+
 See further:  
 https://wiki.debian.org/Xsession  
 https://wiki.archlinux.org/title/Xinit  
@@ -43,3 +56,4 @@ X-NSM-Exec=drumkv1_jack
 X-NSM-Capable=true  
 
 [2] http://non.tuxfamily.org/session-manager/doc/MANUAL.html#n:1.2.  
+
