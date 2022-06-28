@@ -40,8 +40,7 @@ https://wiki.archlinux.org/title/Xinit
 
 License: GPLv2  
 
-[1]  
-Example:  
+[1] Example:  
 X-NSM-Exec=drumkv1_jack  
 X-NSM-Capable=true  
 
