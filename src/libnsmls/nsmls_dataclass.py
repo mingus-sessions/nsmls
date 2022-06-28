@@ -18,11 +18,7 @@ Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
 Boston, MA  02110-1301, USA.
 """
 
-
-
-
 from dataclasses import dataclass, field
-
 
 
 @dataclass(slots=True, order=True)
