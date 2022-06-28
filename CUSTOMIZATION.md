@@ -27,6 +27,20 @@ Now switch to the new branch. This will do nothing at the moment as the branches
 
 git checkout my_nsmls
 
+It's recommended to backup your customised branch of nsmls. This can be done by adding a remote branch.
+
+For example:
+Make a repository on codeberg or github.
+
+Add the repository as remote:
+
+git add remote codeberg https://codeberg.org/username/mynsmls.git
+
+Push your custom nsmls to the new remote repository:
+
+git push codeberg my_nsmls
+
+
 Now make your changes. 
 
 
