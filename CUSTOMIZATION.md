@@ -110,6 +110,7 @@ Then install it the normal way using the makefile.
 
 
 Sources:  
+https://suckless.org/  
 http://dwm.suckless.org/customisation/  
 http://dwm.suckless.org/customisation/patches_in_git/  
 
