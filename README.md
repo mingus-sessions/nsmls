@@ -40,7 +40,7 @@ Python packages in Ubuntu, might start with python3- instead of python-.
 
 python >= 3.10  (Ubuntu >= 22.04)  
 python-setuptools (setuptools >=42)  
-python-pip (pip https://pypi.org/project/pip/)  
+python-pip (pip)  
 python-pyxdg  (pyxdg https://pypi.org/project/pyxdg/)  
 
 
