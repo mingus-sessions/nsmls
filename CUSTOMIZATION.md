@@ -89,26 +89,9 @@ git rebase --abort
 
 
 
-
-***Using pip install -e***
-
-
-Note that in Python one can test a installation using: 
-
-pip install -e /path/to/application
-
-or when you're in the folder containing the setup.py file:
-
-pip install -e .
-
-(Yes, that's a dot.)
-
-When you now change something in your configuration, it will automatically applied to your installed version.
-
-If you've the configuration the way you like, unstall it using pip uninstall. 
-
-Then install it the normal way using the makefile.
-
+NOTE: in Python one can install a package using: pip install -e /path/to/application  
+When you now change something in your configuration, it will automatically applied to your installed version.  
+When you're happy, uninstall it via pip and install the package using make.
 
 
 Sources:  
