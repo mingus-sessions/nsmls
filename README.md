@@ -24,13 +24,9 @@ In general, don't expect support. Feel free to report your issue though. Your is
 
 Please sent a patch if you think a NSM client should be added to the nsm_clients list in src/config/config.def.py.  
 
-No support for .xinitrc / .xsessionrc / wayland related problems.  
+In general no support for 'offtopic' issues with git, pip, xsession etc. If there are issues with the documentation about these topics, let it know. If you report, ideally users are supporting users.  
 
-No support for git related problems, unless the documentation of nsmls could be improved.  
-
-No support for pip related problems, unless the problem is in the setup files.
-
-Missing NSM keys in desktop files should be fixed by upstream developers. They can make your life more easy.  
+Missing NSM keys in desktop files should be fixed by upstream developers. They can make your life more easy.   
 
 To keep things simple, tools that are designed specifically for other GUIs are blocked by default. Users can enable them in their own src/config/config.py.
 
