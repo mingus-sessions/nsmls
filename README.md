@@ -54,7 +54,7 @@ make install
 (no sudo)  
 
 
-**Launch from menu**
+**Launch NSM clients from menu**
 
 Note that it's possible to launch NSM applications from your Desktop Manager's launch menu, like dmenu. This way you can use nsmls to list supported applications and then just launch them from your application launcher.
 
