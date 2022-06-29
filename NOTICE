@@ -1,18 +1,17 @@
 2022 - ...
 
-NOTICE:
 
-When you (re)distributing or fork this software, and provide a description, 
-manpage, documentation etc. for it, please let 'NSM' stand for the 
-original Non-Session-Manager (NSM) <https://non.tuxfamily.org</> 
-in the context of session managers for Linux audio. 
+When (re)distributing or forking this software, and a description, 
+manpage, documentation etc. is provided for this package, 
+please let 'NSM' stand for the original Non-Session-Manager (NSM) 
+<https://non.tuxfamily.org</> in the context of session managers 
+for Linux audio. 
 
-All though the GPL license seems to put no restrictions for using 
-the same name and/ or the widely used abbreviation, most Linux 
-distributions do require clear renaming when forking.
-It's also considered to be 'good practice' to do so when forking a 
-project and thereby preventing to harm the interests of the original 
-author. 
+The GPL license puts no restrictions for using the same name and/ 
+or the widely used abbreviation, most Linux distributions do require 
+clear renaming when forking. It's also considered to be 
+'good practice' to do so when forking a project and thereby 
+preventing to harm the interests of the original author. 
 
 Please keep this NOTICE as part of the source, like it's done with a
 Apache license NOTICE.
