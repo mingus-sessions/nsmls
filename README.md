@@ -1,6 +1,8 @@
 DRAFT! License NOT OFFICIAL!!!
 
 
+NOTE: prototype / alpha software.  
+
 
 nsmls lists applications which have Non-Session-Manager (NSM) support.  
 
