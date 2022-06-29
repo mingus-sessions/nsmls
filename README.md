@@ -20,7 +20,7 @@ You can include your specific user settings in src/config/config.py. See CUSTOMI
 
 The project is started as a personal project to learn python. It's now at a stage where it might be useful for others too. License is GPLv2, feel free to maintain your own version. See the NOTICE file in that case. Contribute if possible.
 
-In general, don't expect support. Feel free to report your issue though. Your issue is probably my issue as well and bugs are not good. Don't expect new features. Ideally users help users.  
+In general, don't expect support. Feel free to report your issue though. Your issue is probably my issue as well and bugs are not good. Don't expect new features. Ideally users are supporting users.  
 
 Please sent a patch if you think a NSM client should be added to the nsm_clients list in src/config/config.def.py.  
 
