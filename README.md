@@ -18,11 +18,11 @@ You can include your specific user settings in src/config/config.py. See CUSTOMI
 **Support**
 
 
-The project is started as a personal project, which at the end is released because it might be useful for others. License is GPLv2, feel free to maintain your own version. See the NOTICE file in that case. Contribute if possible.
+The project is started as a personal project to learn python. It's now at a stage where it might be useful for others too. License is GPLv2, feel free to maintain your own version. See the NOTICE file in that case. Contribute if possible.
 
-In general, don't expect support. Feel free to report your issue though. Your issue is probably my issue as well and bugs are not good. Don't expect new features.
+In general, don't expect support. Feel free to report your issue though. Your issue is probably my issue as well and bugs are not good. Don't expect new features. Ideally users help users.  
 
-Users should help users. 
+Please sent a patch if you think a NSM client should be added to the nsm_clients list in src/config/config.def.py.  
 
 No support for .xinitrc / .xsessionrc / wayland related problems.  
 
@@ -30,11 +30,9 @@ No support for git related problems, unless the documentation of nsmls could be 
 
 No support for pip related problems, unless the problem is in the setup files.
 
-Please sent a patch if you think a NSM client should be added to the nsm_clients list in src/config/config.def.py.  
+Missing NSM keys in desktop files should be fixed by upstream developers. They can make your life more easy.  
 
-The nsm_star_clients list in src/config/config.def.py is short for a reason. Missing NSM keys in desktop files should be fixed by upstream developers, in meantime users should edit their custom src/config/config.py file.
-
-To keep things simple, tools that are designed specifically for other GUIs are blocked by default. Users can enable them in their own src/config/config.py if they prefer.  
+To keep things simple, tools that are designed specifically for other GUIs are blocked by default. Users can enable them in their own src/config/config.py.
 
 
 **Requirements**  
