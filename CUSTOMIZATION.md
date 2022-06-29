@@ -91,7 +91,7 @@ git rebase --abort
 
 NOTE: in Python one can install a package using: pip install -e /path/to/application  
 When you now change something in your configuration, it will automatically applied to your installed version.  
-When you're happy, uninstall it via pip and install the package using make.
+When you're happy about your configuration, uninstall it via pip and install the package using make.
 
 
 Sources:  
