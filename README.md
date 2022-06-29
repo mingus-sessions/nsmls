@@ -37,7 +37,8 @@ To keep things simple, tools that are designed specifically for other GUIs are b
 
 **Requirements**  
 
-It's recommended to install the dependencies via your distribution package manager before running make.   
+It's recommended to install the dependencies via your distribution package manager before running make.  
+Python packages in Ubuntu, might start with python3- instead of python-.  
 
 python >= 3.10  (Ubuntu >= 22.04)  
 python-setuptools (setuptools >=42)  
