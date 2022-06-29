@@ -36,20 +36,22 @@ The nsm_star_clients list in src/config/config.def.py is short for a reason. Mis
 
 To keep things simple, tools that are designed specifically for other GUIs are blocked by default. Users can enable them in their own src/config/config.py if they prefer.  
 
+
+**Requirements**  
+It's recommended to install them via your distribution package manager before running make.   
+
+python >= 3.10  (Ubuntu >= 22.04)  
+python-setuptools (setuptools >=42)  
+python-pip (pip https://pypi.org/project/pip/)  
+python-pyxdg  (pyxdg https://pypi.org/project/pyxdg/)  
+
+
 **Installation**  
 
 make  
-make install  
+make install 
 
-
-**Requirements**  
-
-python >= 3.10  (Ubuntu >= 22.04)  
-setuptools >=42  
-pip (https://pypi.org/project/pip/)  
-pyxdg  (https://pypi.org/project/pyxdg/)  
-
-
+(no sudo)  
 
 
 **Launch from menu**
